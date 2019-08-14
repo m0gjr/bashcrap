@@ -1,0 +1,7 @@
+if [ $1 = "new" ]
+then
+rsync -a /container/debian/ /container/$2/
+shift
+fi
+systemd-nspawn -bD /container/$1/
+clear

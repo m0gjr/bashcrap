@@ -1,0 +1,14 @@
+#!/bin/sh
+
+for file in /home/music/*
+do
+	if [ -f "$file" ]
+	then
+		ffmpeg -i "$file" -c:a libmp3lame /home/music/"$(basename "$file" .mp4)".mp3
+	fi
+done
+
+mv -i /home/music/*.mp3 /home/music/mp3
+mv -i /home/music/*.mp4 /home/music/music
+
+echo

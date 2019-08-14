@@ -1,0 +1,28 @@
+# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ "$(tty)" = "$SSH_TTY" ]
+then
+	if command -v tmux 2> /dev/null
+	then
+		if tmux ls
+		then
+			exec tmux attach
+		else
+			exec tmux new
+		fi
+	fi
+fi
+
+if [ "$BASH" ]; then
+	if [ -f ~/.bashrc ]; then
+		. ~/.bashrc
+	fi
+fi
+
+if [ -f ~/.startx ];then
+	. ~/.startx
+fi
+
+mesg n
+
+export PATH="$HOME/bin:$PATH"

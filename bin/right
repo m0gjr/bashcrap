@@ -1,0 +1,2 @@
+xrandr --orientation right
+xrandr --dpi 96

@@ -1,0 +1,44 @@
+packages:
+bash-completion alsa-utils rsync less pm-utils psmisc tmux
+htop iotop iftop
+nano vim elinks bc pv
+acpi lm-sensors upower acpid tp-smapi-dkms
+netcat arp-scan nmap curl wget dhcpcd ssh
+iw wpa_supplicant wireless-tools linux-firmware firmware-iwlwifi
+xorg xorg-xinit openbox
+spacefm mplayer smplayer ffmpegthumbnailer viewnior file-roller evince
+libdvdcss libdvdnav libdvdread
+tor torsocks
+ffmpeg jmtpfs
+
+acpid
+
+ssh:
+unhash known hosts
+keygen
+copy-id
+
+browser:
+/etc/passwd
+useradd audio
+mkdir home
+chown home
+
+inittab:
+x11:5:respawn:/root/bin/x11-start
+env > .root.env
+apt install sysvinit-core
+apt remove --autoremove systemd
+
+rc.local:
+modprobe tp_smapi
+echo 70 > /sys/devices/platform/smapi/BAT0/start_charge_thresh
+echo 80 > /sys/devices/platform/smapi/BAT0/stop_charge_thresh
+
+
+kernel:
+genkernel all
+make localyesconfig
+make menuconfig
+make bzImage
+make install

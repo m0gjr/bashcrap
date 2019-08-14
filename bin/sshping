@@ -1,0 +1,42 @@
+#!/bin/bash
+
+pipe=sshping.fifo
+mkfifo $pipe || exit 255
+trap "rm -f $pipe; exit 0" SIGINT SIGTERM
+
+sshpinger(){
+	maxtime=0
+	for i in 1 2 3
+	do
+		echo starttest
+		until $(read)
+		do
+			:
+		done
+	done
+
+	while true
+	do
+		echo
+		starttime=$(date +%s%N)
+
+		until $(read)
+		do
+			:
+		done
+
+		endtime=$(date +%s%N)
+		time=$(expr $(expr $endtime - $starttime) / 1000000)
+
+		if [ "$time" -gt "$maxtime" ] 
+		then
+			maxtime=$time
+		fi
+
+		printf "$maxtime\t$time\n" 1>&2
+
+
+		sleep 0.2
+	done
+}
+< $pipe sshpinger | ssh "$@" "cat" > $pipe

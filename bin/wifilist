@@ -1,0 +1,2 @@
+ip l s wlan0 up
+iw wlan0 scan | grep SSID: | cut -c 8-

@@ -1,0 +1,1 @@
+mplayer dvdnav:// -dvd-device /dev/sr0 -mouse-movements

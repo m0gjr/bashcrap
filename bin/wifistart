@@ -1,0 +1,9 @@
+#!/bin/sh
+killall wpa_supplicant
+killall dhcpcd
+killall dhclient
+ip link set wlan0 up
+wpa_supplicant -Dnl80211 -iwlan0 -cwifi.conf&
+sleep 5
+dhcpcd --noarp wlan0 || dhclient
+ping -c 4 google.com

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+string=''
+
+if [ -z "$1" ]
+then
+	length=10
+else
+	length=$1
+fi
+
+while [ ${#string} -lt $length ]
+do
+	string+=$(/bin/dd if=/dev/urandom bs=1 count=1 2>/dev/null | tr -dc 'a-z')
+done
+
+echo $string
+
+dd if=/dev/urandom bs=1 count=14 2> /dev/null | base64

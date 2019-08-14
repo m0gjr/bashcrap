@@ -1,0 +1,17 @@
+#!/bin/sh
+killall dhcpcd
+killall wpa_supplicant
+
+if [[ -z $1 ]]
+then
+	wifiid="$1"
+else
+	wifilist
+	echo
+	read -r wifiid
+fi
+
+iw wls1 connect "$wifiid"
+sleep 5
+dhcpcd
+curl google.com

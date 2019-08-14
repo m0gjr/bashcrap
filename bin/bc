@@ -1,0 +1,66 @@
+/usr/bin/bc -l /dev/fd/3 3<<'EOF'
+
+define fac (n) { 
+  if (n < 0) {
+    print "oops";
+    halt;
+  }
+  if (n < 2) return 1;
+  return n*fac(n-1);
+}
+
+define pi () {
+return 4*a(1);
+}
+
+define round(a){
+scale=scale+1;
+if(a>0)
+a=a+5/10^scale;
+if(a<0)
+a=a-5/10^scale;
+scale=scale-1;
+return a/1; 
+}
+
+define int(a){
+scale1=scale;
+scale=1
+if(a>0)
+a=a+5/10^scale;
+if(a<0)
+a=a-5/10^scale;
+scale=0;
+a=a/1;
+scale=scale1;
+return a;
+}
+
+define pow2(a,b){
+scale1=scale;
+scale=0;
+scale=2*length(a^round(b));
+if(scale<2*scale1)
+scale=2*scale1+5;
+x=e(l(a)*b);
+scale=scale1;
+return round(x);
+}
+
+define pow(a,b){
+if(b==0)
+return 1;
+if(b<0)
+return 1/pow(a,-b);
+scale1=scale;
+c=int(b);
+x=a^(c);
+scale=2*(length(x)+scale1);
+y=1
+if(b!=c)
+y=e(l(a)*(b-c));
+scale=scale1;
+return (x*y)/1;
+}
+
+EOF

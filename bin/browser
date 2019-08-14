@@ -1,0 +1,6 @@
+if [ "$(basename $0)" = "browser" ]
+then
+	sudo -ubrowser chromium --disable-high-precision-scrolling --disable-smooth-scrolling
+else
+	sudo -ubrowsertor chromium --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0"
+fi

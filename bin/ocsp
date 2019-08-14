@@ -1,0 +1,23 @@
+#!/bin/bash
+
+url=$1
+if [ -z $2 ]
+then
+	port=443
+else
+	port=$2
+fi
+
+certificates=$(openssl s_client -connect "$url:$port" -showcerts < /dev/null)
+
+web=$(echo "$certificates" | awk '/BEGIN/{flag=1}flag{print}/END/{exit}')
+chain=$(echo "$certificates" | awk 'BEGIN{flag=2}/BEGIN/{flag=flag-1}!flag{print}/END/{flag=1}')
+
+ocsp=$(openssl x509 -noout -ocsp_uri -in <(echo "$web"))
+
+echo
+echo "$ocsp"
+echo
+echo
+
+openssl ocsp -issuer <(echo "$chain") -cert <(echo "$web") -text -no_nonce -url "$ocsp"

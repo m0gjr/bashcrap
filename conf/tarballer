@@ -1,0 +1,9 @@
+.Xdefaults
+.bashrc
+.profile
+.tmux.conf
+.inputrc
+.xinitrc
+.config/openbox/
+bin/
+conf/

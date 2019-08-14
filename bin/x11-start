@@ -1,0 +1,7 @@
+#!/bin/sh
+cd /root
+while read line
+do
+	export $line
+done < /root/.root.env
+exec xinit /root/.xinitrc -- vt7
