@@ -45,6 +45,8 @@ useradd -u 50001 -G audio browsertor || true
 
 env > /root/.root.env
 
+ln -s /etc/wifi/wifi.conf /root/wifi.conf
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 modprobe tp_smapi
@@ -55,5 +57,6 @@ echo 80 > /sys/devices/platform/smapi/BAT0/stop_charge_thresh
 
 exit 0
 EOF
+
 chmod +x /etc/rc.local
 systemctl enable rc-local
