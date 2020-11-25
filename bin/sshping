@@ -6,6 +6,7 @@ trap "rm -f $pipe; exit 0" SIGINT SIGTERM
 
 sshpinger(){
 	maxtime=0
+	avetime=0
 	for i in 1 2 3
 	do
 		echo starttest
@@ -33,7 +34,9 @@ sshpinger(){
 			maxtime=$time
 		fi
 
-		printf "$maxtime\t$time\n" 1>&2
+		avetime=$(echo $avetime*0.9+0.1*$time | /usr/bin/bc)
+
+		printf "$maxtime\t$avetime\t$time\n" 1>&2
 
 
 		sleep 0.2
