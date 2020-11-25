@@ -16,6 +16,6 @@ fi
 if [ -n "$1" ]
 then
 	torrent "$@"
+else
+	torrent -l
 fi
-
-torrent -l
