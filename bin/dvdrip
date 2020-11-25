@@ -12,6 +12,7 @@ fi
 if grep '.mp4$' <<<"$1" > /dev/null
 then
 	< /dev/null HandBrakeCLI 2> /dev/null -i /dev/sr0 --main-feature -o"$1"
+	eject
 	exit
 fi
 
