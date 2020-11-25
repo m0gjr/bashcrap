@@ -1,11 +1,4 @@
-feature@async_destroy
-feature@bookmarks
 feature@embedded_data
 feature@empty_bpobj
-feature@enabled_txg
-feature@extensible_dataset
-feature@filesystem_limits
-feature@hole_birth
-feature@large_blocks
 feature@lz4_compress
 feature@spacemap_histogram
