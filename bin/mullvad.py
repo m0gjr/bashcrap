@@ -38,3 +38,5 @@ with open(os.path.join(dir,servername+".conf"),'w') as file:
 	file.write(template)
 	file.write("PublicKey = "+server["pubkey"]+"\n")
 	file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
+
+os.chmod(os.path.join(dir,servername+".conf"),0o600);

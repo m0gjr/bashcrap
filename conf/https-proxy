@@ -1,0 +1,12 @@
+server {
+	listen 12288 ssl default_server;
+	listen [::]:12288 ssl default_server;
+
+	ssl_certificate /etc/letsencrypt/live/m0gjr.duckdns.org/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/m0gjr.duckdns.org/privkey.pem;
+	ssl_protocols TLSv1.2;
+
+	location / {
+		proxy_pass https://localhost:4200;
+	}
+}
