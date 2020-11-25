@@ -2,8 +2,7 @@
 
 /root/bin/zfsnap
 
-apt update
-apt -y upgrade
+apt update && apt -y upgrade || touch /var/log/aptfail
 
 if [ -f /var/run/reboot-required ]
 then
