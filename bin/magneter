@@ -1,3 +1,3 @@
 #!/bin/bash
 
-xmessage "$(echo $1 | ssh 10.1 /root/bin/torrents -a | tail)"
+xmessage -timeout 5 "$(echo $1 | ssh 10.1 /root/bin/torrents -a | tail)"
