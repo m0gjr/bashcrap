@@ -16,7 +16,7 @@ apt-get -y install \
 bash-completion alsa-utils \
 rsync less pm-utils psmisc tmux \
 htop iotop iftop \
-nano vim elinks bc pv git \
+nano vim elinks bc pv git sshfs\
 acpi lm-sensors upower acpid tp-smapi-dkms \
 netcat arp-scan nmap curl wget dhcpcd5 ssh \
 iw wpasupplicant wireless-tools \
