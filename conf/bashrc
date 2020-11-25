@@ -52,6 +52,9 @@ alias gitc='git add -A && git commit -am'
 alias gits='git status'
 alias gitd='git diff'
 
-uptime
-date
-acpi
+if [ -z "$SSH_CONNECTION" ]
+then
+	uptime
+	date
+	acpi
+fi
