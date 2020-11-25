@@ -6,9 +6,9 @@ then
 	then
 		if tmux ls
 		then
-			exec screen tmux attach
+			exec tmux attach
 		else
-			exec screen tmux new
+			exec tmux new
 		fi
 	fi
 fi
