@@ -11,5 +11,9 @@ fi
 
 for fs in $fss
 do
-	zfs snapshot $(zfs mount | awk '$2 == "'$fs'" {print $1}')@$date
+	ds=$(zfs mount | awk '$2 == "'$fs'" {print $1}')
+	if [ -n "$ds" ]
+	then
+		zfs snapshot "$ds@$date"
+	fi
 done

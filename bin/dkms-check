@@ -1,8 +1,22 @@
 #!/bin/bash
 
-echo "New Kernel:"
-dkms status | grep "$(ls -l /vmlinuz | cut -d"-" -f3-)"
+status="$(dkms status)"
+kernelnew="$(ls -l /vmlinuz | cut -d'-' -f3-)"
+kernelold="$(ls -l /vmlinuz.old | cut -d'-' -f3-)"
+dkms="$(apt 2> /dev/null list --installed | grep '\-dkms' | cut -d'-' -f1 | sort)"
 
+echo "New Kernel: $kernelnew"
+echo "$status" | grep "$kernelnew"
 echo
-echo "Old Kernel:"
-dkms status | grep "$(ls -l /vmlinuz.old | cut -d"-" -f3-)"
+echo "Old Kernel: $kernelold"
+echo "$status" | grep "$kernelold"
+echo
+
+new="$(echo "$status" | grep "$kernelnew" | cut -d',' -f1 | sort)"
+old="$(echo "$status" | grep "$kernelold" | cut -d',' -f1 | sort)"
+
+if [ "$new" != "$dkms" ] || [ "$old" != "$dkms" ]
+then
+	echo "DKMS modules are out of date, update will be run"
+	ls /var/lib/initramfs-tools/ | xargs -n1 /usr/lib/dkms/dkms_autoinstaller start
+fi
