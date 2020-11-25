@@ -1,7 +1,5 @@
 #!/bin/sh
 cd /root
-while read line
-do
-	export $line
-done < /root/conf/root.env
+export HOME="/root"
+export PATH="/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 exec xinit /root/.xinitrc -- vt7
