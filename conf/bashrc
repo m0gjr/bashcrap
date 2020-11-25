@@ -47,7 +47,7 @@ alias nano='nano -mc'
 
 alias tarballer='grep "!" conf/gitignore | grep -v "*" | tr -d "!" | xargs tar -czf config.tgz'
 
-alias gitl='git log --pretty --oneline --decorate --graph'
+alias gitl='git log --pretty --oneline --decorate --graph --all'
 alias gitc='git add -A && git commit -am'
 alias gits='git status'
 alias gitd='git diff'
