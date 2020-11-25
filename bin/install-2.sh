@@ -36,6 +36,15 @@ sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
 
 passwd -d root
 
+cat > /etc/rc.local <<'EOF'
+#!/bin/sh
+
+exit 0
+EOF
+
+chmod +x /etc/rc.local
+systemctl enable rc-local || true
+
 if [ $(basename "$0") = "install-headless.sh" ]
 then
 	exit
@@ -77,6 +86,3 @@ wg-quick up vpn
 
 exit 0
 EOF
-
-chmod +x /etc/rc.local
-systemctl enable rc-local || true
