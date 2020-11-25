@@ -78,9 +78,13 @@ case "$1" in
 		close)
 			# suspend-to-ram
 			logger "LID closed, suspending..."
+			cat /sys/class/backlight/intel_backlight/brightness > /run/brightness
 			echo mem > /sys/power/state
 			;;
-		open)	logger "LID opened" ;;
+		open)
+			logger "LID opened"
+			cat /run/brightness > /sys/class/backlight/intel_backlight/brightness
+			;;
 		*) logger "ACPI action undefined (LID): $2";;
 	esac
 	;;

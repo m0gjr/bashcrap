@@ -33,6 +33,16 @@ chromium gnumeric
 cat /root/conf/handler.sh > /etc/acpi/handler.sh
 chmod +x /etc/acpi/handler.sh
 
+cat > /etc/acpi/events/anything <<'EOF'
+event=.*
+action=/etc/acpi/handler.sh %e
+EOF
+
+systemctl enable acpid || true
+
+systemctl mask systemd-logind.service || true
+systemctl mask systemd-journald.service || true
+
 sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
 
 passwd -d root
@@ -56,4 +66,4 @@ exit 0
 EOF
 
 chmod +x /etc/rc.local
-systemctl enable rc-local
+systemctl enable rc-local || true
