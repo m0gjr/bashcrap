@@ -45,12 +45,14 @@ useradd -u 50001 -G audio browsertor || true
 env > /root/.root.env
 
 cat > /etc/rc.local <<'EOF'
-#!/bin/sh -e
+#!/bin/sh
 modprobe tp_smapi
 echo 70 > /sys/devices/platform/smapi/BAT0/start_charge_thresh
 echo 80 > /sys/devices/platform/smapi/BAT0/stop_charge_thresh
 
-/root/x11-respawn &
+/root/bin/x11-respawn &
 
 exit 0
 EOF
+chmod +x /etc/rc.local
+systemctl enable rc-local
