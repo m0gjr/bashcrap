@@ -11,7 +11,7 @@ for server in $1
 do
 	echo "$server"
 	scp "$in" "$server:"
-	ssh -t "$server" "cat "\""$in"\"" | sudo tee > /dev/null "\""$out"\"""
+	ssh -t "$server" "cat "\""$(basename "$in")"\"" | sudo tee > /dev/null "\""$out"\"""
 	echo
 	echo
 done
