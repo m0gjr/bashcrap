@@ -49,6 +49,8 @@ alias tarballer='grep "!" conf/gitignore | grep -v "*" | tr -d "!" | xargs tar -
 
 alias gitl='git log --pretty --oneline --decorate --graph'
 alias gitc='git add -A && git commit -am'
+alias gits='git status'
+alias gitd='git diff'
 
 uptime
 date
