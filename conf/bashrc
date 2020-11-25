@@ -44,7 +44,6 @@ alias wget='wget -c'
 alias emerge="emerge -a -j$(nproc --all)"
 alias youtube-dl='youtube-dl -f mp4'
 alias nano='nano -mc'
-alias mplayer='mplayer -fs'
 
 alias tarballer='grep "!" conf/gitignore | grep -v "*" | tr -d "!" | xargs tar -czf config.tgz'
 
