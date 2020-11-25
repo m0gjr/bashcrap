@@ -1,0 +1,11 @@
+#!/bin/bash
+
+/root/bin/zfsnap
+
+apt update
+apt -y upgrade
+
+if [ -f /var/run/reboot-required ]
+then
+	/root/bin/dkms-check
+fi

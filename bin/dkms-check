@@ -15,8 +15,11 @@ echo
 new="$(echo "$status" | grep "$kernelnew" | cut -d',' -f1 | sort)"
 old="$(echo "$status" | grep "$kernelold" | cut -d',' -f1 | sort)"
 
-if [ "$new" != "$dkms" ] || [ "$old" != "$dkms" ]
+if [ "$new" != "$dkms" ]
 then
-	echo "DKMS modules are out of date, update will be run"
-	ls /var/lib/initramfs-tools/ | xargs -n1 /usr/lib/dkms/dkms_autoinstaller start
+	/usr/lib/dkms/dkms_autoinstaller start "$kernelnew"
+fi
+if [ "$old" != "$dkms" ]
+then
+	/usr/lib/dkms/dkms_autoinstaller start "$kernelold"
 fi
