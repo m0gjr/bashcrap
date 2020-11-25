@@ -1,11 +1,14 @@
-#!/bin/sh
+#!/bin/bash
+
+echo "Password:"
+read -s password
 
 cmd="$2"
 
 for server in $1
 do
 	echo "$server"
-	ssh -t "$server" "sudo $cmd"
+	ssh -t "$server" "echo $password | sudo -S whoami; sudo $cmd"
 	echo
 	echo
 done
