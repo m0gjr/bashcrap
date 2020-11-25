@@ -6,13 +6,13 @@ then
 	exit
 fi
 
-if [ -z $1 ]
+if [ -z "$1" ]
 then
 	echo "must have release on command line" >&2
 	exit 1
 fi
 
-debootstrap $1 /mnt/ http://deb.debian.org/debian/
+debootstrap "$1" /mnt/ http://deb.debian.org/debian/
 
 echo "deb http://deb.debian.org/debian/ $1 main contrib non-free" > /mnt/etc/apt/sources.list
 if [ "$1" != "sid" ]
@@ -26,7 +26,13 @@ cd /mnt/root
 git reset --hard
 
 bin/mount-chroot
-chroot /mnt /root/bin/install-2.sh
+
+if [ "$2" = "headless" ]
+then
+	chroot /mnt /root/bin/install-headless.sh
+else
+	chroot /mnt /root/bin/install-2.sh
+fi
 
 echo
 echo successful install

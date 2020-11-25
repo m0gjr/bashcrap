@@ -21,14 +21,28 @@ apt-get -y install zfs-initramfs || apt-get -y install zfs-initramfs
 apt-get -y install \
 bash-completion alsa-utils \
 rsync less pm-utils psmisc tmux \
-htop iotop iftop \
+htop iotop iftop lm-sensors \
 nano vim elinks bc pv git sshfs autofs unzip \
-acpi lm-sensors upower acpid \
 netcat arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
 iw wpasupplicant wireless-tools \
 firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
 tor torsocks \
+
+systemctl mask systemd-logind.service || true
+systemctl mask systemd-journald.service || true
+
+sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
+
+passwd -d root
+
+if [ $(basename "$0") = "install-headless.sh" ]
+then
+	exit
+fi
+
+apt-get -y install \
+acpi upower acpid \
 xorg  openbox \
 spacefm medit mplayer smplayer ffmpegthumbnailer \
 viewnior imagemagick evince \
@@ -46,18 +60,8 @@ EOF
 
 systemctl enable acpid || true
 
-systemctl mask systemd-logind.service || true
-systemctl mask systemd-journald.service || true
-
-sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
-
-passwd -d root
-
 useradd -u 50000 -G audio browser || true
 useradd -u 50001 -G audio browsertor || true
-
-#grep "x11-start" /etc/inittab || echo "x11:5:respawn:/root/bin/x11-start" >> /etc/inittab
-#sed -i 's/id:.:initdefault/id:5:initdefault/' /etc/inittab
 
 echo "/- /etc/auto.sshfs" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
