@@ -9,7 +9,7 @@ fi
 
 cd "$1"
 
-titles=$(HandBrakeCLI -i /dev/sr0 --min-duration 2000 -t0  2>&1| grep "+ title" | cut -d" " -f3 | cut -d":" -f1 | tail -n+1)
+titles=$(HandBrakeCLI -i /dev/sr0 --min-duration 1000 -t0  2>&1| grep "+ title" | cut -d" " -f3 | cut -d":" -f1 | tail -n+1)
 
 j=$(ls | sort -rn | head -n1 | cut -d"." -f1)
 for i in $titles
