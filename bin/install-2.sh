@@ -20,14 +20,13 @@ apt-get -y install zfs-initramfs || apt-get -y install zfs-initramfs
 
 apt-get -y install \
 bash-completion alsa-utils \
-rsync less pm-utils psmisc tmux \
+rsync less pm-utils psmisc reboot-notifier tmux \
 htop iotop iftop lm-sensors \
 nano vim elinks bc pv git sshfs autofs unzip \
 netcat-openbsd arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
 iw wpasupplicant wireless-tools wavemon \
 firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
-tor torsocks \
 
 systemctl mask systemd-logind.service || true
 systemctl mask systemd-journald.service || true
@@ -58,6 +57,7 @@ viewnior imagemagick evince \
 xinput lxappearance \
 ffmpeg jmtpfs \
 chromium gnumeric
+tor torsocks \
 
 cat /root/conf/handler.sh > /etc/acpi/handler.sh
 chmod +x /etc/acpi/handler.sh

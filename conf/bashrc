@@ -58,3 +58,6 @@ then
 	date
 	acpi
 fi
+
+if [ -f /var/run/reboot-required ]; then echo "REBOOT REQUIRED"; fi
+if [ -f /var/log/aptfail ]; then echo "APT FAILED TO UPGRADE"; fi
