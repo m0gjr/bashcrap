@@ -11,8 +11,8 @@ debootstrap $1 /mnt/ http://deb.debian.org/debian/
 echo "deb http://deb.debian.org/debian/ $1 main contrib non-free" > /mnt/etc/apt/sources.list
 if [ "$1" != "sid" ]
 then
-	echo "deb http://deb.debian.org/debian/ buster-updates main contrib non-free" >> /mnt/etc/apt/sources.list
-	echo "deb http://security.debian.org/debian-security/ buster/updates main contrib non-free" >> /mnt/etc/apt/sources.list
+	echo "deb http://deb.debian.org/debian/ $1-updates main contrib non-free" >> /mnt/etc/apt/sources.list
+	echo "deb http://security.debian.org/debian-security/ $1/updates main contrib non-free" >> /mnt/etc/apt/sources.list
 fi
 
 cp -r .git /mnt/root
