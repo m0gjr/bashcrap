@@ -1,0 +1,14 @@
+*
+!.gitignore
+!.Xdefaults
+!.bashrc
+!.profile
+!.tmux.conf
+!.inputrc
+!.xinitrc
+!.config/openbox/
+!conf/
+!conf/*
+!bin/
+!bin/*
+bin/youtube-dl

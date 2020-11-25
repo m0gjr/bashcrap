@@ -48,6 +48,7 @@ alias nano='nano -mc'
 alias tarballer='cat conf/tarballer | xargs tar -czf config.tgz'
 
 alias gitl='git log --pretty --oneline --decorate --graph'
+alias gitc='git add -A && git commit -am'
 
 uptime
 date
