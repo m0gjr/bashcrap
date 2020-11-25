@@ -3,12 +3,16 @@
 apt-get update
 apt-get -y upgrade
 
-echo "zfs-dkms zfs-dkms/note-incompatible-licenses note" | debconf-set-selections
-echo "keyboard-configuration keyboard-configuration/layoutcode string gb" | debconf-set-selections
-echo "locales locales/default_environment_locale select en_GB.UTF-8" | debconf-set-selections
-echo "locales locales/locales_to_be_generated multiselect en_GB.UTF-8 UTF-8" | debconf-set-selections
-echo "tzdata  tzdata/Areas select Europe" | debconf-set-selections
-echo "tzdata  tzdata/Zones/Europe select London" | debconf-set-selections
+debconf-set-selections <<EOF
+zfs-dkms zfs-dkms/note-incompatible-licenses note
+keyboard-configuration keyboard-configuration/layoutcode string gb
+locales locales/default_environment_locale select en_GB.UTF-8
+locales locales/locales_to_be_generated multiselect en_GB.UTF-8 UTF-8
+tzdata  tzdata/Areas select Europe
+tzdata  tzdata/Zones/Europe select London
+EOF
+
+export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
 apt-get -y install linux-image-amd64
 
