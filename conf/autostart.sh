@@ -1,5 +1,4 @@
 mouse&
-wifistart&
 
 xsetroot -solid black
 

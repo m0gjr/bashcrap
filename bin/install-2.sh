@@ -66,6 +66,8 @@ cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
 /root/bin/x11-respawn &
+/root/bin/wifistart
+wg-quick up vpn
 
 exit 0
 EOF
