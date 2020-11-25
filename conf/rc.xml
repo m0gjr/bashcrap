@@ -384,6 +384,15 @@
         <command>gedit</command>
       </action>
     </keybind>
+    <keybind key="W-w">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>spreadsheet</name>
+        </startupnotify>
+        <command>gnumeric</command>
+      </action>
+    </keybind>
     <keybind key="W-m">
       <action name="Execute">
         <startupnotify>
