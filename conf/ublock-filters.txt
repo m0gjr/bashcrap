@@ -1,0 +1,76 @@
+about.gitlab.com###sticky-banner
+about.gitlab.com##.sticky-banner.js-sticky-banner.active
+aonprd.com##.clear.hideSkiplink
+aonprd.com###main-menu
+aws.amazon.com###awsccc-cb-content
+d20pfsrd.com##.widget.widget_srdgoogleads
+ebay.co.uk###binBtn_btn
+ebay.co.uk##.btn.btn-prim.vi-VR-btnWdth-XL
+ebay.co.uk,ebay.com,ebay.com.au#@#.b-module:-abp-has(h2:-abp-contains(Sponsored))
+ebay.co.uk,ebay.com,ebay.com.au#@#li.s-item:-abp-has(span:-abp-contains(/S[^P]*?P[^O]*?O[^N]*?N[^S]*?S[^O]*?O[^R]*?R[^E]*?E[^D]*?D/))
+ebay.co.uk,ebay.com,ebay.com.au#@#.mfe-lex:-abp-has(h2:-abp-contains(sponsored))
+ebay.co.uk,ebay.com,ebay.com.au#@#.mfe-reco-ct:-abp-has(.mfe-promoted-label)
+etonline.com##.uvp--iframe-wrapper
+fandom.com##._1MLS_xjiUjam_u2qmURY4i
+fandom.com##._1ouSF3xnwUjIOquxopuxSZ
+fandom.com##body:style(overflow:auto!important)
+fandom.com###WikiaBar
+gsmarena.com###header
+gumtree.com##.box-info
+instagram.com##.tHaIX.Igw0E.IwRSH.pmxbr.YBx95._4EzTm.CIRqI.IY_1_.XfCBB.HcJZg.O1flK.D8xaz._7JkPY.TxciK.N9d2H.ZUqME
+i.ytimg.com/an/*/featured_channel.jpg
+mobile.reuters.com###breakingNews
+pinterest.com##body:style(overflow:auto!important)
+pinterest.com##div[style="background-color: rgb(255, 255, 255); border-radius: 8px; position: relative; text-align: center; width: 440px; margin: auto; min-height: 450px; box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px; --darkreader-inline-bgcolor:#232325; --darkreader-inline-boxshadow:rgba(13, 13, 13, 0.45) 0px 2px 10px;"]
+pinterest.com##div[style="min-height: 400px; padding: 20px 10px;"]
+pinterest.com##.FullPageModal__scroller
+pinterest.com##.Hsu.iyn.zI7.qJc.p6V.ojN.jzS.gjz.fev._he.PKX.Lej.LCN.Jea.I_w
+pinterest.com###__PWS_ROOT__ > .Hsu.iyn.zI7 > div:nth-of-type(2) > .Hsu.iyn.zI7 > .Hsu.iyn.zI7 > div
+quora.com##.dialog.modal_signup_dialog
+quora.com##.dialog_wrapper
+quora.com##.modal_signup_background.new_web_signup_wall_design
+quora.com###__w2_wwphkzld28_background
+quora.com###__w2_wwphkzld28_contents
+quora.com###__w2_wwphkzld28_outer_form
+reddit.com##.s1o830cy-2.kBxEFp
+reddit.com##.s1pfx7qz-2.hDANzL
+reddit.com##.trdUvQxqQHHqQKOUBcgnr._3RhWPJfjpsEoBw52x0fQp2
+reddit.com##.yscgwn-2.czhyGp
+rpgbot.net##.spelltracker-ad
+smarty.co.uk##.cc-window.cc-banner.cc-type-info.cc-theme-block.cc-static.cc-top.cc-color-override-747586841
+tumblr.com##.draggable.inline-nav
+tumblr.com##.iframe-controls--phone-mobile.tmblr-iframe--loaded.tmblr-iframe--below-header.tmblr-iframe--unified-controls.tmblr-iframe
+tutorials.jenkov.com###bottomNavBarRow
+www.d20pfsrd.com##.active.ognannouncement-container
+www.facebook.com###u_0_d
+www.imfdb.org###bodyContent > div:nth-of-type(3)
+www.itv.com##.cp_dialog__backdrop.cp_backdrop
+www.itv.com##.cp_dialog--centered.cp_dialog__box
+www.reddit.com###t3_i415sb
+www.rt.com##.header__section_border-bottom_gray.header__section
+www.urbandictionary.com##div.def-panel:nth-of-type(3)
+www.wired.com##.expandable-growler-wrapper__collapsed.expandable-growler-wrapper
+www.youtube.com##body:style(overflow:auto!important)
+www.youtube.com###clarify-box > .ytd-watch-flexy.style-scope
+www.youtube.com###collapse-controls-section
+www.youtube.com###contents > .ytd-search-pyv-renderer.style-scope
+www.youtube.com###content > .ytd-rich-section-renderer.style-scope
+www.youtube.com###donate-section
+www.youtube.com###header-section
+www.youtube.com###ticket-shelf > .ytd-watch-flexy.style-scope
+www.youtube.com###watch-checkout-offers > .ytd-unlimited-offer-module-renderer.style-scope
+www.youtube.com##.ytd-popup-container.style-scope > .yt-upsell-dialog-renderer.style-scope
+youtube.com##.style-scope.yt-bubble-hint-renderer
+youtube.com##.ytp-cards-button-icon
+youtube.com##.ytp-cards-teaser-text
+youtube.com##.ytp-ce-covering-image
+youtube.com##.ytp-ce-covering-overlay
+youtube.com##.ytp-ce-covering-shadow-top
+youtube.com##.ytp-ce-element
+youtube.com##.ytp-ce-element-shadow
+youtube.com##.ytp-ce-element.ytp-ce-website.ytp-ce-element-show.ytp-ce-bottom-right-quad.ytp-ce-size-1280
+youtube.com##.ytp-ce-element.ytp-ce-website.ytp-ce-element-show.ytp-ce-bottom-right-quad.ytp-ce-size-1280.ytp-ce-element-hover.ytp-ce-force-expand
+youtube.com##.ytp-ce-expanding-icon
+youtube.com##.ytp-ce-expanding-image
+youtube.com##.ytp-ce-expanding-overlay
+youtube.com##.ytp-ce-expanding-overlay-background
