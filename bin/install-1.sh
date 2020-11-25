@@ -21,3 +21,6 @@ git reset --hard
 
 bin/mount-chroot
 chroot /mnt /root/bin/install-2.sh
+
+echo
+echo successful install
