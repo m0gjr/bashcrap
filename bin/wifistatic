@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 router(){
         base=${1%/*}
@@ -28,7 +28,7 @@ killall wpa_supplicant dhcpcd dhclient
 ip l s wlan0 up
 wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/local/wifi.conf
 
-addr=$(dhcpcd -w -S routers= -S domain_name_servers= wlan0 2>&1 | grep "adding route to" | head -n1 | awk '{prin$
+addr=$(dhcpcd -w -S routers= -S domain_name_servers= wlan0 2>&1 | grep "adding route to" | head -n1 | awk '{print $NF}')
 
 router=$(router $addr)
 
