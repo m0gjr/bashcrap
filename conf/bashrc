@@ -38,7 +38,7 @@ alias mv='mv -i'
 alias du='du -sh'
 alias df='df -h'
 alias c='clear'
-alias mounts='mount | column -t'
+alias mounts='mount | grep -v cgroup | column -t'
 alias dd='dd bs=1M status=progress'
 alias wget='wget -c'
 alias emerge="emerge -a -j$(nproc --all)"
