@@ -12,11 +12,6 @@ then
 	exit 1
 fi
 
-if [ ! -e /mnt/boot/grub/grub.cfg ]
-then
-	cp conf/grub.cfg /mnt/boot/grub/
-fi
-
 debootstrap $1 /mnt/ http://deb.debian.org/debian/
 
 echo "deb http://deb.debian.org/debian/ $1 main contrib non-free" > /mnt/etc/apt/sources.list
