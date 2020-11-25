@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cmd="$2"
+
+for server in $1
+do
+	echo "$server"
+	ssh -t "$server" "sudo $cmd"
+	echo
+	echo
+done
