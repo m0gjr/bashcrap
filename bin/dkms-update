@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ls /var/lib/initramfs-tools/ | xargs -n1 /usr/lib/dkms/dkms_autoinstaller start

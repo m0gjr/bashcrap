@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "New Kernel:"
+dkms status | grep "$(ls -l /vmlinuz | cut -d"-" -f3-)"
+
+echo
+echo "Old Kernel:"
+dkms status | grep "$(ls -l /vmlinuz.old | cut -d"-" -f3-)"
