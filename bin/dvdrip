@@ -9,12 +9,12 @@ fi
 
 cd "$1"
 
-titles=$(HandBrakeCLI -i /dev/sr0 --min-duration 1000 -t0  2>&1| grep "+ title" | cut -d" " -f3 | cut -d":" -f1)
+titles=$(HandBrakeCLI -i /dev/sr0 --min-duration 2000 -t0  2>&1| grep "+ title" | cut -d" " -f3 | cut -d":" -f1 | tail -n+1)
 
 j=$(ls | sort -rn | head -n1 | cut -d"." -f1)
 for i in $titles
 do
-	((j++))
+	((j++)) || true
 	echo title $i will be converted to $j.mp4
 done
 
@@ -22,5 +22,5 @@ sleep 10
 
 for i in $titles
 do
-echo	HandBrakeCLI 2> /dev/null -i /dev/sr0 -t$i -o$(expr $(ls | sort -rn | head -n1 | cut -d"." -f1) + 1).mp4
+	HandBrakeCLI 2> /dev/null -i /dev/sr0 -t$i -o$(expr $(ls | sort -rn | head -n1 | cut -d"." -f1) + 1).mp4
 done
