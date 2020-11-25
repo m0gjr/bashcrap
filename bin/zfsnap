@@ -1,0 +1,15 @@
+#!/bin/bash
+
+date=$(date +%Y-%m-%d)
+
+if [ -z "$1" ]
+then
+	fss="/ /home"
+else
+	fss="$1"
+fi
+
+for fs in $fss
+do
+	zfs snapshot $(zfs mount | awk '$2 == "'$fs'" {print $1}')@$date
+done
