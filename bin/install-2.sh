@@ -26,7 +26,7 @@ firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
 tor torsocks \
 xorg  openbox \
-spacefm mplayer smplayer ffmpegthumbnailer \
+spacefm medit mplayer smplayer ffmpegthumbnailer \
 viewnior imagemagick evince \
 xinput lxappearance \
 ffmpeg jmtpfs \
