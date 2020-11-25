@@ -8,6 +8,8 @@
 !.inputrc
 !.xinitrc
 !.config/openbox/
+!.mplayer/
+!.mplayer/*
 !conf/
 !conf/*
 !bin/
