@@ -18,7 +18,7 @@ rsync less pm-utils psmisc tmux \
 htop iotop iftop \
 nano vim elinks bc pv git sshfs autofs unzip \
 acpi lm-sensors upower acpid \
-netcat arp-scan nmap curl wget dhcpcd5 ssh \
+netcat arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
 iw wpasupplicant wireless-tools \
 firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
