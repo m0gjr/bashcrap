@@ -23,7 +23,7 @@ bash-completion alsa-utils \
 rsync less pm-utils psmisc tmux \
 htop iotop iftop lm-sensors \
 nano vim elinks bc pv git sshfs autofs unzip \
-netcat arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
+netcat-openbsd arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
 iw wpasupplicant wireless-tools wavemon \
 firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
