@@ -429,6 +429,15 @@
         <command>xterm -e bc</command>
       </action>
     </keybind>
+    <keybind key="W-s">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>ssh</name>
+        </startupnotify>
+        <command>xterm -e ssh 10.0.0.1</command>
+      </action>
+    </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
         <command>brightness up</command>

@@ -16,7 +16,7 @@ apt-get -y install \
 bash-completion alsa-utils \
 rsync less pm-utils psmisc tmux \
 htop iotop iftop \
-nano vim elinks bc pv git sshfs \
+nano vim elinks bc pv git sshfs autofs \
 acpi lm-sensors upower acpid \
 netcat arp-scan nmap curl wget dhcpcd5 ssh \
 iw wpasupplicant wireless-tools \
@@ -54,6 +54,9 @@ useradd -u 50001 -G audio browsertor || true
 #sed -i 's/id:.:initdefault/id:5:initdefault/' /etc/inittab
 
 env > /root/.root.env
+
+echo "/- /etc/auto.sshfs" > /etc/auto.master.d/sshfs.autofs
+ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
 ln -s /etc/local/wifi.conf /root/wifi.conf
 
