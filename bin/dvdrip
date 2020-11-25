@@ -24,3 +24,5 @@ for i in $titles
 do
 	HandBrakeCLI 2> /dev/null -i /dev/sr0 -t$i -o$(expr $(ls | sort -rn | head -n1 | cut -d"." -f1) + 1).mp4
 done
+
+eject
