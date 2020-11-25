@@ -9,7 +9,15 @@ fi
 
 cd "$1"
 
-titles=$(HandBrakeCLI -i /dev/sr0 --min-duration 1000 -t0  2>&1| grep "+ title" | cut -d" " -f3 | cut -d":" -f1 | tail -n+1)
+for n in {1..3}
+do
+	titles=$(HandBrakeCLI -i /dev/sr0 --min-duration 1000 -t0  2>&1| grep "+ title" | cut -d" " -f3 | cut -d":" -f1 | tail -n+1)
+	if [ -n "$titles" ]
+	then
+		break
+	fi
+	sleep 20
+done
 
 j=$(ls | sort -rn | head -n1 | cut -d"." -f1)
 for i in $titles
@@ -25,4 +33,7 @@ do
 	HandBrakeCLI 2> /dev/null -i /dev/sr0 -t$i -o$(expr $(ls | sort -rn | head -n1 | cut -d"." -f1) + 1).mp4
 done
 
-eject
+if [ -n "$titles" ] 
+then
+	eject
+fi
