@@ -2,18 +2,32 @@
 
 string=''
 
+
+function pass {
+
+	string=""
+
+	while [ ${#string} -eq 0 ]
+	do
+		string+=$(/bin/dd if=/dev/urandom bs=1 count=1 2>/dev/null | tr -dc 'A-Z')
+	done
+
+	while [ ${#string} -le $1 ]
+	do
+		string+=$(/bin/dd if=/dev/urandom bs=1 count=1 2>/dev/null | tr -dc 'a-z')
+	done
+
+	string+="1"
+
+	echo $string
+}
+
 if [ -z "$1" ]
 then
-	length=10
+	pass 5
+	pass 10
+	pass 15
+	pass 20
 else
-	length=$1
+	pass $1
 fi
-
-while [ ${#string} -lt $length ]
-do
-	string+=$(/bin/dd if=/dev/urandom bs=1 count=1 2>/dev/null | tr -dc 'a-z')
-done
-
-echo $string
-
-dd if=/dev/urandom bs=1 count=14 2> /dev/null | base64
