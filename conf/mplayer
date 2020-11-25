@@ -4,3 +4,4 @@ fs=yes
 af=volnorm
 cache=1000
 autosub=no
+nosub=yes
