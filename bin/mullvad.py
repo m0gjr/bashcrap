@@ -1,7 +1,8 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import json
-import urllib.request
+#import urllib.request
+import urllib2
 import random
 import sys
 import os.path
@@ -9,8 +10,9 @@ import os.path
 url="https://api.mullvad.net/www/relays/all/"
 dir="/etc/wireguard"
 
-servers=json.load(urllib.request.urlopen(url))
-#servers=json.load(open('/root/api','r'))
+#servers=json.load(urllib.request.urlopen(url))
+servers=json.load(urllib2.urlopen(url))
+#servers=json.load(open('api','r'))
 
 servers=[x for x in servers if x['type']=='wireguard']
 if len(sys.argv)>1:
@@ -23,7 +25,7 @@ if len(owned)>0: servers=owned
 
 server=servers[random.randint(0,len(servers)-1)]
 
-print(json.dumps(server, indent=4))
+print (json.dumps(server, indent=4))
 
 hostname=server["hostname"]
 servername="mullvad-"+hostname[:hostname.index('-')]
@@ -31,6 +33,7 @@ servername="mullvad-"+hostname[:hostname.index('-')]
 with open(os.path.join(dir,'template'),'r') as file:
 	template=file.read()
 
+#with open('outfile','w') as file:
 with open(os.path.join(dir,servername+".conf"),'w') as file:
 	file.write(template)
 	file.write("PublicKey = "+server["pubkey"]+"\n")
