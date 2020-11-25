@@ -75,8 +75,6 @@ useradd -u 50001 -G audio browsertor || true
 echo "/- /etc/auto.sshfs" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
-ln -s /etc/local/wifi.conf /root/wifi.conf
-
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 

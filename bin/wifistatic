@@ -1,22 +1,41 @@
 #!/bin/sh
 
+router(){
+        base=${1%/*}
+        masksize=${1#*/}
+
+        [ $masksize -lt 8 ] && { echo "Max range is /8."; exit 1;}
+
+        mask=$(( 0xFFFFFFFF << (32 - $masksize) ))
+
+        IFS=. read a b c d <<< $base
+
+        ip=$(( ($b << 16) + ($c << 8) + $d ))
+
+        ipstart=$(( $ip & $mask ))
+        ipend=$(( ($ipstart | ~$mask ) & 0x7FFFFFFF ))
+
+        i=$((ipstart + 1))
+
+        echo $a.$(( ($i & 0xFF0000) >> 16 )).$(( ($i & 0xFF00) >> 8 )).$(( $i & 0x00FF ))
+}
+
 wg-quick down vpn
 
 ip a f dev wlan0
 
-killall wpa_supplicant
-killall dhcpcd
-killall dhclient
-ip link set wlan0 up
-wpa_supplicant -Dnl80211 -iwlan0 -cwifi.conf&
-sleep 20
-ip a a 192.168.0.100/24 dev wlan0
-ip r a 192.168.0.0/24 dev wlan0
+killall wpa_supplicant dhcpcd dhclient
+ip l s wlan0 up
+wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/local/wifi.conf
+
+addr=$(dhcpcd -w -S routers= -S domain_name_servers= wlan0 2>&1 | grep "adding route to" | head -n1 | awk '{prin$
+
+router=$(router $addr)
 
 while read ip
 do
-	ip r a $ip via 192.168.0.1 dev wlan0
-done < ips
+	ip r a $ip via $router dev wlan0
+done < /etc/local/ips
 
 wg-quick up vpn
 
