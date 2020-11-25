@@ -429,6 +429,16 @@
         <command>xterm -e bc</command>
       </action>
     </keybind>
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>brightness up</command>
+      </action>
+    </keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute">
+        <command>brightness down</command>
+      </action>
+    </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
         <command>amixer sset Master,0 3+</command>

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+cd /sys/class/backlight/intel_backlight
+
+bright=$(cat brightness)
+
+echo $bright
+
+case "$1" in
+	up)
+		if [ $(( $bright + 100 )) -gt $(cat max_brightness) ]
+		then
+			cat max_brightness > brightness
+		else
+			echo $(( $bright + 100 )) > brightness
+		fi
+	;;
+	down)
+		if [ $(( $bright - 100 )) -lt 0 ]
+		then
+			echo 0 > brightness
+		else
+			echo $(( $bright - 100 )) > brightness
+		fi
+	;;
+esac
