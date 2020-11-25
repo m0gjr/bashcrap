@@ -59,8 +59,6 @@ useradd -u 50001 -G audio browsertor || true
 #grep "x11-start" /etc/inittab || echo "x11:5:respawn:/root/bin/x11-start" >> /etc/inittab
 #sed -i 's/id:.:initdefault/id:5:initdefault/' /etc/inittab
 
-env > /root/.root.env
-
 echo "/- /etc/auto.sshfs" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 

@@ -3,5 +3,5 @@ cd /root
 while read line
 do
 	export $line
-done < /root/.root.env
+done < /root/conf/root.env
 exec xinit /root/.xinitrc -- vt7
