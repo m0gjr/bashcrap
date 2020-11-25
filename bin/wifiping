@@ -1,0 +1,8 @@
+#!/bin/sh
+
+while true
+do
+	date
+	ping -c 5 $(grep Endpoint /etc/wireguard/vpn.conf | cut -d" " -f3 | cut -d":" -f1) || /root/bin/wifistatic
+	sleep 600
+done
