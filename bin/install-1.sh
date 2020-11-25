@@ -1,9 +1,20 @@
 #!/bin/bash -xe
 
+if [ ! -d .git ]
+then
+	echo "not in bashcrap git repository"
+	exit
+fi
+
 if [ -z $1 ]
 then
 	echo "must have release on command line" >&2
 	exit 1
+fi
+
+if [ ! -e /mnt/boot/grub/grub.cfg ]
+then
+	cp conf/grub.cfg /mnt/boot/grub/
 fi
 
 debootstrap $1 /mnt/ http://deb.debian.org/debian/
