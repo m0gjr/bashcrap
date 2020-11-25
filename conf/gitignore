@@ -4,6 +4,7 @@
 !.bashrc
 !.profile
 !.tmux.conf
+!.toprc
 !.inputrc
 !.xinitrc
 !.config/openbox/
