@@ -1,11 +1,21 @@
 #!/bin/bash
+torrent(){
+transmission-remote -n 'transmission:transmission' "$@"
+}
 
-if [ -n "$1" ]
+if [ "$(basename $0)" == "addtorrents" ]
 then
 	while read link
 	do
-		transmission-remote -n 'transmission:transmission' -a $link
+		torrent -a "$link"
+		torrent -l
+		exit
 	done
 fi
 
-transmission-remote -n 'transmission:transmission' -l
+if [ -n "$1" ]
+then
+	torrent "$@"
+fi
+
+torrent -l
