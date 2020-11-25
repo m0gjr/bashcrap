@@ -45,7 +45,7 @@ useradd -u 50001 -G audio browsertor || true
 
 env > /root/.root.env
 
-ln -s /etc/wifi/wifi.conf /root/wifi.conf
+ln -s /etc/local/wifi.conf /root/wifi.conf
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh

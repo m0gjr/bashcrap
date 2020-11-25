@@ -1,12 +1,23 @@
+#!/bin/bash
+
+if [ -f /etc/local/mouse ]
+then
+	source /etc/local/mouse
+else
+	speed=150
+	sensitivity=200
+	iniertia=8
+fi
+
 cd /sys/devices/platform/i8042/serio1/
 if [ -d serio2 ]
 then
 	cd serio2
 fi
 echo 0 > press_to_select
-echo 150 > speed
-echo 200 > sensitivity
-echo 8 > inertia
+echo "$speed" > speed
+echo "$sensitivity" > sensitivity
+echo "$inertia" > inertia
 
 if xinput list | grep id=11 | grep TouchPad
 then
