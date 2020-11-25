@@ -4,7 +4,4 @@
 
 apt update && apt -y upgrade || touch /var/log/aptfail
 
-if [ -f /var/run/reboot-required ]
-then
-	/root/bin/dkms-check
-fi
+/root/bin/dkms-check

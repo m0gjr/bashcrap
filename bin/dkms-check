@@ -1,25 +1,4 @@
 #!/bin/bash
 
-status="$(dkms status)"
-kernelnew="$(ls -l /vmlinuz | cut -d'-' -f3-)"
-kernelold="$(ls -l /vmlinuz.old | cut -d'-' -f3-)"
-dkms="$(apt 2> /dev/null list --installed | grep '\-dkms' | cut -d'-' -f1 | sort)"
-
-echo "New Kernel: $kernelnew"
-echo "$status" | grep "$kernelnew"
-echo
-echo "Old Kernel: $kernelold"
-echo "$status" | grep "$kernelold"
-echo
-
-new="$(echo "$status" | grep "$kernelnew" | cut -d',' -f1 | sort)"
-old="$(echo "$status" | grep "$kernelold" | cut -d',' -f1 | sort)"
-
-if [ "$new" != "$dkms" ]
-then
-	/usr/lib/dkms/dkms_autoinstaller start "$kernelnew"
-fi
-if [ "$old" != "$dkms" ]
-then
-	/usr/lib/dkms/dkms_autoinstaller start "$kernelold"
-fi
+/usr/lib/dkms/dkms_autoinstaller start "$(ls -l /vmlinuz | cut -d- -f3-)"
+/usr/lib/dkms/dkms_autoinstaller start "$(ls -l /vmlinuz.old | cut -d- -f3-)"
