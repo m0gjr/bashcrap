@@ -6,9 +6,9 @@ then
 	then
 		if tmux ls
 		then
-			exec tmux attach
+			TERM=linux exec tmux attach
 		else
-			exec tmux new
+			TERM=linux exec tmux new
 		fi
 	fi
 fi
