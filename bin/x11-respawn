@@ -1,0 +1,5 @@
+#!/bin/sh
+while true
+do
+	/root/bin/x11-start
+done
