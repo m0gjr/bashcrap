@@ -7,6 +7,8 @@ echo "zfs-dkms zfs-dkms/note-incompatible-licenses note" | debconf-set-selection
 echo "keyboard-configuration keyboard-configuration/layoutcode string gb" | debconf-set-selections
 echo "locales locales/default_environment_locale select en_GB.UTF-8" | debconf-set-selections
 echo "locales locales/locales_to_be_generated multiselect en_GB.UTF-8 UTF-8" | debconf-set-selections
+echo "tzdata  tzdata/Areas select Europe" | debconf-set-selections
+echo "tzdata  tzdata/Zones/Europe select London" | debconf-set-selections
 
 apt-get -y install linux-image-amd64
 
