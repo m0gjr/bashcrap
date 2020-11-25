@@ -33,6 +33,7 @@ then
 else
 	chroot /mnt /root/bin/install-2.sh
 fi
+bin/umount-chroot
 
 echo
 echo successful install
