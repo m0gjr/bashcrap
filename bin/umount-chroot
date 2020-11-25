@@ -1,2 +1,3 @@
-#!/bin/sh
+#!/bin/bash
+
 grep /mnt /proc/mounts | cut -f2 -d" "| sort -r | head -n-1 | xargs umount -ln

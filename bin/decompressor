@@ -1,1 +1,0 @@
-gpg --batch --passphrase password --decrypt 2> /dev/null | gzip -d

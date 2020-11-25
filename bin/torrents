@@ -1,4 +1,5 @@
 #!/bin/bash
+
 torrent(){
 transmission-remote -n 'transmission:transmission' "$@"
 }

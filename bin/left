@@ -1,2 +1,4 @@
+#!/bin/bash
+
 xrandr --orientation left
 xrandr --dpi 96

@@ -1,1 +1,0 @@
-gzip | gpg --batch --passphrase password --symmetric 2> /dev/null

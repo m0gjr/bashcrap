@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 if [ -z $TMUX ]
 then
         TERM=linux tmux new-session /bin/nano -mc "$@"

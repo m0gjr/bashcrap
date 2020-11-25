@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 cd /root
 export HOME="/root"
 export PATH="/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"

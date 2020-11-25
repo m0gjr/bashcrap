@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 killall wpa_supplicant dhcpcd dhclient
 
 ip a f dev wlan0

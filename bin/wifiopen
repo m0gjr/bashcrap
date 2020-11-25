@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 killall dhcpcd
 killall wpa_supplicant
 

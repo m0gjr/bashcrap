@@ -1,8 +1,0 @@
-/bin/cp /boot/grub/grub.cfg /boot/grub/grub-backup.cfg
-/bin/cp /boot/initramfs-linux.img /boot/initramfs-backup.img
-/bin/cp /boot/initramfs-linux-fallback.img /boot/initramfs-fallback-backup.img
-/bin/cp /boot/vmlinuz-linux /boot/vmlinuz-backup
-mount /dev/sda2 /mnt
-btrfs subvolume delete /mnt/backup/
-btrfs subvolume snapshot /mnt/main/ /mnt/backup/
-umount /dev/sda2
