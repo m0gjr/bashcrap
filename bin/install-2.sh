@@ -17,7 +17,7 @@ bash-completion alsa-utils \
 rsync less pm-utils psmisc tmux \
 htop iotop iftop \
 nano vim elinks bc pv git sshfs \
-acpi lm-sensors upower acpid tp-smapi-dkms \
+acpi lm-sensors upower acpid \
 netcat arp-scan nmap curl wget dhcpcd5 ssh \
 iw wpasupplicant wireless-tools \
 firmware-linux firmware-iwlwifi \
@@ -49,9 +49,6 @@ ln -s /etc/local/wifi.conf /root/wifi.conf
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
-modprobe tp_smapi
-echo 70 > /sys/devices/platform/smapi/BAT0/start_charge_thresh
-echo 80 > /sys/devices/platform/smapi/BAT0/stop_charge_thresh
 
 /root/bin/x11-respawn &
 

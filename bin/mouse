@@ -6,7 +6,7 @@ then
 else
 	speed=150
 	sensitivity=200
-	iniertia=8
+	inertia=8
 fi
 
 cd /sys/devices/platform/i8042/serio1/
