@@ -2,8 +2,13 @@
 killall wpa_supplicant
 killall dhcpcd
 killall dhclient
+
+ip a f dev wlan0
+
 ip link set wlan0 up
+
 wpa_supplicant -Dnl80211 -iwlan0 -cwifi.conf&
+
 sleep 5
-dhcpcd --noarp wlan0 || dhclient
+dhcpcd --noarp wlan0
 ping -c 4 google.com
