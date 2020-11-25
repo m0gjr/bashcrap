@@ -7,3 +7,8 @@ echo 0 > press_to_select
 echo 150 > speed
 echo 200 > sensitivity
 echo 8 > inertia
+
+if xinput list | grep id=11 | grep TouchPad
+then
+	xinput set-prop 11 294 1
+fi

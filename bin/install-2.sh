@@ -26,6 +26,7 @@ tor torsocks \
 xorg  openbox \
 spacefm mplayer smplayer ffmpegthumbnailer \
 viewnior imagemagick evince \
+xinput lxappearance \
 ffmpeg jmtpfs \
 chromium gnumeric
 
