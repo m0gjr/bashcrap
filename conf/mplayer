@@ -2,6 +2,7 @@
 
 fs=yes
 af=volnorm
+cachemin=99
 cache=1000
 autosub=no
 nosub=yes
