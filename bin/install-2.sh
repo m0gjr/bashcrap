@@ -24,7 +24,7 @@ rsync less pm-utils psmisc tmux \
 htop iotop iftop lm-sensors \
 nano vim elinks bc pv git sshfs autofs unzip \
 netcat arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
-iw wpasupplicant wireless-tools \
+iw wpasupplicant wireless-tools wavemon \
 firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
 tor torsocks \
@@ -79,6 +79,8 @@ ln -s /etc/local/wifi.conf /root/wifi.conf
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
+
+cd /root
 
 /root/bin/x11-respawn &
 /root/bin/wifistart

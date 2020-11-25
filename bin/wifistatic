@@ -1,0 +1,25 @@
+#!/bin/sh
+
+wg-quick down vpn
+
+ip a f dev wlan0
+
+killall wpa_supplicant
+killall dhcpcd
+killall dhclient
+ip link set wlan0 up
+wpa_supplicant -Dnl80211 -iwlan0 -cwifi.conf&
+sleep 20
+ip a a 192.168.0.100/24 dev wlan0
+ip r a 192.168.0.0/24 dev wlan0
+
+while read ip
+do
+	ip r a $ip via 192.168.0.1 dev wlan0
+done < ips
+
+wg-quick up vpn
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -A FORWARD -i eth0 -j ACCEPT
+iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
