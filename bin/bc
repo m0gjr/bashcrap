@@ -3,12 +3,12 @@
 /usr/bin/bc -l /dev/fd/3 3<<'EOF'
 
 define fac (n) { 
-  if (n < 0) {
-    print "oops";
-    halt;
-  }
-  if (n < 2) return 1;
-  return n*fac(n-1);
+	if (n < 0) {
+		print "oops";
+		halt;
+	}
+	if (n < 2) return 1;
+	return n*fac(n-1);
 }
 
 define pi () {

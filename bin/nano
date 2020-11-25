@@ -2,7 +2,7 @@
 
 if [ -z $TMUX ]
 then
-        TERM=linux tmux new-session /bin/nano -mc "$@"
+	TERM=linux tmux new-session /bin/nano -mc "$@"
 else
-        /bin/nano -mc "$@"
+	/bin/nano -mc "$@"
 fi
