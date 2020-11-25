@@ -44,6 +44,9 @@ EOF
 chmod +x /etc/rc.local
 systemctl enable rc-local || true
 
+git config --global user.name "m0gjr"
+git config --global user.email "m0gjr@github.com"
+
 if [ $(basename "$0") = "install-headless.sh" ]
 then
 	exit

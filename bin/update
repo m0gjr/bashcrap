@@ -2,6 +2,8 @@
 
 /root/bin/zfsnap
 
-apt update && apt -y upgrade || touch /var/log/aptfail
+apt update && apt -y upgrade || echo "APT UPDATE FAILED" >> /var/log/bash_notify
 
 /root/bin/dkms-check
+
+/root/bin/zfscrub

@@ -60,4 +60,4 @@ then
 fi
 
 if [ -f /var/run/reboot-required ]; then echo "REBOOT REQUIRED"; fi
-if [ -f /var/log/aptfail ]; then echo "APT FAILED TO UPGRADE"; fi
+cat /var/log/bash_notify 2> /dev/null

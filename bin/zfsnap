@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! [ -f /sbin/zfs ]
+then
+	exit
+fi
+
 date=$(date +%Y-%m-%d)
 
 if [ -z "$1" ]
@@ -11,9 +16,9 @@ fi
 
 for fs in $fss
 do
-	ds=$(zfs mount | awk '$2 == "'$fs'" {print $1}')
+	ds=$(/sbin/zfs mount | awk '$2 == "'$fs'" {print $1}')
 	if [ -n "$ds" ]
 	then
-		zfs snapshot "$ds@$date"
+		/sbin/zfs snapshot "$ds@$date"
 	fi
 done
