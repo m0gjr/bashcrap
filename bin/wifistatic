@@ -24,6 +24,8 @@ wg-quick down vpn
 
 ip a f dev wlan0
 
+iptables -F
+
 killall wpa_supplicant dhcpcd dhclient
 ip l s wlan0 up
 wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/local/wifi.conf
