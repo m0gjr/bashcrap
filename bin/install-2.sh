@@ -17,7 +17,10 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 arch=$(uname -r | rev | cut -d- -f1 | rev)
 apt-get -y install linux-image-$arch linux-headers-$arch
 
-apt-get -y install zfs-initramfs || apt-get -y install zfs-initramfs
+apt-get -y install zfs-initramfs || echo failed
+/usr/lib/dkms/dkms_autoinstaller start || echo failed
+modprobe zfs || failed
+apt-get -y install zfs-initramfs
 
 apt-get -y install \
 bash-completion alsa-utils \
