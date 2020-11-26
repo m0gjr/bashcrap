@@ -17,8 +17,8 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 arch=$(uname -r | rev | cut -d- -f1 | rev)
 apt-get -y install linux-image-$arch linux-headers-$arch
 
-apt-get -y install zfs-initramfs || echo failed
-/usr/lib/dkms/dkms_autoinstaller start || echo failed
+apt-get -y install zfs-initramfs || true
+/usr/lib/dkms/dkms_autoinstaller start || true
 modprobe zfs || failed
 apt-get -y install zfs-initramfs
 
@@ -31,6 +31,8 @@ netcat-openbsd arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
 iw wpasupplicant wireless-tools wavemon \
 firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
+
+apt remove isc-dhcp-client isc-dhcp-common || true
 
 systemctl mask systemd-logind.service || true
 systemctl mask systemd-journald.service || true
