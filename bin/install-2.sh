@@ -14,7 +14,7 @@ EOF
 
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
-apt-get -y install linux-image-amd64
+apt-get -y install linux-image-$(uname -r | rev | cut -d- -f1 | rev)
 
 apt-get -y install zfs-initramfs || apt-get -y install zfs-initramfs
 
