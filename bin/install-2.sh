@@ -1,5 +1,9 @@
 #!/bin/bash -xe
 
+mv /etc/hosts /tmp/hosts
+cat <(printf '127.0.0.1\tlocalhost ') /etc/hostname <(grep -v 127.0.0.1 /tmp/hosts) > /etc/hosts
+rm /tmp/hosts
+
 apt-get update
 apt-get -y upgrade
 

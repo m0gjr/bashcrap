@@ -25,6 +25,8 @@ cp -r .git /mnt/root
 cd /mnt/root
 git reset --hard
 
+echo "$HOSTNAME" > /mnt/etc/hostname
+
 bin/mount-chroot
 
 if [ "$2" = "headless" ]
