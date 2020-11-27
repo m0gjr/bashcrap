@@ -87,7 +87,7 @@ useradd -u 50001 -G audio browsertor || true
 useradd -u 50002 -G audio media || true
 useradd -u 50003 documents || true
 
-echo "/- /etc/auto.sshfs" > /etc/auto.master.d/sshfs.autofs
+echo "/- /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
 cat > /etc/rc.local <<'EOF'
