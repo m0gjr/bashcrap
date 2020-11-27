@@ -1,3 +1,4 @@
 export PATH="~/bin:$PATH"
 xset b off
+xhost -
 exec openbox-session

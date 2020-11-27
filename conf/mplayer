@@ -1,8 +1,0 @@
-# Write your default config options here!
-
-fs=yes
-af=volnorm
-cache-min=99
-cache=1000
-autosub=no
-nosub=yes

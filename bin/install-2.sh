@@ -65,9 +65,9 @@ fi
 apt-get -y install \
 acpi upower acpid \
 xorg  openbox \
-spacefm medit mplayer smplayer ffmpegthumbnailer \
-viewnior imagemagick evince \
-xinput lxappearance \
+xinput \
+spacefm medit mplayer ffmpegthumbnailer \
+viewnior imagemagick \
 ffmpeg jmtpfs \
 chromium gnumeric
 tor torsocks \
@@ -84,6 +84,8 @@ systemctl enable acpid || true
 
 useradd -u 50000 -G audio browser || true
 useradd -u 50001 -G audio browsertor || true
+useradd -u 50002 -G audio media || true
+useradd -u 50003 documents || true
 
 echo "/- /etc/auto.sshfs" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs

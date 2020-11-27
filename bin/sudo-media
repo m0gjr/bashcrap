@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo -umedia $(basename "$0") "$@"
