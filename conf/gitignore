@@ -8,7 +8,8 @@
 !.inputrc
 !.xinitrc
 !.config/openbox/
-!.local/share/applications
+!.local/share/applications/
+!.local/share/applications/*
 !conf/
 !conf/*
 !bin/
