@@ -36,7 +36,7 @@ iw wpasupplicant wireless-tools wavemon \
 firmware-linux firmware-iwlwifi \
 locales debconf-utils debootstrap \
 
-apt remove isc-dhcp-client isc-dhcp-common || true
+apt -y remove isc-dhcp-client isc-dhcp-common || true
 
 systemctl mask systemd-logind.service || true
 systemctl mask systemd-journald.service || true

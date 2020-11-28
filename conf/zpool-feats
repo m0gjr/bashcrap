@@ -1,0 +1,1 @@
+-d -o feature@embedded_data=enabled -o feature@empty_bpobj=enabled -o feature@lz4_compress=enabled -o feature@spacemap_histogram=enabled
