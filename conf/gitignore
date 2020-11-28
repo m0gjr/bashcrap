@@ -8,10 +8,10 @@
 !.inputrc
 !.xinitrc
 !.config/openbox/
-!.local/share/applications/
-!.local/share/applications/*
 !conf/
 !conf/*
+!conf/applications/
+!conf/applications/*
 !bin/
 !bin/*
 bin/youtube-dl
