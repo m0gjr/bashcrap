@@ -27,7 +27,7 @@ modprobe zfs || failed
 apt-get -y install zfs-initramfs
 
 apt-get -y install \
-bash-completion alsa-utils \
+bash-completion alsa-utils man-db \
 rsync less pm-utils psmisc reboot-notifier tmux \
 htop iotop iftop lm-sensors \
 nano vim elinks bc pv git sshfs autofs unzip \
