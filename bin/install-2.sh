@@ -27,7 +27,7 @@ apt-get -y install linux-image-$arch linux-headers-$arch
 
 apt-get -y install zfs-initramfs || true
 /usr/lib/dkms/dkms_autoinstaller start || true
-modprobe zfs || failed
+modprobe zfs || true
 apt-get -y install zfs-initramfs
 
 apt-get -y install \
