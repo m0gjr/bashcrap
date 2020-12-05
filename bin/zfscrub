@@ -5,7 +5,7 @@ then
 	exit
 fi
 
-if ! [ "$(zpool status -x)" == "all pools are healthy" ]
+if ! [ "$(/sbin/zpool status -x)" == "all pools are healthy" ]
 then
 
 	echo "ZPOOL ERRORS" >> /var/log/bash_notify
