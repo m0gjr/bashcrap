@@ -1,12 +1,15 @@
 #!/bin/bash
 
-killall wpa_supplicant dhcpcd dhclient
+[ -f /etc/wireguard/vpn.conf ] && wg-quick down vpn
 
+killall wpa_supplicant dhcpcd dhclient
 ip a f dev wlan0
 
 ip l s wlan0 up
-
 wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/local/wifi.conf
 
 dhcpcd -wA wlan0
-ping -c 4 google.com
+
+[ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
+
+ping -c 1 google.com

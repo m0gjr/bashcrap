@@ -101,7 +101,6 @@ cd /root
 
 /root/bin/x11-respawn &
 /root/bin/wifistart
-wg-quick up vpn
 
 exit 0
 EOF
