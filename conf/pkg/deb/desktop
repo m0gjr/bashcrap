@@ -1,0 +1,7 @@
+acpi upower acpid
+xorg  openbox xinput
+spacefm medit mplayer ffmpegthumbnailer
+viewnior imagemagick
+ffmpeg jmtpfs
+chromium gnumeric
+tor torsocks

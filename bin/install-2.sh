@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+cd $HOME
+
 mv /etc/hosts /tmp/hosts
 cat <(printf '127.0.0.1\tlocalhost ') /etc/hostname <(grep -v 127.0.0.1 /tmp/hosts) > /etc/hosts
 rm /tmp/hosts
@@ -30,15 +32,7 @@ apt-get -y install zfs-initramfs || true
 modprobe zfs || true
 apt-get -y install zfs-initramfs
 
-apt-get -y install \
-bash-completion alsa-utils man-db \
-rsync less pm-utils psmisc reboot-notifier tmux \
-htop iotop iftop lm-sensors \
-nano vim elinks bc pv git sshfs autofs unzip \
-netcat-openbsd arp-scan nmap curl wget dnsutils dhcpcd5 ssh \
-iw wpasupplicant wireless-tools wavemon \
-firmware-linux firmware-iwlwifi \
-locales debconf-utils debootstrap \
+xargs < conf/pkg/deb/base apt-get -y install
 
 apt -y remove isc-dhcp-client isc-dhcp-common || true
 
@@ -66,15 +60,7 @@ then
 	exit
 fi
 
-apt-get -y install \
-acpi upower acpid \
-xorg  openbox \
-xinput \
-spacefm medit mplayer ffmpegthumbnailer \
-viewnior imagemagick \
-ffmpeg jmtpfs \
-chromium gnumeric
-tor torsocks \
+xargs < conf/pkg/deb/desktop apt-get -y install
 
 cat /root/conf/handler.sh > /etc/acpi/handler.sh
 chmod +x /etc/acpi/handler.sh
