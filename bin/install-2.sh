@@ -5,7 +5,6 @@ cd $HOME
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
 ln -sT /etc/local/ssh/root /root/.ssh
-ln -sT /etc/local/ssh/etc /etc/ssh
 
 rm /etc/fstab
 ln -s /etc/local/fstab /etc/fstab
@@ -48,6 +47,9 @@ systemctl mask systemd-logind.service || true
 systemctl mask systemd-journald.service || true
 
 sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
+cp -n /etc/ssh/ssh_host_* /etc/local/ssh/etc/
+rm /etc/ssh/ssh_host_*
+ln -s /etc/local/ssh/etc/ssh_host_* /etc/ssh/
 
 passwd -d root
 
