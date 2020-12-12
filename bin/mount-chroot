@@ -2,9 +2,17 @@
 
 mount="/mnt"
 
-mount -t proc /proc $mount/proc
-for dir in dev sys run
+for dir in dev sys run proc
 do
 	mount --rbind /$dir $mount/$dir
+	mount --make-rslave $mount/$dir
 done
+
+if mountpoint -q /etc/local
+then
+	mkdir -p $mount/etc/local/
+	mount --rbind /etc/local $mount/etc/local
+	mount --make-rslave $mount/etc/local
+fi
+
 cat /etc/resolv.conf > $mount/etc/resolv.conf

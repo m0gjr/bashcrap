@@ -2,6 +2,14 @@
 
 cd $HOME
 
+mkdir -p /etc/local/ssh/root
+mkdir -p /etc/local/ssh/etc
+ln -sT /etc/local/ssh/root /root/.ssh
+ln -sT /etc/local/ssh/etc /etc/ssh
+
+rm /etc/fstab
+ln -s /etc/local/fstab /etc/fstab
+
 mv /etc/hosts /tmp/hosts
 cat <(printf '127.0.0.1\tlocalhost ') /etc/hostname <(grep -v 127.0.0.1 /tmp/hosts) > /etc/hosts
 rm /tmp/hosts
