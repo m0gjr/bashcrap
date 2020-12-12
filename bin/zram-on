@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo 0 > /sys/module/zswap/parameters/enabled
+
+modprobe zram
+
+echo zstd > /sys/block/zram0/comp_algorithm
+free -b | awk 'NR==2 {print $2}' > /sys/block/zram0/disksize
+
+mkswap /dev/zram0
+swapon /dev/zram0

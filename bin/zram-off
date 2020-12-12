@@ -1,0 +1,5 @@
+#!/bin/bash
+
+swapoff /dev/zram0
+echo 0 > /sys/class/zram-control/hot_remove
+cat /sys/class/zram-control/hot_add
