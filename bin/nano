@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -z $TMUX ]
+if [ -z $TMUX ] && which tmux &> /bin/null
 then
 	TERM=linux tmux new-session /bin/nano -mc "$@"
 else
