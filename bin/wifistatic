@@ -25,6 +25,7 @@ router(){
 killall wpa_supplicant dhcpcd dhclient
 ip a f dev wlan0
 iptables -F
+rm /run/wpa_supplicant/* 2> /dev/null
 
 ip l s wlan0 up
 wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/local/wifi.conf
