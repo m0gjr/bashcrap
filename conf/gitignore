@@ -1,6 +1,7 @@
 /*
 /*/
 !/.gitignore
+!/.gitconfig
 !/.Xdefaults
 !/.bashrc
 !/.profile
