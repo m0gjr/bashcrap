@@ -9,7 +9,7 @@ else
 	inertia=8
 fi
 
-cd /sys/devices/platform/i8042/serio1/
+cd /sys/devices/platform/i8042/serio1/ || exit
 if [ -d serio2 ]
 then
 	cd serio2

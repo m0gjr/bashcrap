@@ -1,9 +1,15 @@
 #!/bin/bash
 
-if [ "$(basename $0)" = "browser" ]
-then
-	sudo -ubrowser chromium --disable-high-precision-scrolling --disable-smooth-scrolling
-#	sudo -ubrowser chromium --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://10.64.0.1:1080" --host-resolver-rules="MAP * 0.0.0.0, EXCLUDE 10.64.0.1"
-else
-	sudo -ubrowsertor chromium --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0"
-fi
+browser="$(which chromium || which chrome)" || exit
+
+case "$(basename $0)" in
+	browser)
+		sudo -ubrowser $browser --disable-high-precision-scrolling --disable-smooth-scrolling
+	;;
+	browsersocks)
+		sudo -ubrowser $browser --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://10.64.0.1:1080" --host-resolver-rules="MAP * 0.0.0.0, EXCLUDE 10.64.0.1"
+	;;
+	browsertor)
+		sudo -ubrowsertor $browser --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0"
+	;;
+esac
