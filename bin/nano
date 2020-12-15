@@ -1,8 +1,10 @@
 #!/bin/bash
 
+export PATH=$(echo $PATH | sed "s:$(dirname $0)::g")
+
 if [ -z $TMUX ] && which tmux &> /bin/null
 then
-	TERM=linux tmux new-session /bin/nano -mc "$@"
+	TERM=linux tmux new-session nano -mc "$@"
 else
-	/bin/nano -mc "$@"
+	nano -mc "$@"
 fi
