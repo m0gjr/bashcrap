@@ -4,17 +4,12 @@ host="10.1"
 
 date=$(date +%Y-%m-%d)
 
-if [ -z "$1" ]
-then
-	fs="/home"
-else
-	fs="$1"
-fi
+fs="${1:-/home}"
 
 ds=$(zfs mount | awk '$2 == "'$fs'" {print $1}')
 
 dst=$(ssh $host zfs list -t snapshot -Ho name | grep rustbucket$fs@ | tail -n1 | cut -d'@' -f2)
 src=$(zfs list -t snapshot -Ho name | grep $ds | tail -n1)
 
+zfs send -i $ds@$dst $src | pv > /dev/null
 zfs send -i $ds@$dst $src | pv | ssh $host zfs receive rustbucket$fs
-
