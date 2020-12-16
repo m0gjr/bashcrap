@@ -58,3 +58,5 @@ else
 fi
 
 [ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
+
+ping -c1 google.com
