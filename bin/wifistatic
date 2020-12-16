@@ -1,5 +1,7 @@
 #!/bin/bash
 
+iface=wlan0
+
 router(){
 	base=${1%/*}
 	masksize=${1#*/}
@@ -23,24 +25,36 @@ router(){
 [ -f /etc/wireguard/vpn.conf ] && wg-quick down vpn
 
 killall wpa_supplicant dhcpcd dhclient
-ip a f dev wlan0
-iptables -F
 rm /run/wpa_supplicant/* 2> /dev/null
 
-ip l s wlan0 up
-wpa_supplicant -B -Dnl80211 -iwlan0 -c/etc/local/wifi.conf
+if which ip &> /dev/null
+then
+        ip a f dev $iface
+        wpa_supplicant -B -i $iface -c /etc/local/wifi.conf -D nl80211
+else
+        while ifconfig $iface -alias; do :;done
+        ifconfig $iface up
+        wpa_supplicant -B -i $iface -c /etc/local/wifi.conf -D bsd
+        sleep 1
+fi
 
-addr=$(dhcpcd -w -S routers= -S domain_name_servers= wlan0 2>&1 | grep "adding route to" | head -n1 | awk '{print $NF}')
-router=$(router $addr)
+if [ "$(basename $0)" == "wifistatic" ]
+then
+	addr=$(dhcpcd -w -S routers= -S domain_name_servers= $iface 2>&1 | grep "adding route to" | head -n1 | awk '{print $NF}')
+	router=$(router $addr)
 
-while read ip
-do
-	ip r a $ip via $router dev wlan0
-done < /etc/local/ips
+	while read ip
+	do
+		ip r a $ip via $router dev $iface
+	done < /etc/local/ips
+
+	iptables -F
+	echo 1 > /proc/sys/net/ipv4/ip_forward
+	iptables -A FORWARD -i eth0 -j ACCEPT
+	iptables -A FORWARD -i vpn -j ACCEPT
+	iptables -t nat -A POSTROUTING -o $iface -j MASQUERADE
+else
+	dhcpcd -wA $iface
+fi
 
 [ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
-
-echo 1 > /proc/sys/net/ipv4/ip_forward
-iptables -A FORWARD -i eth0 -j ACCEPT
-iptables -A FORWARD -i vpn -j ACCEPT
-iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
