@@ -16,6 +16,13 @@ servers=json.load(urllib2.urlopen(url))
 
 servers=[x for x in servers if x['type']=='wireguard']
 if len(sys.argv)>1:
+	if sys.argv[1]=='-ip4':
+		for x in servers: print (x['ipv4_addr_in'])
+		sys.exit()
+	if sys.argv[1]=='-ip6':
+		for x in servers: print (x['ipv6_addr_in'])
+		sys.exit()
+
 	servers=[x for x in servers if x['country_code']==sys.argv[1]]
 if len(sys.argv)>2:
 	servers=[x for x in servers if x['city_code']==sys.argv[2]]
