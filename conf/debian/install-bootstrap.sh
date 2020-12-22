@@ -29,12 +29,10 @@ echo "$HOSTNAME" > /mnt/etc/hostname
 
 bin/mount-chroot
 
-if [ "$2" = "headless" ]
-then
-	chroot /mnt /root/bin/install-headless.sh
-else
-	chroot /mnt /root/bin/install-2.sh
-fi
+![ -z ${install_kernel-true} ] && chroot /mnt /root/conf/debian/install-kernel.sh
+![ -z ${install_base-true} ] && chroot /mnt /root/conf/debian/install-base.sh
+![ -z ${install_desktop-} ] && chroot /mnt /root/conf/debian/install-desktop.sh
+
 bin/umount-chroot
 
 echo
