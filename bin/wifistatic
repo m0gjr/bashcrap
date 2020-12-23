@@ -27,16 +27,8 @@ router(){
 killall wpa_supplicant dhcpcd dhclient
 rm /run/wpa_supplicant/* 2> /dev/null
 
-if which ip &> /dev/null
-then
-        ip a f dev $iface
-        wpa_supplicant -B -i $iface -c /etc/local/wifi.conf -D nl80211
-else
-        while ifconfig $iface -alias; do :;done
-        ifconfig $iface up
-        wpa_supplicant -B -i $iface -c /etc/local/wifi.conf -D bsd
-        sleep 1
-fi
+ip a f dev $iface
+wpa_supplicant -B -i $iface -c /etc/local/wifi.conf -D nl80211
 
 if [ "$(basename $0)" == "wifistatic" ]
 then
