@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mount="/mnt"
+mount=${installdir:-/mnt}
 
 for dir in dev sys run proc
 do

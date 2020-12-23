@@ -11,11 +11,7 @@ EOF
 
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
-case $(arch) in
-	x86_64) arch="amd64";;
-	aarch64) arch="arm64";;
-	*) arch=$(uname -r | rev | cut -d- -f1 | rev);;
-esac
+arch=$(bin/proc_arch)
 
 apt-get -y install linux-image-$arch linux-headers-$arch
 

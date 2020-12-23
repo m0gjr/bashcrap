@@ -4,7 +4,7 @@ cd $HOME
 
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
-ln -sT /etc/local/ssh/root /root/.ssh
+ln -sT /etc/local/ssh/root .ssh
 
 rm /etc/fstab
 ln -s /etc/local/fstab /etc/fstab
@@ -26,7 +26,7 @@ EOF
 
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
-xargs < /root/conf/debian/base.pkg apt-get -y install
+xargs < conf/debian/base.pkg apt-get -y install
 
 apt -y remove isc-dhcp-client isc-dhcp-common || true
 

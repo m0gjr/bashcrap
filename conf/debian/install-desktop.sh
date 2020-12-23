@@ -7,9 +7,9 @@ apt-get -y upgrade
 
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
-xargs < /root/conf/debian/desktop.pkg apt-get -y install
+xargs < conf/debian/desktop.pkg apt-get -y install
 
-cat /root/conf/handler.sh > /etc/acpi/handler.sh
+cat conf/handler.sh > /etc/acpi/handler.sh
 chmod +x /etc/acpi/handler.sh
 
 cat > /etc/acpi/events/anything <<'EOF'

@@ -1,3 +1,5 @@
 #!/bin/bash
 
-cat /proc/mounts | cut -f2 -d" " | grep "^/mnt" | sort -r | head -n-1 | xargs umount -ln
+dir=${installdir:-/mnt}
+
+cat /proc/mounts | cut -f2 -d" " | grep "^$dir" | sort -r | head -n-1 | xargs umount -ln
