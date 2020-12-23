@@ -31,9 +31,9 @@ echo "$HOSTNAME" > $dir/etc/hostname
 
 bin/mount-chroot
 
-![ -z ${install_kernel-true} ] && chroot $dir /root/conf/debian/install-kernel.sh
-![ -z ${install_base-true} ] && chroot $dir /root/conf/debian/install-base.sh
-![ -z ${install_desktop-} ] && chroot $dir /root/conf/debian/install-desktop.sh
+! [ -z ${install_kernel-true} ] && chroot $dir /root/conf/debian/install-kernel.sh
+! [ -z ${install_base-true} ] && chroot $dir /root/conf/debian/install-base.sh
+! [ -z ${install_desktop-} ] && chroot $dir /root/conf/debian/install-desktop.sh
 
 bin/umount-chroot
 

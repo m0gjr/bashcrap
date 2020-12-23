@@ -55,6 +55,7 @@ www.wired.com##.expandable-growler-wrapper__collapsed.expandable-growler-wrapper
 www.youtube.com##body:style(overflow:auto!important)
 www.youtube.com###clarify-box > .ytd-watch-flexy.style-scope
 www.youtube.com###collapse-controls-section
+www.youtube.com###consent-bump > .ytd-consent-bump-lightbox.style-scope
 www.youtube.com###contents > .ytd-search-pyv-renderer.style-scope
 www.youtube.com###content > .ytd-rich-section-renderer.style-scope
 www.youtube.com###donate-section
