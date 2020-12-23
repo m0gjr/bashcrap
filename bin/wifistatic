@@ -51,8 +51,8 @@ then
 	iptables -F
 	echo 1 > /proc/sys/net/ipv4/ip_forward
 	iptables -A FORWARD -i eth0 -j ACCEPT
-	iptables -A FORWARD -i vpn -j ACCEPT
 	iptables -t nat -A POSTROUTING -o $iface -j MASQUERADE
+	iptables -t nat -A POSTROUTING -o vpn -j MASQUERADE
 else
 	dhcpcd -wA $iface
 fi
