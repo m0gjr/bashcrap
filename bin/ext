@@ -1,4 +1,0 @@
-#!/bin/bash
-
-xrandr --output VGA-1 --auto
-xrandr --output LVDS-1 --off

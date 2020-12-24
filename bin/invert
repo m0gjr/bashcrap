@@ -1,4 +1,0 @@
-#!/bin/bash
-
-xrandr --orientation inverted
-xrandr --dpi 96

@@ -11,5 +11,6 @@ case "$1" in
 	;;
 	left | right | normal | inverted)
 		xrandr --orientation $1
+		xrandr --dpi 96
 	;;
 esac

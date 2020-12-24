@@ -1,1 +1,5 @@
-sudo-documents
+#!/bin/bash
+
+export PATH=$(echo $PATH | sed "s:$(dirname $0)::g")
+
+sudo -udocuments $(basename "$0") "$@"
