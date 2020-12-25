@@ -1,0 +1,3 @@
+#!/bin/bash
+
+watch 'free -h; echo; zramctl; echo; grep '^size' /proc/spl/kstat/zfs/arcstats | numfmt --to=iec --field=3'

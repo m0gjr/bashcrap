@@ -1,24 +1,29 @@
 #!/bin/bash
 
-settemp=60
+gain=50
+
+settemp=${1:-60}
+
 therm='/sys/devices/virtual/thermal/thermal_zone*/temp'
 cpus='/sys/devices/system/cpu/cpu'
 
+freqmin=$(cat ${cpus}0/cpufreq/cpuinfo_min_freq)
+freqmax=$(cat ${cpus}0/cpufreq/cpuinfo_max_freq)
+
+freqcur=$((($freqmax+$freqmin)/2))
+
 while true
 do
+	temp=$(cat $therm | sort | tail -n1)
 
-	temp=$(cat $therm | sort | tail -n1)00
+	diff=$((${settemp}000 - $temp))
 
-	freqcur=$(cat ${cpus}0/cpufreq/scaling_max_freq)
-	freqmax=$(cat ${cpus}0/cpufreq/cpuinfo_max_freq)
-	freqmin=$(cat ${cpus}0/cpufreq/cpuinfo_min_freq)
-
-	freqnew=$(($freqcur + ${settemp}00000 - $temp))
+	freqnew=$(($freqcur + $diff * $gain))
 
 	[ $freqnew -gt $freqmax ] && freqnew=$freqmax
 	[ $freqnew -lt $freqmin ] && freqnew=$freqmin
 
-	echo $freqnew
+	printf "$freqnew\t$temp\n"
 
 	for cpu in $cpus*
 	do
@@ -26,6 +31,7 @@ do
 		echo $freqnew > $cpu/cpufreq/scaling_max_freq
 	done
 
-	sleep 2
+	freqcur=$freqnew
 
+	sleep 1
 done
