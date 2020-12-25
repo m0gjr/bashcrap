@@ -68,6 +68,7 @@
 <keybind key="W-g"><action name="Execute"><command>gnumeric</command></action></keybind>
 <keybind key="W-v"><action name="Execute"><command>xterm -e alsamixer</command></action></keybind>
 <keybind key="W-h"><action name="Execute"><command>xterm -e top</command></action></keybind>
+<keybind key="W-c"><action name="Execute"><command>xterm -e bc</command></action></keybind>
 <keybind key="W-s"><action name="Execute"><command>xterm -e ssh 10.1</command></action></keybind>
 
 <keybind key="XF86MonBrightnessUp"><action name="Execute"><command>brightness up</command></action></keybind>
