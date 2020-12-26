@@ -36,7 +36,7 @@
     "fanboy-annoyance",
     "ublock-annoyances",
     "plowe-0",
-    "https://raw.githubusercontent.com/m0gjr/bashcrap/master/conf/ublock-filters.txt"
+    "https://gitlab.com/m0gjr/bashcrap/-/raw/master/conf/ublock-filters.txt"
   ],
   "hiddenSettings": {
     "allowGenericProceduralFilters": false,
