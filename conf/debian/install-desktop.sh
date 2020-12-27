@@ -27,6 +27,9 @@ useradd -u 50003 documents || true
 echo "/- /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
+ln -s /home/conf/grey/ /usr/share/themes/grey
+ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
