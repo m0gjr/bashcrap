@@ -193,3 +193,4 @@ x-scheme-handler/mmsh=video.desktop;
 x-scheme-handler/rtmp=video.desktop;
 x-scheme-handler/rtp=video.desktop;
 x-scheme-handler/rtsp=video.desktop;
+text/plain=text.desktop

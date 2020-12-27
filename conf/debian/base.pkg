@@ -1,8 +1,10 @@
 bash-completion alsa-utils man-db
 rsync less pm-utils psmisc reboot-notifier tmux
 iotop iftop lm-sensors
-nano vim elinks bc pv git sshfs autofs unzip
-netcat-openbsd arp-scan nmap curl wget dnsutils dhcpcd5 ssh
+nano bc pv git unzip
+netcat-openbsd curl wget dnsutils dhcpcd5 ssh
+arp-scan nmap
 iw wpasupplicant wireless-tools wavemon
+sshfs autofs
 firmware-linux firmware-iwlwifi
 locales debconf-utils debootstrap

@@ -1,6 +1,6 @@
 acpi upower acpid
 xorg  openbox xinput
-spacefm medit mplayer ffmpegthumbnailer
+spacefm mplayer ffmpegthumbnailer
 viewnior imagemagick
 ffmpeg jmtpfs
 chromium gnumeric
