@@ -22,13 +22,22 @@ router(){
 	echo $a.$(( ($i & 0xFF0000) >> 16 )).$(( ($i & 0xFF00) >> 8 )).$(( $i & 0x00FF ))
 }
 
+confgen(){
+	while read line
+	do
+		ssid=\""$(echo $line | cut -d' ' -f1)"\"
+		psk=\""$(echo $line | cut -d' ' -f2-)"\"
+		printf "network={\n\tssid=$ssid\n\tpsk=$psk\n}\n\n"
+	done < <(grep -v "^\#" /etc/local/wifi.conf)
+}
+
 [ -f /etc/wireguard/vpn.conf ] && wg-quick down vpn
 
 killall wpa_supplicant dhcpcd dhclient
 rm /run/wpa_supplicant/* 2> /dev/null
 
 ip a f dev $iface
-wpa_supplicant -B -i $iface -c /etc/local/wifi.conf -D nl80211
+wpa_supplicant -Bs -i $iface -D nl80211 -c <(confgen)
 
 if [ "$(basename $0)" == "wifistatic" ]
 then

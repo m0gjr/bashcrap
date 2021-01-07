@@ -19,3 +19,5 @@ apt-get -y install zfs-initramfs || true
 /usr/lib/dkms/dkms_autoinstaller start || true
 modprobe zfs || true
 apt-get -y install zfs-initramfs
+
+systemctl disable zed
