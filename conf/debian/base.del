@@ -1,2 +1,3 @@
 isc-dhcp-client isc-dhcp-common
 udisks2 policykit-1 packagekit
+rpcbind
