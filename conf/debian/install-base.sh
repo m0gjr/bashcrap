@@ -26,12 +26,11 @@ EOF
 
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
-xargs < conf/debian/base.pkg apt-get -y install
+apt-get install -y $(cat conf/debian/base.pkg)
 
-apt -y remove isc-dhcp-client isc-dhcp-common || true
+apt-get remove -y $(cat conf/debian/base.del)
 
-systemctl mask systemd-logind.service || true
-systemctl mask systemd-journald.service || true
+systemctl mask $(cat conf/debian/base.mask)
 
 sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
 cp -n /etc/ssh/ssh_host_* /etc/local/ssh/etc/
