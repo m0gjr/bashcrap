@@ -2,14 +2,27 @@
 
 browser="$(which chromium || which chrome)" || exit
 
-case "$(basename $0)" in
-	browser)
-		sudo -ubrowser $browser --disable-high-precision-scrolling --disable-smooth-scrolling
+case "$1" in
+	noproxy)
+		echo starting $browser without proxy
+		exec sudo -ubrowser $browser --disable-high-precision-scrolling --disable-smooth-scrolling
 	;;
-	browsersocks)
-		sudo -ubrowser $browser --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://10.64.0.1:1080" --host-resolver-rules="MAP * 0.0.0.0, EXCLUDE 10.64.0.1"
+	vpn)
+		echo starting $browser using vpn socks proxy
+		exec sudo -ubrowser $browser --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://10.64.0.1:1080" --proxy-bypass-list='10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16'
 	;;
-	browsertor)
-		sudo -ubrowsertor $browser --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0"
+	tor)
+		echo starting $browser using tor socks proxy
+		exec sudo -ubrowsertor $browser --disable-high-precision-scrolling --disable-smooth-scrolling --proxy-server="socks5://127.0.0.1:9050" --host-resolver-rules="MAP * 0.0.0.0"
+	;;
+	*)
+		if [ -f /etc/wireguard/vpn.conf ]
+		then
+			echo vpn detected
+			exec "$0" vpn
+		else
+			echo no vpn detected
+			exec "$0" noproxy
+		fi
 	;;
 esac

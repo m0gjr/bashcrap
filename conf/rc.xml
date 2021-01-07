@@ -64,7 +64,7 @@
 <keybind key="C-A-t"><action name="Execute"><command>xterm</command></action></keybind>
 <keybind key="W-f"><action name="Execute"><command>files</command></action></keybind>
 <keybind key="W-w"><action name="Execute"><command>browser</command></action></keybind>
-<keybind key="W-r"><action name="Execute"><command>browsertor</command></action></keybind>
+<keybind key="W-r"><action name="Execute"><command>browser tor</command></action></keybind>
 <keybind key="W-g"><action name="Execute"><command>gnumeric</command></action></keybind>
 <keybind key="W-v"><action name="Execute"><command>xterm -e alsamixer</command></action></keybind>
 <keybind key="W-h"><action name="Execute"><command>xterm -e top</command></action></keybind>
