@@ -28,7 +28,7 @@ confgen(){
 		ssid=\""$(echo $line | cut -d' ' -f1)"\"
 		psk=\""$(echo $line | cut -d' ' -f2-)"\"
 		printf "network={\n\tssid=$ssid\n\tpsk=$psk\n}\n\n"
-	done < <(grep -v "^\#" /etc/local/wifi.conf)
+	done < <(grep -v '^\#\|^$' /etc/local/wifi.conf)
 }
 
 [ -f /etc/wireguard/vpn.conf ] && wg-quick down vpn
