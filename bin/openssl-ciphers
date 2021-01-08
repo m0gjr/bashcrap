@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for v in tls1_3
+do
+	ciphers="$(openssl ciphers -s -$v | tr ':' ' ')"
+	for c in $ciphers
+	do
+		openssl s_client </dev/null &>/dev/null -$v -ciphersuites $c -connect "$@" && printf "$v\t$c\n"
+	done
+done
+
+for v in tls1_2 tls1_1 tls1
+do
+	ciphers="$(openssl ciphers -s -$v | tr ':' ' ')"
+	for c in $ciphers
+	do
+		openssl s_client </dev/null &>/dev/null -$v -cipher $c -connect "$@" && printf "$v\t$c\n"
+	done
+done
