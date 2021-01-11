@@ -4,10 +4,10 @@ cd $HOME
 
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
+rm -r .ssh || true
 ln -sT /etc/local/ssh/root .ssh
 
-rm /etc/fstab
-ln -s /etc/local/fstab /etc/fstab
+ln -sf /etc/local/fstab /etc/fstab
 
 mv /etc/hosts /tmp/hosts
 cat <(printf '127.0.0.1\tlocalhost ') /etc/hostname <(grep -v 127.0.0.1 /tmp/hosts) > /etc/hosts
@@ -20,9 +20,9 @@ debconf-set-selections <<EOF
 keyboard-configuration keyboard-configuration/layoutcode string gb
 locales locales/default_environment_locale select en_GB.UTF-8
 locales locales/locales_to_be_generated multiselect en_GB.UTF-8 UTF-8
-tzdata  tzdata/Areas select Europe
-tzdata  tzdata/Zones/Europe select London
 EOF
+
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
