@@ -9,8 +9,6 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
 apt-get install -y $(cat conf/debian/desktop.pkg)
 
-systemctl mask $(cat conf/debian/desktop.mask)
-
 cat conf/handler.sh > /etc/acpi/handler.sh
 chmod +x /etc/acpi/handler.sh
 

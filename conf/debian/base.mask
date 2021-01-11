@@ -1,2 +1,3 @@
 systemd-logind.service systemd-journald.service
 exim4.service
+dhcpcd.service wpa_supplicant.service
