@@ -37,7 +37,10 @@ cp -n /etc/ssh/ssh_host_* /etc/local/ssh/etc/
 rm /etc/ssh/ssh_host_*
 ln -s /etc/local/ssh/etc/ssh_host_* /etc/ssh/
 
-passwd -d root
+mkdir -p /etc/systemd/system/getty@tty1.service.d
+rm /etc/systemd/system/getty@tty1.service.d/override.conf || true
+cp conf/getty-login.conf /etc/systemd/system/getty@tty1.service.d/override.conf
+systemctl daemon-reload
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
