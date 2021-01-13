@@ -2,6 +2,8 @@
 
 cd $HOME
 
+cat /etc/local/hostname > /etc/hostname
+
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
 rm -r .ssh || true
