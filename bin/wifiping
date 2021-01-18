@@ -1,6 +1,34 @@
-#!/bin/sh
+#!/bin/bash
+
+pinger(){
+	endpoint=$(grep '^Endpoint' /etc/wireguard/vpn.conf | cut -d' ' -f3 | cut -d':' -f1)
+	router=$(ip r l $endpoint | cut -d' ' -f3)
+
+	i=0
+
+	for x in {1..10}
+	do
+		ping $router -w1 -c1 && ((i=i+1))
+		sleep 1
+	done
+
+
+	echo
+	echo $i
+
+	for x in {1..10}
+	do
+		ping $endpoint -c1 && break
+	done
+	if [ $x -eq 10 ]
+	then
+		return 0
+	else
+		return $i
+	fi
+}
 
 while true
 do
-	ping -c10 -i2 192.168.0.1 || /root/bin/wifistatic
+	pinger && /root/bin/wifistatic
 done
