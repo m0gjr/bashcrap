@@ -21,7 +21,7 @@ systemctl enable acpid || true
 
 useradd -u 50000 -G audio,video browser || true
 useradd -u 50001 -G audio browsertor || true
-useradd -u 50002 -G audio media || true
+useradd -u 50002 -G audio -d /home/.media media || true
 useradd -u 50003 documents || true
 
 echo "/- /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs

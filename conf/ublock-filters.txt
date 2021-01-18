@@ -10,6 +10,7 @@ ebay.co.uk,ebay.com,ebay.com.au#@#.b-module:-abp-has(h2:-abp-contains(Sponsored)
 ebay.co.uk,ebay.com,ebay.com.au#@#li.s-item:-abp-has(span:-abp-contains(/S[^P]*?P[^O]*?O[^N]*?N[^S]*?S[^O]*?O[^R]*?R[^E]*?E[^D]*?D/))
 ebay.co.uk,ebay.com,ebay.com.au#@#.mfe-lex:-abp-has(h2:-abp-contains(sponsored))
 ebay.co.uk,ebay.com,ebay.com.au#@#.mfe-reco-ct:-abp-has(.mfe-promoted-label)
+ebay.co.uk,ebay.com,ebay.com.au#@#.s-item:-abp-has(span[class^="s-item__title--tagblock__SPONSORED"])
 etonline.com##.uvp--iframe-wrapper
 fandom.com##._1MLS_xjiUjam_u2qmURY4i
 fandom.com##._1ouSF3xnwUjIOquxopuxSZ
@@ -44,12 +45,17 @@ tumblr.com##.draggable.inline-nav
 tumblr.com##.iframe-controls--phone-mobile.tmblr-iframe--loaded.tmblr-iframe--below-header.tmblr-iframe--unified-controls.tmblr-iframe
 tutorials.jenkov.com###bottomNavBarRow
 www.d20pfsrd.com##.active.ognannouncement-container
+www.d20pfsrd.com##.cookieconsent
+www.d20pfsrd.com##.product-listing
 www.facebook.com###u_0_d
+||www.gstatic.com/youtube/img/promos/growth/dmod_si_horizontal_ver1_240x400.png$image
 www.imfdb.org###bodyContent > div:nth-of-type(3)
 www.itv.com##.cp_dialog__backdrop.cp_backdrop
 www.itv.com##.cp_dialog--centered.cp_dialog__box
 www.reddit.com###t3_i415sb
 www.rt.com##.header__section_border-bottom_gray.header__section
+www.tomshardware.com##.qc-cmp-cleanslate.iFeyDu.sc-VigVT
+www.tomshardware.com##.region_redirect_popup_asset
 www.urbandictionary.com##div.def-panel:nth-of-type(3)
 www.wired.com##.expandable-growler-wrapper__collapsed.expandable-growler-wrapper
 www.youtube.com##body:style(overflow:auto!important)
@@ -58,6 +64,7 @@ www.youtube.com###collapse-controls-section
 www.youtube.com###consent-bump > .ytd-consent-bump-lightbox.style-scope
 www.youtube.com###contents > .ytd-search-pyv-renderer.style-scope
 www.youtube.com###content > .ytd-rich-section-renderer.style-scope
+www.youtube.com###dialog
 www.youtube.com###donate-section
 www.youtube.com###header-section
 www.youtube.com###ticket-shelf > .ytd-watch-flexy.style-scope
