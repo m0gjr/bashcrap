@@ -3,12 +3,13 @@
 pinger(){
 	endpoint=$(grep '^Endpoint' /etc/wireguard/vpn.conf | cut -d' ' -f3 | cut -d':' -f1)
 	router=$(ip r l $endpoint | cut -d' ' -f3)
+	dns=$(grep '^DNS' /etc/wireguard/vpn.conf | cut -d' ' -f3)
 
 	i=0
 
 	for x in {1..10}
 	do
-		ping $router -w1 -c1 && ((i=i+1))
+		ping -w1 -c1 $router && ((i=i+1))
 		sleep 1
 	done
 
@@ -18,7 +19,8 @@ pinger(){
 
 	for x in {1..10}
 	do
-		ping $endpoint -c1 && break
+		ping -c1 $endpoint && ping -c1 $dns  && break
+		sleep 1
 	done
 	if [ $x -eq 10 ]
 	then

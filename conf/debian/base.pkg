@@ -1,4 +1,4 @@
-bash-completion alsa-utils man-db
+bash-completion alsa-utils man-db daemonize
 rsync less pm-utils psmisc reboot-notifier tmux
 iotop iftop lm-sensors
 nano bc pv git unzip
