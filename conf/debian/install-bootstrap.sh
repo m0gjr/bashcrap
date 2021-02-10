@@ -4,8 +4,14 @@ dir=${installdir:-/mnt}
 
 if [ ! -d .git ]
 then
-	echo "not in bashcrap git repository"
-	exit
+	echo "not in bashcrap git repository" >&2
+	exit 3
+fi
+
+if [ ! -f /etc/local/hostname ]
+then
+	echo "missing /etc/local/hostname" >&2
+	exit 2
 fi
 
 if [ -z "$1" ]
