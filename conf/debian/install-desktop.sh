@@ -2,6 +2,8 @@
 
 cd $HOME
 
+ln -s /etc/local/wireguard /etc/wireguard
+
 apt-get update
 apt-get -y upgrade
 
