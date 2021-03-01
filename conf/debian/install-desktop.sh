@@ -32,6 +32,10 @@ ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 ln -s /home/conf/grey/ /usr/share/themes/grey
 ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
 
+ln /root/conf/magneter /etc/sudoers.d/magneter
+ln /root/bin/magneter /usr/local/bin/magneter
+ln /root/bin/xdg-open /usr/local/bin/xdg-open
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
