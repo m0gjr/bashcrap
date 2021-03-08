@@ -1,1 +1,3 @@
-/rustbucket -fstype=fuse,rw :sshfs\#root@10.0.0.1\:/rustbucket
+rustbucket -fstype=fuse,rw :sshfs\#root@10.0.0.1\:/rustbucket
+phone-int -fstype=fuse,rw,port=2222 :sshfs\#root@10.0.0.30\:/storage/emulated/0
+phone-ext -fstype=fuse,rw,port=2222 :sshfs\#root@10.0.0.30\:/storage/3035-6234
