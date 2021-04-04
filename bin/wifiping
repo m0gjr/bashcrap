@@ -4,7 +4,7 @@ pinger(){
 
 	i=0
 
-	for x in {1..10}
+	for x in {1..5}
 	do
 		ping -w1 -c1 $router && ((i=i+1))
 		sleep 1
