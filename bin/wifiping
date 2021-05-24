@@ -17,8 +17,6 @@ pinger(){
 	return $i
 }
 
-endpoint=$(grep '^Endpoint' /etc/wireguard/vpn.conf | cut -d' ' -f3 | cut -d':' -f1)
-router=$(ip r l $endpoint | cut -d' ' -f3)
 dns=$(grep '^DNS' /etc/wireguard/vpn.conf | cut -d' ' -f3)
 
 while true
