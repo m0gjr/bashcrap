@@ -1,25 +1,9 @@
 #!/bin/bash
 
-pinger(){
-
-	i=0
-
-	for x in {1..5}
-	do
-		ping -w1 -c1 $dns && ((i=i+1))
-		sleep 2
-	done
-
-	echo
-	echo $i
-	echo
-
-	return $i
-}
-
 dns=$(grep '^DNS' /etc/wireguard/vpn.conf | cut -d' ' -f3)
 
 while true
 do
-	pinger && /root/bin/wifistatic
+	ping -W1 -i2 -c5 $dns || /root/bin/wifistatic
+	sleep 2
 done
