@@ -34,7 +34,7 @@ ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
 
 ln /root/conf/magneter /etc/sudoers.d/magneter
 ln /root/bin/magneter /usr/local/bin/magneter
-ln /root/bin/xdg-open /usr/local/bin/xdg-open
+ln /root/conf/magnet.desktop /usr/share/applications/magnet.desktop
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh

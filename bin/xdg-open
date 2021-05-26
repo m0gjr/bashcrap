@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [[ "$1" == 'magnet:'* ]]
-then
-	sudo /usr/local/bin/magneter "$1"
-else
-	/usr/bin/xdg-open "$@"
-fi
