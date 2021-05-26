@@ -1,0 +1,36 @@
+#!/bin/sh
+
+cidr=172.0.0
+
+killall dhcpcd wpa_supplicant
+
+ip address flush dev usb0
+ip address add $cidr.1/24 dev usb0
+
+wpa_supplicant -Bs -i wlan0 -D nl80211 -c /etc/wpa.conf
+dhcpcd -w wlan0
+
+apt-get update
+apt-get -y upgrade
+apt-get -y install udhcpd wireguard-tools
+
+cat <<EOF > /etc/udhcpd.conf
+interface usb0
+start $cidr.100
+end $cidr.200
+opt subnet 255.255.255.0
+opt router $cidr.1
+opt dns 10.64.0.1
+EOF
+udhcpd
+
+ln -s /etc/vpn.conf /etc/wireguard/vpn.conf
+wg-quick up vpn
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -A forward -i usb0 -j ACCEPT
+iptables -t nat -A POSTROUTING -o vpn -j MASQUERADE
+
+echo 0 > /sys/class/leds/led0/brightness
+
+exit 0
