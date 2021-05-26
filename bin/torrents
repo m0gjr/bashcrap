@@ -1,7 +1,9 @@
 #!/bin/bash
 
+pass="$(cat /etc/local/transmission)"
+
 torrent(){
-transmission-remote -n 'transmission:transmission' "$@"
+transmission-remote -n "transmission:$pass" "$@"
 }
 
 if [ "$(basename $0)" == "addtorrents" ]

@@ -2,6 +2,6 @@
 Name=Magnet
 Type=Application
 Comment=Open a magnet link remotly with the help of a script
-Exec=sudo /usr/local/bin/magneter %U
+Exec=/usr/local/bin/magneter %U
 Categories=Network;WebBrowser;
 MimeType=x-scheme-handler/magnet;
