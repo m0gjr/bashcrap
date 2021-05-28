@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# /etc/rc.local
+# /etc/vpn.conf
+# /etc/wpa.conf
+
+# config.txt dtoverlay=dwc2
+# cmdline.txt -init=resize, module-load=dwc2,g_ether
+
+
 cidr=172.0.0
 
 killall dhcpcd wpa_supplicant
@@ -10,9 +18,14 @@ ip address add $cidr.1/24 dev usb0
 wpa_supplicant -Bs -i wlan0 -D nl80211 -c /etc/wpa.conf
 dhcpcd -w wlan0
 
+[ -f /etc/wireguard/vpn.conf ] || apt-get -y remove --autoremove alsa-utils avahi-daemon bluez build-essential perl python2 python3 \
+curl wget psmisc rsync htop openssl dbus keyboard-configuration \
+manpages man-db mime-support net-tools nfs-common ntfs-3g \
+ssh
+
 apt-get update
 apt-get -y upgrade
-apt-get -y install udhcpd wireguard-tools
+[ -f /etc/wireguard/vpn.conf ] || apt-get -y install udhcpd wireguard-tools
 
 cat <<EOF > /etc/udhcpd.conf
 interface usb0
