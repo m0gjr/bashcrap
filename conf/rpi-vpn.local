@@ -18,14 +18,16 @@ ip address add $cidr.1/24 dev usb0
 wpa_supplicant -Bs -i wlan0 -D nl80211 -c /etc/wpa.conf
 dhcpcd -w wlan0
 
-[ -f /etc/wireguard/vpn.conf ] || apt-get -y remove --autoremove alsa-utils avahi-daemon bluez build-essential perl python2 python3 \
+if ! [ -f /etc/wireguard/vpn.conf ]
+then
+apt-get -y remove --autoremove alsa-utils avahi-daemon bluez build-essential perl python2 python3 \
 curl wget psmisc rsync htop openssl dbus keyboard-configuration \
 manpages man-db mime-support net-tools nfs-common ntfs-3g \
 ssh
 
 apt-get update
 apt-get -y upgrade
-[ -f /etc/wireguard/vpn.conf ] || apt-get -y install udhcpd wireguard-tools
+apt-get -y install udhcpd wireguard-tools
 
 cat <<EOF > /etc/udhcpd.conf
 interface usb0
@@ -35,14 +37,21 @@ opt subnet 255.255.255.0
 opt router $cidr.1
 opt dns 10.64.0.1
 EOF
-udhcpd
 
 ln -s /etc/vpn.conf /etc/wireguard/vpn.conf
+
+init 6
+fi
+
+udhcpd
 wg-quick up vpn
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -A forward -i usb0 -j ACCEPT
 iptables -t nat -A POSTROUTING -o vpn -j MASQUERADE
+
+apt-get update
+apt-get -y upgrade
 
 echo 0 > /sys/class/leds/led0/brightness
 
