@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cd /home/music
+
+for infile in */*.mp4
+do
+	outfile="mp3/$(basename "$infile" .mp4).mp3"
+
+	list="$(printf "$list\n$outfile")"
+
+	if ! [ -f "$outfile" ]
+	then
+		ffmpeg -i "$infile" -c:a libmp3lame "$outfile"
+	fi
+done
+
+echo
+echo "duplicate files:"
+echo "$list" | sort | uniq -d
+
+echo
