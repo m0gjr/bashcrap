@@ -10,7 +10,12 @@ file=_posts/$(date +%F)-$1.md
 
 nano $file
 
-git add $file
-git commit -am "$1"
+read -p "push [y]/n? " -n1 push
+echo
 
-git push
+if ! [ "$push" == "n" ]
+then
+	git add *
+	git commit -am "$1"
+	git push
+fi
