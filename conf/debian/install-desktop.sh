@@ -41,6 +41,8 @@ cat > /etc/rc.local <<'EOF'
 cd /root
 
 /root/bin/x11-respawn &
+
+[ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
 /root/bin/wifistart
 
 exit 0

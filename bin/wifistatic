@@ -31,8 +31,6 @@ confgen(){
 	done < <(grep -v '^\#\|^$' /etc/local/wifi.conf)
 }
 
-[ -f /etc/wireguard/vpn.conf ] && wg-quick down vpn
-
 killall wpa_supplicant dhcpcd dhclient
 rm /run/wpa_supplicant/* 2> /dev/null
 
@@ -57,7 +55,5 @@ then
 else
 	dhcpcd -wA $iface
 fi
-
-[ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
 
 ping -c1 google.com
