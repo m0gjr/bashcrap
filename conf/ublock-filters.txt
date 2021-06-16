@@ -44,6 +44,9 @@ smarty.co.uk##.cc-window.cc-banner.cc-type-info.cc-theme-block.cc-static.cc-top.
 tumblr.com##.draggable.inline-nav
 tumblr.com##.iframe-controls--phone-mobile.tmblr-iframe--loaded.tmblr-iframe--below-header.tmblr-iframe--unified-controls.tmblr-iframe
 tutorials.jenkov.com###bottomNavBarRow
+www.anonigviewer.com##body:style(overflow:auto!important)
+www.anonigviewer.com##.show.fade.modal
+www.anonigviewer.com##.show.fade.modal-backdrop
 www.d20pfsrd.com##.active.ognannouncement-container
 www.d20pfsrd.com##.cookieconsent
 www.d20pfsrd.com##.product-listing
