@@ -8,7 +8,7 @@ import sys
 import os.path
 
 url="https://api.mullvad.net/www/relays/all/"
-dir="/etc/wireguard"
+dir=""
 
 #servers=json.load(urllib.request.urlopen(url))
 servers=json.load(urllib2.urlopen(url))
