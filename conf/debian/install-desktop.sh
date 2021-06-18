@@ -26,7 +26,7 @@ useradd -u 50001 -G audio browsertor || true
 useradd -u 50002 -G audio -d /home/.media media || true
 useradd -u 50003 documents || true
 
-echo "/media /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs
+echo "/- /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
 ln -s /home/conf/grey/ /usr/share/themes/grey
