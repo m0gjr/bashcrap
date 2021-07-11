@@ -15,3 +15,4 @@ xhost +SI:localuser:browser
 xhost +SI:localuser:browsertor
 xhost +SI:localuser:media
 xhost +SI:localuser:documents
+xhost +SI:localuser:browserproxy
