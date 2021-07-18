@@ -37,6 +37,9 @@ ln -s /home/conf/youtube-dl /usr/local/bin/youtube-dl
 ln /root/bin/magneter /usr/local/bin/magneter
 ln /root/conf/magnet.desktop /usr/share/applications/magnet.desktop
 
+ln /root/bin/ytdl /usr/local/bin/ytdl
+ln /root/conf/ytdl.desktop /usr/share/applications/ytdl.desktop
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
