@@ -32,6 +32,7 @@ ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
 ln -s /home/conf/grey/ /usr/share/themes/grey
 ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
+ln -s /home/conf/youtube-dl /usr/local/bin/youtube-dl
 
 ln /root/bin/magneter /usr/local/bin/magneter
 ln /root/conf/magnet.desktop /usr/share/applications/magnet.desktop
