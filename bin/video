@@ -2,6 +2,6 @@
 
 export PATH=$(echo $PATH | sed "s:$(dirname $0)::g")
 
-player="$(which vlc || which mplayer)" || exit
+player="$(which mpv || which mplayer || which vlc)" || exit
 
 sudo -umedia $player "$@"
