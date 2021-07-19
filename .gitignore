@@ -1,1 +1,15 @@
-conf/gitignore
+/*
+/*/
+!/.gitignore
+!/.gitconfig
+!/.Xdefaults
+!/.bashrc
+!/.profile
+!/.tmux.conf
+!/.toprc
+!/.inputrc
+!/.xinitrc
+!/.config/openbox/
+!/conf/
+!/bin/
+*.swp
