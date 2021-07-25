@@ -70,7 +70,7 @@
 <keybind key="W-v"><action name="Execute"><command>xterm -e alsamixer</command></action></keybind>
 <keybind key="W-h"><action name="Execute"><command>xterm -e top</command></action></keybind>
 <keybind key="W-c"><action name="Execute"><command>xterm -e bc</command></action></keybind>
-<keybind key="W-s"><action name="Execute"><command>xterm -e ssh 10.1</command></action></keybind>
+<keybind key="W-s"><action name="Execute"><command>xterm -e ssh 192.168.0.100</command></action></keybind>
 <keybind key="W-d"><action name="Execute"><command>xterm -e watch sensors</command></action></keybind>
 <keybind key="W-a"><action name="Execute"><command>xterm -e 'video -shuffle /home/music/audio/*'</command></action></keybind>
 
