@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pass="$(cat /etc/local/transmission)"
+source /etc/local/transmission
 
 torrent(){
 transmission-remote -n "transmission:$pass" "$@"

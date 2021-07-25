@@ -4,7 +4,7 @@ echo "$0 $@" > /tmp/test.log
 
 dir="$(mktemp -d)"
 
-format=22/18/best
+format='best[height<=720]/best'
 
 mplayer -cookies -cookies-file "$dir/cookie" "$(youtube-dl -f "$format" -g --cookies "$dir/cookie" "$1")"
 

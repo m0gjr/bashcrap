@@ -2,10 +2,12 @@
 test -z $1 && echo "need magnet link!
 $0 <magnet link>" && exit -1
 
-HOST=10.0.0.1
+HOST=127.0.0.1
 PORT=9091
 USER=transmission
-PASS="$(cat /etc/local/transmission)"
+PASS=transmission
+
+source /etc/local/transmission
 
 LINK="$1"
 PAUSED="false"
