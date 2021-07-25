@@ -3,7 +3,7 @@
 source /etc/local/transmission
 
 torrent(){
-transmission-remote -n "transmission:$pass" "$@"
+transmission-remote -n "$USER:$PASS" "$@"
 }
 
 if [ "$(basename $0)" == "addtorrents" ]
