@@ -6,3 +6,5 @@ until [ "$(host -t txt _acme-challenge.$CERTBOT_DOMAIN | cut -d\" -f2)" == "$CER
 do
 	sleep 10
 done
+
+# certbot certonly --manual --preferred-challenge=dns --manual-auth-hook $0 -d domain.example.com
