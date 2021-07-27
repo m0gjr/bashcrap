@@ -21,3 +21,6 @@ modprobe zfs || true
 apt-get -y install zfs-initramfs
 
 systemctl disable zed
+
+
+echo "$0 completed successfully"

@@ -52,3 +52,6 @@ EOF
 
 chmod +x /etc/rc.local
 systemctl enable rc-local || true
+
+
+echo "$0 completed successfully"

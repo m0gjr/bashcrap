@@ -52,3 +52,6 @@ cd /root
 
 exit 0
 EOF
+
+
+echo "$0 completed successfully"

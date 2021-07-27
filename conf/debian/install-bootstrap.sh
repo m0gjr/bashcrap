@@ -44,5 +44,5 @@ bin/mount-chroot
 
 bin/umount-chroot
 
-echo
-echo successful install
+
+echo "$0 completed successfully"
