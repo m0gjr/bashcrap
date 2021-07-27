@@ -1,1 +1,1 @@
-/rustbucket -fstype=fuse,rw :sshfs\#root@192.168.0.100\:/rustbucket
+/rustbucket -fstype=fuse,rw :sshfs\#server\:/rustbucket

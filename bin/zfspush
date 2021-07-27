@@ -1,6 +1,6 @@
 #!/bin/bash
 
-host="10.1"
+host=server
 
 date=$(date +%Y-%m-%d)
 
