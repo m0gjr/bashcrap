@@ -26,7 +26,7 @@ echo "deb http://deb.debian.org/debian/ $1 main contrib non-free" > $dir/etc/apt
 if [ "$1" != "sid" ]
 then
 	echo "deb http://deb.debian.org/debian/ $1-updates main contrib non-free" >> $dir/etc/apt/sources.list
-	echo "deb http://security.debian.org/debian-security/ $1/updates main contrib non-free" >> $dir/etc/apt/sources.list
+	echo "deb http://security.debian.org/debian-security/ $1-security main contrib non-free" >> $dir/etc/apt/sources.list
 	echo "deb http://deb.debian.org/debian/ $1-backports main contrib non-free" >> $dir/etc/apt/sources.list
 fi
 

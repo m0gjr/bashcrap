@@ -4,7 +4,7 @@ export PATH=$(echo $PATH | sed "s:$(dirname $0)::g")
 
 case "$(basename $0)" in
 	image)
-		player="$(which viewnior || which feh)" || exit
+		player="$(which viewnior || which feh) --fullscreen" || exit
 	;;
 	imageedit)
 		player="$(which display-im6.q16)" || exit
