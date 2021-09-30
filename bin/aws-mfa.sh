@@ -11,7 +11,9 @@ do
 
 	aws --profile $profile sts get-caller-identity &> /dev/null && echo "skipping $profile profile" && continue
 
-	serial=$(aws --profile $static_profile iam list-mfa-devices --query MFADevices[0].SerialNumber | cut -d'"' -f2)
+	user=$(aws --profile $static_profile sts get-caller-identity | grep Arn | cut -d'/' -f2 | cut -d'"' -f1)
+
+	serial=$(aws --profile $static_profile iam list-mfa-devices --user $user --query MFADevices[0].SerialNumber | cut -d'"' -f2)
 
 	read -p "Enter MFA code for $serial ($profile profile) " code
 
