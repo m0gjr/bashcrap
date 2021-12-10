@@ -4,4 +4,4 @@ export PATH=$(echo $PATH | sed "s:$(dirname $0)::g")
 
 viewer="$(which evince)" || exit
 
-sudo -umedia $viewer -f "$@"
+sudo -udocuments $viewer -f "$@"
