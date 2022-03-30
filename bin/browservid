@@ -1,0 +1,7 @@
+#!/bin/bash
+
+url="$(xdotool getwindowname $(xdotool getwindowfocus) | rev | cut -d'-' -f2- | cut -d' ' -f2 | rev)"
+
+echo "$url"
+
+sudo -u browser mpv "$url"

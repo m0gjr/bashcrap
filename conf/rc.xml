@@ -74,6 +74,8 @@
 <keybind key="W-d"><action name="Execute"><command>xterm -e watch sensors</command></action></keybind>
 <keybind key="W-a"><action name="Execute"><command>xterm -e 'video -shuffle /home/music/audio/*'</command></action></keybind>
 
+<keybind key="F7"><action name="Execute"><command>browservid</command></action></keybind>
+
 <keybind key="XF86MonBrightnessUp"><action name="Execute"><command>brightness up</command></action></keybind>
 <keybind key="XF86MonBrightnessDown"><action name="Execute"><command>brightness down</command></action></keybind>
 <keybind key="XF86AudioRaiseVolume"><action name="Execute"><command>volume up</command></action></keybind>
