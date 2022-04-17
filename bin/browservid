@@ -4,4 +4,4 @@ url="$(xdotool getwindowname $(xdotool getwindowfocus) | rev | cut -d'-' -f2- | 
 
 echo "$url"
 
-sudo -u browser mpv "$url"
+xterm -e 'sudo -u browser mpv "'"$url"'"'
