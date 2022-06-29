@@ -1,16 +1,16 @@
-#!/bin/bash
+#!/bin/bash -x
 test -z $1 && echo "need magnet link!
 $0 <magnet link>" && exit -1
 
-HOST=127.0.0.1
-PORT=9091
-USER=transmission
-PASS=transmission
+transmission_host=127.0.0.1
+transmission_port=9091
+transmission_user=transmission
+transmission_pass=transmission
 
 source /etc/local/transmission
 
 LINK="$1"
 PAUSED="false"
-SESSID=$(curl --silent --anyauth --user $USER:$PASS "http://$HOST:$PORT/transmission/rpc" | sed 's/.*<code>//g;s/<\/code>.*//g')
-xmessage -timeout 3 $(curl --silent --anyauth --user $USER:$PASS --header "$SESSID" "http://$HOST:$PORT/transmission/rpc" -d "{\"method\":\"torrent-add\",\"arguments\":{\"paused\":${PAUSED},\"filename\":\"${LINK}\"}}")
+SESSID=$(curl --silent --anyauth --user "$transmission_user:$transmission_pass" "http://$transmission_host:$transmission_port/transmission/rpc" | sed 's/.*<code>//g;s/<\/code>.*//g')
+xmessage -timeout 3 $(curl --silent --anyauth --user "$transmission_user:$transmission_pass" --header "$SESSID" "http://$transmission_host:$transmission_port/transmission/rpc" -d "{\"method\":\"torrent-add\",\"arguments\":{\"paused\":${PAUSED},\"filename\":\"${LINK}\"}}")
 
