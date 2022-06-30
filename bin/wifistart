@@ -1,1 +1,21 @@
-wifistatic
+#!/bin/bash
+
+iface=wlan0
+
+confgen(){
+	while read line
+	do
+		ssid=\""$(echo $line | cut -d' ' -f1)"\"
+		psk=\""$(echo $line | cut -d' ' -f2-)"\"
+		printf "network={\n\tssid=$ssid\n\tpsk=$psk\n}\n\n"
+	done < <(grep -v '^\#\|^$' /etc/local/wifi.conf)
+}
+
+killall wpa_supplicant dhcpcd dhclient
+rm /run/wpa_supplicant/* 2> /dev/null
+
+ip a f dev $iface
+wpa_supplicant -Bs -i $iface -D nl80211 -c <(confgen)
+dhcpcd -wA $iface
+
+ping -c1 google.com

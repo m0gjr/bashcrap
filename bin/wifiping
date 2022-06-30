@@ -1,9 +1,0 @@
-#!/bin/bash
-
-dns=$(grep '^DNS' /etc/wireguard/vpn.conf | cut -d' ' -f3)
-
-while true
-do
-	ping -W1 -i2 -c5 $dns || /root/bin/wifistatic
-	sleep 2
-done
