@@ -16,6 +16,11 @@ then
 	done
 fi
 
+if [ "$(basename $0)" == "magneter" ]
+then
+	xmessage -timeout 2 $(torrent -a "$1")
+fi
+
 if [ -n "$1" ]
 then
 	torrent "$@"
