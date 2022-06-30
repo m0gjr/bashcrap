@@ -1,0 +1,26 @@
+#!/bin/bash
+
+i=1473
+min=0
+max=0
+
+while true
+do
+	if ping -c1 -w1 -Mdo -s$i $@ &> /dev/null
+	then
+		min=$i
+		if [ $max -eq 0 ]
+		then
+			i=$((2*$i))
+		else
+			i=$((($i+$max)/2))
+		fi
+	else
+		max=$i
+		i=$((($i+$min)/2))
+	fi
+	echo $min $i $max
+	[ $max -eq $(($min+1)) ] && break
+done
+
+ping -c1 -w1 -Mdo -s$i $@
