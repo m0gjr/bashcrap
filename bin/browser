@@ -17,7 +17,7 @@ case "$1" in
 		else
 			server=$2-wg.socks5.mullvad.net
 		fi
-		exec sudo -ubrowser $browser --temp-profile $opts --proxy-server="socks5://$server:1080"
+		exec sudo -ubrowser $browser --temp-profile $opts --proxy-server="socks5://$server:1080" https://duckduckgo.com
 	;;
 	tor)
 		echo starting $browser using tor socks proxy
