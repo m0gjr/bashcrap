@@ -3,3 +3,5 @@
 	name = m0gjr
 [pull]
 	rebase = true
+[init]
+	defaultBranch = master
