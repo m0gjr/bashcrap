@@ -4,4 +4,4 @@ Type=Application
 Comment=Open a magnet link remotly with the help of a script
 Exec=/usr/local/bin/magneter %U
 Categories=Network;WebBrowser;
-MimeType=x-scheme-handler/magnet;
+MimeType=x-scheme-handler/magnet;application/x-bittorrent;
