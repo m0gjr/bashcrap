@@ -1,1 +1,5 @@
--o ashift=12 -O xattr=sa -O atime=off -O compression=on -O mountpoint=legacy
+-o ashift=12
+-O xattr=sa
+-O atime=off
+-O compression=on
+-O mountpoint=legacy
