@@ -1,0 +1,20 @@
+#!/bin/bash
+
+browser="$(which firefox)" || exit
+
+vars='MOZ_GTK_TITLEBAR_DECORATION=client'
+
+case "$1" in
+	proxy)
+		echo starting $browser using vpn socks proxy
+		exec sudo -ubrowserproxy $browser
+	;;
+	tor)
+		echo starting $browser using tor socks proxy
+		exec sudo -ubrowsertor $browser
+	;;
+	*)
+		echo starting $browser without proxy
+		exec sudo -ubrowser $vars $browser
+	;;
+esac

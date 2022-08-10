@@ -3,7 +3,7 @@ xorg openbox xinput xterm xdotool
 spacefm mpv ffmpegthumbnailer
 viewnior imagemagick
 ffmpeg jmtpfs
-chromium gnumeric
+chromium gnumeric firefox-esr-l10n-en-gb
 tor torsocks
 wireguard
 transmission-cli

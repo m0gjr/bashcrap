@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url="$(xdotool getwindowname $(xdotool getwindowfocus) | rev | cut -d'-' -f2- | cut -d' ' -f2 | rev)"
+url="$(xdotool getwindowname $(xdotool getwindowfocus) | tr ' ' '\n' | grep 'https://' | head -n1)"
 
 echo "$url"
 
