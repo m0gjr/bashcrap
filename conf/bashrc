@@ -41,7 +41,7 @@ alias c='clear'
 alias mounts='mount | grep -v cgroup | column -t'
 alias dd='dd bs=1M status=progress'
 alias wget='wget -c'
-alias youtube-dl='youtube-dl -f mp4'
+alias youtube-dl='youtube-dl -f "[height<=720]"'
 alias nano='nano -mc'
 alias traceroute='traceroute -n'
 
