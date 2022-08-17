@@ -1,16 +1,6 @@
 /*
 /*/
 !/.gitignore
-!/.gitconfig
-!/.Xdefaults
-!/.bashrc
-!/.profile
-!/.tmux.conf
-!/.toprc
-!/.inputrc
-!/.xinitrc
-!/.config/openbox/
-!/.config/user-dirs.dirs
 !/conf/
 !/bin/
 *.swp
