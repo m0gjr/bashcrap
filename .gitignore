@@ -10,6 +10,7 @@
 !/.inputrc
 !/.xinitrc
 !/.config/openbox/
+!/.config/user-dirs.dirs
 !/conf/
 !/bin/
 *.swp
