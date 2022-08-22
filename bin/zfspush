@@ -1,15 +1,14 @@
-#!/bin/bash
+#!/bin/bash -e
 
-host="${host:-server}"
+homeds=$(zfs mount | awk '$2 == "/home" {print $1}')
 
-date=$(date +%Y-%m-%d)
+shost="${shost:-localhost}"
+dhost="${dhost:-server}"
+sds="${sds:-$homeds}"
+dds="${dds:-rustbucket/home}"
 
-fs="${1:-/home}"
+src=$(ssh $shost zfs list -t snapshot -Ho name $sds | tail -n1 | cut -d'@' -f2)
+dst=$(ssh $dhost zfs list -t snapshot -Ho name $dds | tail -n1 | cut -d'@' -f2)
 
-ds=$(zfs mount | awk '$2 == "'$fs'" {print $1}')
-
-dst=$(ssh $host zfs list -t snapshot -Ho name | grep rustbucket$fs@ | tail -n1 | cut -d'@' -f2)
-src=$(zfs list -t snapshot -Ho name | grep $ds | tail -n1)
-
-zfs send -i $ds@$dst $src | pv > /dev/null
-zfs send -i $ds@$dst $src | pv | ssh $host zfs receive rustbucket$fs
+ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
+ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds"
