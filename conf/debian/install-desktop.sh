@@ -50,6 +50,8 @@ cd /root
 [ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
 /root/bin/wifistart
 
+/root/bin/zram-on
+
 exit 0
 EOF
 

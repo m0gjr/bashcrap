@@ -19,10 +19,6 @@ if [ "$BASH" ]; then
 	fi
 fi
 
-if [ -f ~/.startx ];then
-	. ~/.startx
-fi
-
 mesg n
 
 export PATH="$HOME/bin:$PATH"
