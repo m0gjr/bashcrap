@@ -9,7 +9,6 @@ then
 	dhost="${dhost:-localhost}"
 	sds="${sds:-rustbucket/home}"
 	dds="${dds:-$homeds}"
-	pull="${pull:-true}"
 else
 	echo push
 	shost="${shost:-localhost}"
@@ -21,12 +20,14 @@ fi
 src=$(ssh $shost zfs list -t snapshot -Ho name $sds | tail -n1 | cut -d'@' -f2)
 dst=$(ssh $dhost zfs list -t snapshot -Ho name $dds | tail -n1 | cut -d'@' -f2)
 
-if [ -n "$pull" ]
+ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
+ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds" || rollback=true
+
+if [ -n "$rollback" ]
 then
-	echo rolling back to $dds@$dst
+	echo rolling back $dhost to $dds@$dst
+	echo enter to proceed
 	read
 	ssh $dhost "zfs rollback $dds@$dst"
+	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds"
 fi
-
-ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
-ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds"
