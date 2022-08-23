@@ -2,13 +2,31 @@
 
 homeds=$(zfs mount | awk '$2 == "/home" {print $1}')
 
-shost="${shost:-localhost}"
-dhost="${dhost:-server}"
-sds="${sds:-$homeds}"
-dds="${dds:-rustbucket/home}"
+if [ "$(basename "$0")" = "zfspull" ]
+then
+	echo pull
+	shost="${shost:-home}"
+	dhost="${dhost:-localhost}"
+	sds="${sds:-rustbucket/home}"
+	dds="${dds:-$homeds}"
+	pull="${pull:-true}"
+else
+	echo push
+	shost="${shost:-localhost}"
+	dhost="${dhost:-server}"
+	sds="${sds:-$homeds}"
+	dds="${dds:-rustbucket/home}"
+fi
 
 src=$(ssh $shost zfs list -t snapshot -Ho name $sds | tail -n1 | cut -d'@' -f2)
 dst=$(ssh $dhost zfs list -t snapshot -Ho name $dds | tail -n1 | cut -d'@' -f2)
+
+if [ -n "$pull" ]
+then
+	echo rolling back to $dds@$dst
+	read
+	ssh $dhost "zfs rollback $dds@$dst"
+fi
 
 ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
 ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds"
