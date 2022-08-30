@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while read line
+do
+	ssid=\""$(echo $line | cut -d' ' -f1)"\"
+	psk=\""$(echo $line | cut -d' ' -f2-)"\"
+	printf "network={\n\tssid=$ssid\n\tpsk=$psk\n}\n\n"
+done < <(grep -v '^\#\|^$' "$1") > "$2"

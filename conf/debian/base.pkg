@@ -9,3 +9,4 @@ sshfs autofs
 firmware-linux firmware-iwlwifi
 locales debconf-utils debootstrap
 beep
+pciutils usbutils

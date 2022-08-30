@@ -1,0 +1,29 @@
+#!/bin/bash
+
+source /etc/local/transmission
+
+torrent(){
+transmission-remote "$transmission_host:$transmission_port" -n "$transmission_user:$transmission_pass" "$@"
+}
+
+if [ "$(basename $0)" == "addtorrents" ]
+then
+	while read link
+	do
+		torrent -a "$link"
+		torrent -l
+		exit
+	done
+fi
+
+if [ "$(basename $0)" == "magneter" ]
+then
+	xmessage -timeout 2 $(torrent -a "$1")
+fi
+
+if [ -n "$1" ]
+then
+	torrent "$@"
+else
+	torrent -l
+fi

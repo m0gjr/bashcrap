@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=ytdl
-Type=Application
-Comment=ytdl
-Exec=ytdl %U
-Categories=Network;WebBrowser;
-MimeType=x-scheme-handler/ytdl;

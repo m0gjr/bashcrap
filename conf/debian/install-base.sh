@@ -44,6 +44,8 @@ rm /etc/systemd/system/getty@tty1.service.d/override.conf || true
 cp conf/getty-login.conf /etc/systemd/system/getty@tty1.service.d/override.conf
 systemctl daemon-reload
 
+ln bin/local/* /usr/local/bin/
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 

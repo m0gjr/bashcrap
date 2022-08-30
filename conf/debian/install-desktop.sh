@@ -34,11 +34,7 @@ ln -s /home/conf/grey/ /usr/share/themes/grey
 ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
 ln -s /home/conf/yt-dlp /usr/local/bin/youtube-dl
 
-ln /root/bin/torrents /usr/local/bin/magneter
-ln /root/conf/magnet.desktop /usr/share/applications/magnet.desktop
-
-ln /root/bin/ytdl /usr/local/bin/ytdl
-ln /root/conf/ytdl.desktop /usr/share/applications/ytdl.desktop
+ln conf/applications/* /usr/share/applications/
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh

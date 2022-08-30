@@ -1,7 +1,0 @@
-#!/usr/bin/env python3
-
-import sys, subprocess, urllib.parse as ul;
-
-url=ul.unquote_plus(sys.argv[1])
-
-subprocess.run(['mpv', url[7:]])
