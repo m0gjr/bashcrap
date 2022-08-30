@@ -2,6 +2,8 @@
 
 cd $HOME
 
+rm .bash_history || true && ln -s /home/bash_history .bash_history
+
 cat /etc/local/hostname > /etc/hostname
 
 mkdir -p /etc/local/ssh/root
