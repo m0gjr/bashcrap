@@ -27,7 +27,7 @@ ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
 
 ln conf/applications/* /usr/share/applications/
 
-useradd -u 49999 -d /home/.user user || true
+useradd -u 49999 -G audio -d /home/.user user || true
 useradd -u 50000 -g user -G audio,video browser || true
 useradd -u 50001 -g user -G audio browsertor || true
 useradd -u 50002 -g user -G audio -d /home/.media media || true
