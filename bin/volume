@@ -1,8 +1,0 @@
-#!/bin/bash
-
-case "$1" in
-	up) amixer sset Master,0 3+ ;;
-	down) amixer sset Master,0 3- ;;
-	mute) amixer sset Master toggle ;;
-	mic) amixer sset Capture toggle ;;
-esac

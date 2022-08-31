@@ -23,7 +23,6 @@ echo "/- /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
 ln -s /home/conf/grey/ /usr/share/themes/grey
-ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
 
 ln conf/applications/* /usr/share/applications/
 
