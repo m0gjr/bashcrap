@@ -41,15 +41,20 @@ cp -n /etc/ssh/ssh_host_* /etc/local/ssh/etc/
 rm /etc/ssh/ssh_host_*
 ln -s /etc/local/ssh/etc/ssh_host_* /etc/ssh/
 
-mkdir -p /etc/systemd/system/getty@tty1.service.d
-rm /etc/systemd/system/getty@tty1.service.d/override.conf || true
-cp conf/getty-login.conf /etc/systemd/system/getty@tty1.service.d/override.conf
-systemctl daemon-reload
-
 ln bin/local/* /usr/local/bin/
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
+
+looper(){
+	while true
+	do
+		"$@"
+		sleep 5
+	done
+}
+
+looper agetty tty12 -a root &
 
 exit 0
 EOF

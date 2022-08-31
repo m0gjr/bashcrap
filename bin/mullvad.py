@@ -26,9 +26,6 @@ if len(sys.argv)>1:
 if len(sys.argv)>2:
 	servers=[x for x in servers if x['city_code']==sys.argv[2]]
 
-owned=[x for x in servers if x['owned']==1]
-if len(owned)>0: servers=owned
-
 server=servers[random.randint(0,len(servers)-1)]
 
 print (json.dumps(server, indent=4))

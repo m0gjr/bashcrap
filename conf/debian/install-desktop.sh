@@ -36,9 +36,16 @@ useradd -u 50004 -G audio browserproxy || true
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
-cd /root
+looper(){
+        while true
+        do
+                "$@"
+                sleep 5
+        done
+}
 
-/root/bin/x11-respawn &
+looper /sbin/agetty tty12 -a root &
+looper /root/bin/x11-start &
 
 [ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
 /root/bin/wifistart
