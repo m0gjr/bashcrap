@@ -27,25 +27,15 @@ ln -s /home/conf/gtkrc-2.0 .gtkrc-2.0
 
 ln conf/applications/* /usr/share/applications/
 
-useradd -u 50000 -G audio,video browser || true
-useradd -u 50001 -G audio browsertor || true
-useradd -u 50002 -G audio -d /home/.media media || true
-useradd -u 50003 documents || true
-useradd -u 50004 -G audio browserproxy || true
+useradd -u 49999 -d /home/.user user || true
+useradd -u 50000 -g user -G audio,video browser || true
+useradd -u 50001 -g user -G audio browsertor || true
+useradd -u 50002 -g user -G audio -d /home/.media media || true
+useradd -u 50003 -g user documents || true
+useradd -u 50004 -g user -G audio browserproxy || true
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
-
-looper(){
-        while true
-        do
-                "$@"
-                sleep 5
-        done
-}
-
-looper /sbin/agetty tty12 -a root &
-looper /root/bin/x11-start &
 
 [ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
 /root/bin/wifistart
