@@ -26,6 +26,8 @@ ln -s /home/conf/grey/ /usr/share/themes/grey
 
 ln conf/applications/* /usr/share/applications/
 
+echo 'user ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/user
+
 useradd -u 49999 -G audio -d /home/.user user || true
 useradd -u 50000 -g user -G audio,video browser || true
 useradd -u 50001 -g user -G audio browsertor || true
