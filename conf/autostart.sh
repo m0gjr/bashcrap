@@ -1,5 +1,6 @@
 mouse&
 
+xset b off
 xsetroot -solid black
 
 setxkbmap gb
