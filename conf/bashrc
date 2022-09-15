@@ -3,6 +3,9 @@
 
 PS1="\u@\h:\w# "
 
+export EDITOR=${EDITOR:-/bin/nano}
+export PAGER=${PAGER:-/usr/bin/less}
+
 shopt -s histappend
 shopt -s checkwinsize
 

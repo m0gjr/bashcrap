@@ -2,7 +2,7 @@
 
 browser="$(which firefox)" || exit
 
-vars='MOZ_GTK_TITLEBAR_DECORATION=client'
+#vars='MOZ_GTK_TITLEBAR_DECORATION=client'
 
 case "$1" in
 	proxy)
