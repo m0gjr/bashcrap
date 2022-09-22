@@ -1,11 +1,21 @@
 #!/bin/bash -e
 
+pull_full(){
+	ssh $shost "zfs send -nv $sds@$src"
+	ssh $shost "zfs send $sds@$src" | pv | ssh $dhost "zfs receive $dds $1"
+}
+
+pull_inc(){
+	ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
+	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds"
+}
+
 homeds=$(zfs mount | awk '$2 == "/home" {print $1}')
 
 if [ "$(basename "$0")" = "zfspull" ]
 then
 	echo pull
-	shost="${shost:-home}"
+	shost="${shost:-server}"
 	dhost="${dhost:-localhost}"
 	sds="${sds:-rustbucket/home}"
 	dds="${dds:-$homeds}"
@@ -22,18 +32,14 @@ dst=$(ssh $dhost zfs list -t snapshot -Ho name $dds | tail -n1 | cut -d'@' -f2)
 
 if [ -z $dst ]
 then
-	ssh $shost "zfs send -nv $sds@$src"
-	ssh $shost "zfs send $sds@$src" | pv | ssh $dhost "zfs receive $dds" || rollback=true
+	pull_full
 else
-	ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
-	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds" || rollback=true
-fi
-
-if [ -n "$rollback" ]
-then
-	echo rolling back $dhost to $dds@$dst
-	echo enter to proceed
-	read
-	ssh $dhost "zfs rollback $dds@$dst"
-	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds"
+	if ! pull_inc
+	then
+		echo rolling back $dhost to $dds@$dst
+		echo enter to proceed
+		read
+		ssh $dhost "zfs rollback $dds@$dst"
+		pull_inc
+	fi
 fi
