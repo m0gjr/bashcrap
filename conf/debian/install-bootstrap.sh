@@ -1,5 +1,7 @@
 #!/bin/bash -xe
 
+export HOME=/root
+
 dir=${installdir:-/mnt}
 
 if [ ! -d .git ]
@@ -40,7 +42,7 @@ bin/mount-chroot
 
 ! [ -z ${install_kernel-true} ] && chroot $dir /root/conf/debian/install-kernel.sh
 ! [ -z ${install_base-true} ] && chroot $dir /root/conf/debian/install-base.sh
-! [ -z ${install_desktop-} ] && chroot $dir /root/conf/debian/install-desktop.sh
+! [ -z ${install_desktop-true} ] && chroot $dir /root/conf/debian/install-desktop.sh
 
 bin/umount-chroot
 
