@@ -20,8 +20,14 @@ fi
 src=$(ssh $shost zfs list -t snapshot -Ho name $sds | tail -n1 | cut -d'@' -f2)
 dst=$(ssh $dhost zfs list -t snapshot -Ho name $dds | tail -n1 | cut -d'@' -f2)
 
-ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
-ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds" || rollback=true
+if [ -z $dst ]
+then
+	ssh $shost "zfs send -nv $sds@$src"
+	ssh $shost "zfs send $sds@$src" | pv | ssh $dhost "zfs receive $dds" || rollback=true
+else
+	ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
+	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv | ssh $dhost "zfs receive $dds" || rollback=true
+fi
 
 if [ -n "$rollback" ]
 then
