@@ -31,24 +31,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 	. /etc/bash_completion
 fi
 
-alias ll='ls -l'
-alias la='ls -A'
-alias lh='ls -lh'
-alias l='ls -CF'
-
 alias cp='cp -i'
 alias mv='mv -i'
-alias du='du -sh'
 alias df='df -h'
-alias c='clear'
 alias mounts='mount | grep -v cgroup | column -t'
-alias dd='dd bs=1M status=progress'
 alias wget='wget -c'
 alias youtube-dl='youtube-dl -f "[height<=720]"'
 alias nano='nano -mc'
 alias traceroute='traceroute -n'
-
-alias tarballer='grep "!" conf/gitignore | grep -v "*" | tr -d "!" | xargs tar -czf config.tgz'
 
 alias gitl='git log --pretty --oneline --decorate --graph --all'
 alias gitc='git add -A && git commit -am'
