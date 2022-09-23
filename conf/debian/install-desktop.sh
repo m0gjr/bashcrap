@@ -33,6 +33,8 @@ useradd -u 50002 -g user -G audio -d /home/.media media || true
 useradd -u 50003 -g user documents || true
 useradd -u 50004 -g user -G audio browserproxy || true
 
+cat conf/lightdm.conf > /etc/lightdm/lightdm.conf
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
