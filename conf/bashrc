@@ -36,10 +36,10 @@ alias mv='mv -i'
 alias df='df -h'
 alias mounts='mount | grep -v cgroup | column -t'
 alias wget='wget -c'
+alias curl='curl --proto-default https'
 alias youtube-dl='youtube-dl -f "[height<=720]"'
 alias nano='nano -mc'
 alias traceroute='traceroute -n'
-
 alias man='man -a'
 
 alias gitl='git log --pretty --oneline --decorate --graph --all'
