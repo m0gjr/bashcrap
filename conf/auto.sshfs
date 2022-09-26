@@ -1,1 +1,1 @@
-/rustbucket -fstype=fuse,rw :sshfs\#server\:/rustbucket
+/server -fstype=fuse,rw :sshfs\#server\:/server

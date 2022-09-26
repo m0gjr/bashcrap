@@ -17,14 +17,14 @@ then
 	echo pull
 	shost="${shost:-server}"
 	dhost="${dhost:-localhost}"
-	sds="${sds:-rustbucket/home}"
+	sds="${sds:-jumbo/home}"
 	dds="${dds:-$homeds}"
 else
 	echo push
 	shost="${shost:-localhost}"
 	dhost="${dhost:-server}"
 	sds="${sds:-$homeds}"
-	dds="${dds:-rustbucket/home}"
+	dds="${dds:-jumbo/home}"
 fi
 
 src=$(ssh $shost zfs list -t snapshot -Ho name $sds | tail -n1 | cut -d'@' -f2)
