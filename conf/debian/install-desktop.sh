@@ -26,12 +26,7 @@ ln -s /home/conf/grey/ /usr/share/themes/grey
 
 echo 'user ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/user
 
-useradd -u 49999 -G audio -d /home/.user user || true
-useradd -u 50000 -g user -G audio,video browser || true
-useradd -u 50001 -g user -G audio browsertor || true
-useradd -u 50002 -g user -G audio -d /home/.media media || true
-useradd -u 50003 -g user documents || true
-useradd -u 50004 -g user -G audio browserproxy || true
+useradd -u 10000 -G audio,video -s /bin/bash -d /home user || true
 
 cat conf/lightdm.conf > /etc/lightdm/lightdm.conf
 

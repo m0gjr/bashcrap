@@ -1,10 +1,10 @@
 acpi upower acpid
 xorg xinput xdotool
 lightdm i3-wm kitty rofi
+gnumeric firefox-esr-l10n-en-gb
 spacefm-gtk3 mpv ffmpegthumbnailer
 viewnior imagemagick
 ffmpeg jmtpfs
-chromium gnumeric firefox-esr-l10n-en-gb
 tor torsocks
 wireguard
 transmission-cli
