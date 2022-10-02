@@ -4,4 +4,4 @@ url="$(xdotool getwindowname $(xdotool getwindowfocus) | tr ' ' '\n' | grep 'htt
 
 echo "$url"
 
-xterm -e 'sudo -u browser mpv --ytdl-format="best[height<=720]/bestvideo[height<=720]+bestaudio/best" "'"$url"'" || sudo -u browser mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best" "'"$url"'"'
+xterm -e 'mpv --ytdl-format="best[height<=720]/bestvideo[height<=720]+bestaudio/best" "'"$url"'" || mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best" "'"$url"'"'

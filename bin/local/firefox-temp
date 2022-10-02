@@ -1,0 +1,25 @@
+#!/bin/bash
+
+profiledir=$(mktemp -d)
+
+function cleanup {
+	rm -rf $profiledir
+}
+trap cleanup EXIT
+
+if [ -z "$1" ]
+then
+	server="10.64.0.1"
+else
+	server="$1-wg.socks5.mullvad.net"
+fi
+
+cat <<EOF > $profiledir/prefs.js
+user_pref("network.proxy.socks", "$server");
+user_pref("network.proxy.socks_port", 1080);
+user_pref("network.proxy.socks_remote_dns", true);
+user_pref("network.proxy.type", 1);
+user_pref("browser.tabs.warnOnClose", false);
+EOF
+
+firefox --profile $profiledir --no-remote --new-instance https://duckduckgo.com
