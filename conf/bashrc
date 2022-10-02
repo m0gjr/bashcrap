@@ -47,12 +47,5 @@ alias gitc='git add -A && git commit -am'
 alias gits='git status'
 alias gitd='git diff'
 
-if [ -z "$SSH_CONNECTION" ]
-then
-	uptime
-	date
-	acpi 2> /dev/null
-fi
-
 if [ -f /var/run/reboot-required ]; then echo "REBOOT REQUIRED"; fi
 cat /var/log/bash_notify 2> /dev/null
