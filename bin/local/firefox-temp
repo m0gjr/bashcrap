@@ -22,4 +22,4 @@ user_pref("network.proxy.type", 1);
 user_pref("browser.tabs.warnOnClose", false);
 EOF
 
-firefox --profile $profiledir --no-remote --new-instance https://duckduckgo.com
+firefox --profile $profiledir --no-remote --new-instance
