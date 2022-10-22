@@ -10,3 +10,4 @@ firmware-linux firmware-iwlwifi
 locales debconf-utils debootstrap
 beep
 pciutils usbutils lsof
+sudo

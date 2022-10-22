@@ -1,6 +1,6 @@
 acpi upower acpid
 xorg xinput xdotool
-lightdm i3-wm kitty rofi jq
+lightdm i3-wm kitty rofi jq i3status
 gnumeric firefox-esr-l10n-en-gb
 spacefm-gtk3 mpv ffmpegthumbnailer
 viewnior imagemagick
