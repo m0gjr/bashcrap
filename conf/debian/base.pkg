@@ -8,6 +8,5 @@ iw wpasupplicant wireless-tools wavemon
 sshfs autofs
 firmware-linux firmware-iwlwifi
 locales debconf-utils debootstrap
-beep
-pciutils usbutils lsof
-sudo
+beep sudo lsof
+pciutils usbutils lshw

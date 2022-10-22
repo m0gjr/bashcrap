@@ -35,6 +35,8 @@ mkdir -p /etc/firefox-esr/
 ln conf/firefox-policies.json /etc/firefox/policies/policies.json
 ln conf/firefox-settings.js /etc/firefox-esr/settings.js
 
+ln conf/keymap.conf /etc/X11/xorg.conf.d/keymap.conf
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
