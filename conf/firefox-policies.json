@@ -1,0 +1,14 @@
+{
+"policies": {
+	"DisableFirefoxAccounts": true,
+	"SearchEngines": {
+		"Default": "DuckDuckGo"
+	},
+	"NetworkPrediction": false,
+	"CaptivePortal": false,
+	"DisableFirefoxStudies": true,
+	"DisableTelemetry": true,
+	"DisablePocket": true,
+	"DisableAppUpdate": true
+}
+}

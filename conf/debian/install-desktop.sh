@@ -30,6 +30,11 @@ useradd -u 10000 -G audio,video -s /bin/bash -d /home user || true
 
 cat conf/lightdm.conf > /etc/lightdm/lightdm.conf
 
+mkdir -p /etc/firefox/policies/
+mkdir -p /etc/firefox-esr/
+ln conf/firefox-policies.json /etc/firefox/policies/policies.json
+ln conf/firefox-settings.js /etc/firefox-esr/settings.js
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
