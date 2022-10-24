@@ -18,8 +18,3 @@ echo 0 > press_to_select
 echo "$speed" > speed
 echo "$sensitivity" > sensitivity
 echo "$inertia" > inertia
-
-if xinput list | grep id=11 | grep TouchPad
-then
-	xinput set-prop 11 294 1
-fi
