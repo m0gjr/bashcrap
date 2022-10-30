@@ -1,0 +1,14 @@
+#!/bin/bash
+
+archive_file="$1"
+manifest_file="tarchive-manifest"
+
+tar -xf "$archive_file" --to-command='printf "%s  %s\n" $(sha256sum /dev/fd/0 | cut -d" " -f1) $TAR_FILENAME'| grep -v "^[0-9a-f]*  $manifest_file\$" > $manifest_file.new
+
+if tar -xf "$archive_file" $manifest_file
+then
+	diff $manifest_file $manifest_file.new
+else
+	mv $manifest_file.new $manifest_file
+	tar -rf "$archive_file" $manifest_file
+fi
