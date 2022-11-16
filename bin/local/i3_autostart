@@ -1,0 +1,21 @@
+sleep 1
+
+sudo /root/bin/mouse&
+
+xsetroot -solid black
+
+xset b off
+
+setxkbmap gb
+setxkbmap -option ctrl:nocaps
+xmodmap -e "keycode 108 = Alt_L"
+xmodmap -e "keycode 135 = Super_L"
+xmodmap -e "keycode 107 = Super_L"
+xmodmap -e "keycode 112 = XF86Back"
+xmodmap -e "keycode 117 = XF86Forward"
+
+xset s off
+xset -dpms
+
+killall stacki3
+stacki3 45 &

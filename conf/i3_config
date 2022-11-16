@@ -1,0 +1,126 @@
+set $mod Mod4
+
+set $term uxterm -e
+set $term-float xterm -e
+
+font pango:monospace 8
+
+floating_modifier $mod
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+
+bindsym $mod+F1 workspace number $ws1
+bindsym $mod+F2 workspace number $ws2
+bindsym $mod+F3 workspace number $ws3
+bindsym $mod+F4 workspace number $ws4
+bindsym $mod+F5 workspace number $ws5
+bindsym $mod+F6 workspace number $ws6
+bindsym $mod+F7 workspace number $ws7
+bindsym $mod+F8 workspace number $ws8
+
+bindsym $mod+Shift+F1 move container to workspace number $ws1; workspace number $ws1
+bindsym $mod+Shift+F2 move container to workspace number $ws2; workspace number $ws2
+bindsym $mod+Shift+F3 move container to workspace number $ws3; workspace number $ws3
+bindsym $mod+Shift+F4 move container to workspace number $ws4; workspace number $ws4
+bindsym $mod+Shift+F5 move container to workspace number $ws5; workspace number $ws5
+bindsym $mod+Shift+F6 move container to workspace number $ws6; workspace number $ws6
+bindsym $mod+Shift+F7 move container to workspace number $ws7; workspace number $ws7
+bindsym $mod+Shift+F8 move container to workspace number $ws8; workspace number $ws8
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+
+bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3; workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4; workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5; workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6; workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
+
+bindsym Ctrl+$mod+Left exec i3_move_windows left
+bindsym Ctrl+$mod+Right exec i3_move_windows right
+bindsym Ctrl+Shift+$mod+Left exec i3_move_windows left move
+bindsym Ctrl+Shift+$mod+Right exec i3_move_windows right move
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+bindsym $mod+space floating toggle
+bindsym Mod1+Tab exec i3_cycle_windows
+bindsym $mod+Tab exec "i3_cycle_windows && i3-msg fullscreen enable"
+bindsym Mod1+F4 kill
+bindsym F11 fullscreen toggle
+bindsym Ctrl+q nop
+bindsym $mod+p exec --no-startup-id scrot
+
+bindsym XF86Launch1 exec --no-startup-id $term sudo -i
+bindsym $mod+t exec --no-startup-id $term sudo -i
+bindsym $mod+s exec --no-startup-id $term sudo ssh server
+
+bindsym $mod+u exec --no-startup-id $term bash
+bindsym $mod+z exec --no-startup-id $term sudo nano -mc /etc/xdg/i3/config
+
+bindsym $mod+v exec --no-startup-id $term-float alsamixer
+bindsym $mod+h exec --no-startup-id $term-float top
+bindsym $mod+c exec --no-startup-id $term-float bc
+bindsym $mod+d exec --no-startup-id $term-float watch sensors
+
+bindsym F7 exec --no-startup-id browservid
+
+bindsym $mod+f exec --no-startup-id spacefm -n /home
+bindsym $mod+w exec --no-startup-id firefox -P normal
+bindsym $mod+e exec --no-startup-id firefox -P proxy
+bindsym $mod+r exec --no-startup-id firefox -P tor --private-window
+bindsym $mod+g exec --no-startup-id gnumeric
+
+bindsym XF86MonBrightnessUp	exec --no-startup-id sudo brightness up
+bindsym XF86MonBrightnessDown	exec --no-startup-id sudo brightness down
+
+bindsym XF86AudioRaiseVolume	exec --no-startup-id "amixer sset Master,0 3+"
+bindsym XF86AudioLowerVolume	exec --no-startup-id "amixer sset Master,0 3-"
+bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle
+bindsym XF86AudioMicMute	exec --no-startup-id amixer sset Capture toggle
+
+bindsym $mod+Mod1+Up	exec --no-startup-id "xrandr --orientation normal;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 1, 0, 0, 0, 1, 0, 0, 0, 1"
+bindsym $mod+Mod1+Left	exec --no-startup-id "xrandr --orientation left;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, -1, 0, 1, 0, 0, 0, 0, 1"
+bindsym $mod+Mod1+Right	exec --no-startup-id "xrandr --orientation right;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, 1, 0, -1, 0, 0, 0, 0, 1"
+bindsym $mod+Mod1+Down	exec --no-startup-id "xrandr --orientation inverted;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 -1, 0, 0, 0, -1, 0, 0, 0, 1"
+
+bindsym $mod+x restart; exec --no-startup-id i3_autostart
+
+exec --no-startup-id i3_autostart
+
+for_window [class="XTerm"] floating enable move right 430px move up 190px
+for_window [class="UXTerm"] floating disable
+for_window [class="kitty-float"] floating enable move right 430px move up 220px
+for_window [class="Xmessage"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+bar {
+        status_command i3status
+}

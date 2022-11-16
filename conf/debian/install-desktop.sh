@@ -24,13 +24,16 @@ systemctl enable acpid || true
 echo "/- /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
-ln -s /home/conf/grey/ /usr/share/themes/grey
-
 echo 'user ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/user
 
 useradd -u 10000 -G audio,video -s /bin/bash -d /home user || true
 
+chown user:user /home
+
 cat conf/lightdm.conf > /etc/lightdm/lightdm.conf
+
+mkdir -p /etc/xdg/i3/
+ln conf/i3_config /etc/xdg/i3/config
 
 mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/

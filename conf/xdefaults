@@ -1,3 +1,2 @@
-XTerm.vt100.reverseVideo: true
-XTerm.vt100.alternateScroll: true
-XTerm*geometry: 100x30
+*.alternateScroll: true
+*customization: -color
