@@ -1,13 +1,13 @@
 #!/bin/bash -e
 
 pull_full(){
-	ssh $shost "zfs send -nv $sds@$src"
-	ssh $shost "zfs send $sds@$src" | pv -c | ssh $dhost "zfs receive $dds $1"
+	size=$(ssh $shost "zfs send -nv $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | sed 's/\.[0-9]*//')
+	ssh $shost "zfs send $sds@$src" | pv -cs $size | ssh $dhost "zfs receive $dds $1"
 }
 
 pull_inc(){
-	ssh $shost "zfs send -nvi $sds@$dst $sds@$src"
-	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -c | ssh $dhost "zfs receive $dds"
+	size=$(ssh $shost "zfs send -nvi $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | sed 's/\.[0-9]*//')
+	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -cs $size | ssh $dhost "zfs receive $dds"
 }
 
 homeds=$(zfs mount | awk '$2 == "/home" {print $1}')
