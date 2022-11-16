@@ -1,6 +1,7 @@
 acpi upower acpid
 xorg xinput xdotool
-lightdm i3-wm kitty i3status
+lightdm i3-wm xterm i3status
+python3 python3-pip
 gnumeric firefox-esr-l10n-en-gb
 spacefm-gtk3 mpv ffmpegthumbnailer
 viewnior imagemagick
