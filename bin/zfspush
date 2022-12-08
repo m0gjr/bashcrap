@@ -7,7 +7,9 @@ pull_full(){
 
 pull_inc(){
 	size=$(ssh $shost "zfs send -nvi $sds@$dst $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | sed 's/\.[0-9]*//')
+	ssh $dhost "zfs mount -o remount,ro $dds"
 	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds"
+	ssh $dhost "zfs mount -o remount,rw $dds"
 }
 
 homeds=$(zfs mount | awk '$2 == "/home" {print $1}')
