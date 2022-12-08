@@ -18,7 +18,7 @@ confnet(){
 
 	printf "\tssid=\"$1\"\n"
 	shift
-	printf "\tpsk=\"$@\"\n"
+	printf "\tpsk=\"$1\"\n"
 
 	if [ -n "$freqs" ]
 	then
