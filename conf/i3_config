@@ -109,9 +109,9 @@ bindsym $mod+Mod1+Left	exec --no-startup-id "xrandr --orientation left;	xinput s
 bindsym $mod+Mod1+Right	exec --no-startup-id "xrandr --orientation right;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, 1, 0, -1, 0, 0, 0, 0, 1"
 bindsym $mod+Mod1+Down	exec --no-startup-id "xrandr --orientation inverted;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 -1, 0, 0, 0, -1, 0, 0, 0, 1"
 
-bindsym $mod+x restart; exec --no-startup-id i3_autostart
+bindsym $mod+x restart
 
-exec --no-startup-id i3_autostart
+exec_always --no-startup-id i3_autostart
 
 for_window [class="XTerm"] floating enable move right 430px move up 190px
 for_window [class="UXTerm"] floating disable
