@@ -31,7 +31,7 @@ server=servers[random.randint(0,len(servers)-1)]
 print (json.dumps(server, indent=4))
 
 hostname=server["hostname"]
-servername="mullvad-"+hostname[:hostname.index('-')]
+servername="mullvad-"+hostname
 
 with open(os.path.join(dir,'template'),'r') as file:
 	template=file.read()

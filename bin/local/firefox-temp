@@ -11,7 +11,7 @@ if [ -z "$1" ]
 then
 	server="10.64.0.1"
 else
-	server="$1-wg.socks5.mullvad.net"
+	server="$1.relays.mullvad.net"
 fi
 
 cat <<EOF > $profiledir/prefs.js
