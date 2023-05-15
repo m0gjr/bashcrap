@@ -5,11 +5,6 @@ then
 	exit
 fi
 
-if ! [ "$(/sbin/zpool status -x)" == "all pools are healthy" ]
-then
-
-	echo "ZPOOL ERRORS" >> /var/log/bash_notify
-
-fi
+/root/bin/zfserror
 
 /sbin/zpool list -Ho name | xargs -n1 /sbin/zpool scrub

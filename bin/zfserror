@@ -1,0 +1,24 @@
+#!/bin/bash
+
+for pool in $(/sbin/zpool list -H | awk '{print $1}')
+do
+	output="$(/sbin/zpool status $pool)"
+	state="$(echo "$output" | grep '^ state:')"
+	errors="$(echo "$output" | grep '^errors:')"
+	devs="$(echo "$output" | awk 'BEGIN{RS="\n\n"}; FNR==2{print $0}' | tail -n+2)"
+	states="$(echo "$devs" | awk '{print $2}' | sort | uniq)"
+	poolerrs="$(echo "$devs" | head -n1 | awk 'BEGIN{OFS="\n"};{print $3,$4,$5}' | sort | uniq)"
+	deverrs="$(echo "$devs" | tail -n+2 | awk 'BEGIN{OFS="\n"};{print $4,$5}' | sort | uniq)"
+
+	if \
+		[ "$state" = " state: ONLINE" ] && \
+		[ "$errors" = "errors: No known data errors" ] && \
+		[ "$states" = "ONLINE" ] && \
+		[ "$poolerrs" = "0" ] && \
+		[ "$deverrs" = "0" ]
+	then
+		:
+	else
+		echo "zpool $pool has errors" >> /var/log/bash_notify
+	fi
+done
