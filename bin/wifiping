@@ -1,0 +1,16 @@
+#!/bin/bash
+
+x=0
+
+n=5
+
+for i in $(seq 1 $n)
+do
+	ping -c1 $@
+	x=$(( $x + $? ))
+done
+
+if ! [ $x -lt $n ]
+then
+	exit 1
+fi
