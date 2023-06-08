@@ -1,19 +1,38 @@
 #!/bin/bash
 
-for v in tls1_3
+colour (){
+
+	if ! [ -t 1 ]
+	then
+		return
+	fi
+
+	if echo $2 | grep -q DHE- && echo $2 | grep -q 'GCM\|POLY1305' || [ $1 == "tls1_3" ]
+	then
+		printf "\e[32m"
+	else
+		printf "\e[31m"
+	fi
+
+}
+
+for v in tls1_3 tls1_2 tls1_1 tls1
 do
+	if [ $v == "tls1_3" ]
+	then
+		p=ciphersuites
+	else
+		p=cipher
+	fi
+
 	ciphers="$(openssl ciphers -s -$v | tr ':' ' ')"
 	for c in $ciphers
 	do
-		openssl s_client </dev/null &>/dev/null -$v -ciphersuites $c -connect "$@" && printf "$v\t$c\n"
+		openssl s_client </dev/null &>/dev/null -$v -$p $c -connect "$@" && colour $v $c && printf "$v\t$c\n"
 	done
 done
 
-for v in tls1_2 tls1_1 tls1
-do
-	ciphers="$(openssl ciphers -s -$v | tr ':' ' ')"
-	for c in $ciphers
-	do
-		openssl s_client </dev/null &>/dev/null -$v -cipher $c -connect "$@" && printf "$v\t$c\n"
-	done
-done
+if [ -t 1 ]
+then
+	printf "\e[0m"
+fi
