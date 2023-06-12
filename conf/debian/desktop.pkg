@@ -1,11 +1,7 @@
 acpi upower acpid
-xorg xinput xdotool
-lightdm i3-wm xterm i3status
+sway foot i3status
 python3 python3-pip
 gnumeric firefox-esr-l10n-en-gb
-spacefm-gtk3 mpv ffmpegthumbnailer
-viewnior imagemagick
-ffmpeg jmtpfs
-tor torsocks
-wireguard
+thunar mpv pipewire swayimg
+ffmpeg jmtpfs wireguard
 transmission-cli

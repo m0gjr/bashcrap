@@ -11,7 +11,7 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
 apt-get install -y $(cat conf/debian/desktop.pkg)
 
-pip install stacki3
+pip install --break-system-packages stacki3
 
 cat conf/handler.sh > /etc/acpi/handler.sh
 chmod +x /etc/acpi/handler.sh
@@ -30,8 +30,6 @@ useradd -u 10000 -G audio,video -s /bin/bash -d /home user || true
 
 chown user:user /home
 
-cat conf/lightdm.conf > /etc/lightdm/lightdm.conf
-
 mkdir -p /etc/xdg/i3/
 ln conf/i3_config /etc/xdg/i3/config
 
@@ -39,8 +37,6 @@ mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/
 ln conf/firefox-policies.json /etc/firefox/policies/policies.json
 ln conf/firefox-settings.js /etc/firefox-esr/settings.js
-
-ln conf/keymap.conf /etc/X11/xorg.conf.d/keymap.conf
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh

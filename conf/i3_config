@@ -1,7 +1,14 @@
 set $mod Mod4
 
-set $term uxterm -e
-set $term-float xterm -e
+set $term x-terminal-emulator
+set $term-float x-terminal-emulator
+
+input * {
+	xkb_layout "gb"
+	xkb_options "ctrl:nocaps, altwin:menu_win"
+}
+
+output * bg #000000 solid_color
 
 font pango:monospace 8
 
@@ -104,12 +111,12 @@ bindsym XF86AudioLowerVolume	exec --no-startup-id "amixer sset Master,0 3-"
 bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle
 bindsym XF86AudioMicMute	exec --no-startup-id amixer sset Capture toggle
 
-bindsym $mod+Mod1+Up	exec --no-startup-id "xrandr --orientation normal;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 1, 0, 0, 0, 1, 0, 0, 0, 1"
-bindsym $mod+Mod1+Left	exec --no-startup-id "xrandr --orientation left;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, -1, 0, 1, 0, 0, 0, 0, 1"
-bindsym $mod+Mod1+Right	exec --no-startup-id "xrandr --orientation right;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, 1, 0, -1, 0, 0, 0, 0, 1"
-bindsym $mod+Mod1+Down	exec --no-startup-id "xrandr --orientation inverted;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 -1, 0, 0, 0, -1, 0, 0, 0, 1"
+bindsym $mod+Mod5+Up	exec --no-startup-id "xrandr --orientation normal;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 1, 0, 0, 0, 1, 0, 0, 0, 1"
+bindsym $mod+Mod5+Left	exec --no-startup-id "xrandr --orientation left;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, -1, 0, 1, 0, 0, 0, 0, 1"
+bindsym $mod+Mod5+Right	exec --no-startup-id "xrandr --orientation right;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, 1, 0, -1, 0, 0, 0, 0, 1"
+bindsym $mod+Mod5+Down	exec --no-startup-id "xrandr --orientation inverted;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 -1, 0, 0, 0, -1, 0, 0, 0, 1"
 
-bindsym $mod+x restart
+bindsym $mod+x reload
 
 exec_always --no-startup-id i3_autostart
 
