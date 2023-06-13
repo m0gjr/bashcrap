@@ -1,7 +1,3 @@
 #!/bin/bash
 
-url="$(xdotool getwindowname $(xdotool getwindowfocus) | tr ' ' '\n' | grep 'https://' | head -n1)"
-
-echo "$url"
-
-xterm -e 'mpv --ytdl-format="best[height<=720]/bestvideo[height<=720]+bestaudio/best" "'"$url"'" || mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best" "'"$url"'"'
+mpv --ytdl-format="best[height<=720]/bestvideo[height<=720]+bestaudio/best" "$1" || mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best" "$1"

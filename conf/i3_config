@@ -1,7 +1,7 @@
 set $mod Mod4
 
 set $term x-terminal-emulator
-set $term-float x-terminal-emulator
+set $term-float x-terminal-emulator --app-id="term-float"
 
 input * {
 	xkb_layout "gb"
@@ -74,7 +74,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-
 bindsym $mod+space floating toggle
 bindsym Mod1+Tab exec --no-startup-id i3_cycle_windows
 bindsym $mod+Tab exec --no-startup-id "i3_cycle_windows && i3-msg fullscreen enable"
@@ -95,7 +94,7 @@ bindsym $mod+h exec --no-startup-id $term-float top
 bindsym $mod+c exec --no-startup-id $term-float bc
 bindsym $mod+d exec --no-startup-id $term-float watch sensors
 
-bindsym F7 exec --no-startup-id browservid
+bindsym F7 exec --no-startup-id i3_browservid
 
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+w exec --no-startup-id firefox -P normal
@@ -110,19 +109,20 @@ bindsym XF86AudioLowerVolume	exec --no-startup-id "amixer sset Master,0 3-"
 bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle
 bindsym XF86AudioMicMute	exec --no-startup-id amixer sset Capture toggle
 
-bindsym $mod+Mod5+Up	exec --no-startup-id "xrandr --orientation normal;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 1, 0, 0, 0, 1, 0, 0, 0, 1"
-bindsym $mod+Mod5+Left	exec --no-startup-id "xrandr --orientation left;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, -1, 0, 1, 0, 0, 0, 0, 1"
-bindsym $mod+Mod5+Right	exec --no-startup-id "xrandr --orientation right;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 0, 1, 0, -1, 0, 0, 0, 0, 1"
-bindsym $mod+Mod5+Down	exec --no-startup-id "xrandr --orientation inverted;	xinput set-prop 'TPPS/2 IBM TrackPoint' 178 -1, 0, 0, 0, -1, 0, 0, 0, 1"
+bindsym $mod+Mod1+Up	output "*" transform 0 ;
+bindsym $mod+Mod1+Left	output "*" transform 270;
+bindsym $mod+Mod1+Right	output "*" transform 90;
+bindsym $mod+Mod1+Down	output "*" transform 180;
+bindsym $mod+Mod5+Up	output "*" transform 0 ;
+bindsym $mod+Mod5+Left	output "*" transform 270;
+bindsym $mod+Mod5+Right	output "*" transform 90;
+bindsym $mod+Mod5+Down	output "*" transform 180;
 
 bindsym $mod+x reload
 
 exec_always --no-startup-id i3_autostart
 
-for_window [class="XTerm"] floating enable move right 430px move up 190px
-for_window [class="UXTerm"] floating disable
-for_window [class="kitty-float"] floating enable move right 430px move up 220px
-for_window [class="Xmessage"] floating enable
+for_window [app_id="term-float"] floating enable; move right 430px; move up 190px
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable

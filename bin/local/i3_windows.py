@@ -35,3 +35,12 @@ def get_leaf_ids(nodes):
 				ids.append('focus')
 	return ids
 
+def get_focused_node(nodes):
+        for node in nodes:
+                if 'focused' in node and node['focused'] == True:
+                        return node
+                elif 'nodes' in node and node['nodes'] != []:
+                        result=get_focused_node(node['nodes'])
+                        if result != []:
+                                return result
+        return []
