@@ -38,6 +38,20 @@ mkdir -p /etc/firefox-esr/
 ln conf/firefox-policies.json /etc/firefox/policies/policies.json
 ln conf/firefox-settings.js /etc/firefox-esr/settings.js
 
+mkdir -p /etc/systemd/system/getty@tty1.service.d
+mkdir -p /etc/systemd/system/getty@tty2.service.d
+cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<'EOF'
+[Service]
+ExecStart=
+ExecStart=/usr/sbin/agetty --autologin user --noclear %I $TERM
+EOF
+cat > /etc/systemd/system/getty@tty2.service.d/override.conf <<'EOF'
+[Service]
+ExecStart=
+ExecStart=/usr/sbin/agetty --autologin root --noclear %I $TERM
+EOF
+systemctl daemon-reload
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 

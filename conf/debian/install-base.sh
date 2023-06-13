@@ -42,8 +42,11 @@ rm /etc/ssh/ssh_host_*
 ln -s /etc/local/ssh/etc/ssh_host_* /etc/ssh/
 
 mkdir -p /etc/systemd/system/getty@tty1.service.d
-rm /etc/systemd/system/getty@tty1.service.d/override.conf || true
-cp conf/getty-login.conf /etc/systemd/system/getty@tty1.service.d/override.conf
+cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<'EOF'
+[Service]
+ExecStart=
+ExecStart=/usr/sbin/agetty --autologin root --noclear %I $TERM
+EOF
 systemctl daemon-reload
 
 ln bin/local/* /usr/local/bin/
