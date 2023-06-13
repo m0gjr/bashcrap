@@ -2,6 +2,7 @@ acpi upower acpid
 sway foot i3status gnome-themes-extra
 python3 python3-pip
 gnumeric firefox-esr-l10n-en-gb
-thunar mpv pipewire swayimg
+thunar mpv pipewire
+imv drawing
 ffmpeg jmtpfs wireguard
 transmission-cli
