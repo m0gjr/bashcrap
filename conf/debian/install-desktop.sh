@@ -10,6 +10,7 @@ apt-get -y upgrade
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 
 apt-get install -y $(cat conf/debian/desktop.pkg)
+apt-get remove -y $(cat conf/debian/desktop.del)
 
 pip install --break-system-packages stacki3
 
