@@ -80,7 +80,7 @@ bindsym $mod+Tab exec --no-startup-id "i3_cycle_windows && i3-msg fullscreen ena
 bindsym Mod1+F4 kill
 bindsym F11 fullscreen toggle
 bindsym Ctrl+q nop
-bindsym $mod+p exec --no-startup-id scrot
+bindsym $mod+p exec --no-startup-id grim
 
 bindsym XF86Launch1 exec --no-startup-id $term sudo -i
 bindsym $mod+t exec --no-startup-id $term sudo -i
