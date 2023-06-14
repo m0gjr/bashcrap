@@ -10,7 +10,7 @@ import i3_windows
 ws_num=i3_windows.get_workspace()
 tree=i3_windows.get_tree()
 active_node=i3_windows.get_active_node(tree['nodes'],ws_num)
-focused_node=i3_windows.get_focused_node(active_node['nodes']+active_node['floating_nodes'])
+focused_node=i3_windows.get_focused_node(active_node['floating_nodes'])
 
-if 'name' in focused_node and focused_node['name'] == "" and 'app_id' in focused_node and focused_node['app_id'] == "com.github.maoschanz.drawing" and 'geometry' in focused_node and focused_node['geometry']['width'] == 626 and focused_node['geometry']['height'] == 113:
+if focused_node.get('name') == "" and focused_node.get('app_id') == "com.github.maoschanz.drawing" and focused_node.get('geometry').get('width') == 626 and focused_node.get('geometry').get('height') == 113:
 	os.popen("i3-msg kill")

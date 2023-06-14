@@ -15,9 +15,9 @@ def get_tree():
 
 def get_active_node(nodes,num):
 	for node in nodes:
-		if 'num' in node and node['num'] == num:
+		if node.get('num') == num:
 			return node
-		elif 'nodes' in node and node['nodes'] != []:
+		elif node.get('nodes') != []:
 			result=get_active_node(node['nodes'],num)
 			if result != None:
 				return result
@@ -25,21 +25,21 @@ def get_active_node(nodes,num):
 def get_leaf_ids(nodes):
 	ids=[]
 	for node in nodes:
-		if 'nodes' in node and node['nodes'] != []:
+		if node.get('nodes') != []:
 			result=get_leaf_ids(node['nodes'])
 			if result != None:
 				ids=ids+result
 		elif 'id' in node:
 			ids.append(node['id'])
-			if 'focused' in node and node['focused'] == True:
+			if node.get('focused') == True:
 				ids.append('focus')
 	return ids
 
 def get_focused_node(nodes):
         for node in nodes:
-                if 'focused' in node and node['focused'] == True:
+                if node.get('focused') == True:
                         return node
-                elif 'nodes' in node and node['nodes'] != []:
+                elif node.get('nodes') != []:
                         result=get_focused_node(node['nodes'])
                         if result != []:
                                 return result

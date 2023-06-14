@@ -19,3 +19,4 @@ pattern=r'https:\/\/\S+'
 url=re.search(pattern,name).group()
 
 os.popen("x-terminal-emulator --app-id=term-float browservid "+url)
+os.popen("i3_cycle_windows")

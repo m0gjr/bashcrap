@@ -1,7 +1,7 @@
 set $mod Mod4
 
-set $term x-terminal-emulator
-set $term-float x-terminal-emulator --app-id="term-float"
+set $term x-terminal-emulator --font=monospace:size=7
+set $term-float x-terminal-emulator --font=monospace:size=6 --app-id="term-float"
 
 input * {
 	xkb_layout "gb"
@@ -122,7 +122,7 @@ bindsym $mod+x reload
 
 exec_always --no-startup-id i3_autostart
 
-for_window [app_id="term-float"] floating enable; move right 430px; move up 190px
+for_window [app_id="term-float"] floating enable; move right 430px; move up 220px; resize set width 500px height 300px
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
