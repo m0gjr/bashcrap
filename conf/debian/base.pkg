@@ -3,7 +3,7 @@ rsync less pm-utils psmisc reboot-notifier tmux
 iotop iftop lm-sensors
 nano bc pv git unzip
 netcat-openbsd curl wget dnsutils dhcpcd5 ssh net-tools
-arp-scan nmap tcpdump iptables
+arp-scan nmap tcpdump iptables resolvconf
 iw wpasupplicant wireless-tools wavemon
 sshfs autofs
 firmware-linux firmware-iwlwifi
