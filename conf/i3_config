@@ -3,6 +3,8 @@ set $mod Mod4
 set $term x-terminal-emulator --font=monospace:size=7
 set $term-float x-terminal-emulator --font=monospace:size=6 --app-id="term-float"
 
+exec --no-startup-id mouse
+
 input * {
 	xkb_layout "gb"
 	xkb_options "ctrl:nocaps, altwin:menu_win"
@@ -120,7 +122,7 @@ bindsym $mod+Mod5+Down	output "*" transform 180;
 
 bindsym $mod+x reload
 
-exec_always --no-startup-id i3_autostart
+exec_always --no-startup-id killall i3_stack; i3_stack 45
 
 for_window [app_id="term-float"] floating enable; move right 430px; move up 220px; resize set width 500px height 300px
 

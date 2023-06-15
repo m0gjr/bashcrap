@@ -14,7 +14,7 @@ if [ -d serio2 ]
 then
 	cd serio2
 fi
-echo 0 > press_to_select
-echo "$speed" > speed
-echo "$sensitivity" > sensitivity
-echo "$inertia" > inertia
+echo 0 | sudo tee press_to_select
+echo "$speed" | sudo tee speed
+echo "$sensitivity" | sudo tee sensitivity
+echo "$inertia" | sudo tee inertia
