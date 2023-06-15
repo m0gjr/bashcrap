@@ -17,5 +17,5 @@ xmodmap -e "keycode 117 = XF86Forward"
 xset s off
 xset -dpms
 
-killall stacki3
-stacki3 45 &
+killall i3_stack
+i3_stack 45 &
