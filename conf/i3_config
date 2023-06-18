@@ -123,6 +123,7 @@ bindsym $mod+Mod5+Down	output "*" transform 180;
 bindsym $mod+x reload
 
 exec_always --no-startup-id killall i3_stack; i3_stack 45
+exec --no-startup-id mako --default-timeout 5000
 
 for_window [app_id="term-float"] floating enable; move right 430px; move up 220px; resize set width 500px height 300px
 
