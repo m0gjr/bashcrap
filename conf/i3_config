@@ -5,8 +5,8 @@ set $term-float x-terminal-emulator --font=monospace:size=6 --app-id="term-float
 
 exec --no-startup-id mouse
 
-input * {
-	xkb_layout "gb"
+input type:keyboard {
+	xkb_layout "custom"
 	xkb_options "ctrl:nocaps, altwin:menu_win"
 }
 
@@ -115,10 +115,6 @@ bindsym $mod+Mod1+Up	output "*" transform 0 ;
 bindsym $mod+Mod1+Left	output "*" transform 270;
 bindsym $mod+Mod1+Right	output "*" transform 90;
 bindsym $mod+Mod1+Down	output "*" transform 180;
-bindsym $mod+Mod5+Up	output "*" transform 0 ;
-bindsym $mod+Mod5+Left	output "*" transform 270;
-bindsym $mod+Mod5+Right	output "*" transform 90;
-bindsym $mod+Mod5+Down	output "*" transform 180;
 
 bindsym $mod+x reload
 
