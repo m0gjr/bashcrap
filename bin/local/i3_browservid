@@ -1,22 +1,16 @@
 #!/usr/bin/python3
 
+from i3ipc import Connection
 import os
-import json
-import sys
 import re
 
-import i3_windows
+i3=Connection()
 
-ws_num=i3_windows.get_workspace()
-tree=i3_windows.get_tree()
-active_node=i3_windows.get_active_node(tree['nodes'],ws_num)
-focused_node=i3_windows.get_focused_node(active_node['nodes'])
-
-name=focused_node['name']
+focused=i3.get_tree().find_focused()
+name=focused.name
 
 pattern=r'https:\/\/\S+'
 
 url=re.search(pattern,name).group()
 
 os.popen('x-terminal-emulator --app-id=term-float browservid "'+url+'"')
-os.popen("i3_cycle_windows")

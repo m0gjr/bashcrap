@@ -1,21 +1,18 @@
 #!/usr/bin/python3
 
-import os
-import json
-import sys
+from sys import argv
+from i3ipc import Connection
 
-import i3_windows
+i3=Connection()
 
-ws_num=i3_windows.get_workspace()
+focused=i3.get_tree().find_focused()
+ws=int(focused.workspace().name)
 
-if sys.argv[1] == 'right':
-	ws = ws_num + 1
-	if len(sys.argv) > 2 and sys.argv[2] == 'move':
-		os.popen('i3-msg move container to workspace ' + str(ws))
-	os.popen('i3-msg workspace ' + str(ws))
-elif sys.argv[1] == 'left':
-	ws = ws_num - 1
-	if len(sys.argv) > 2 and sys.argv[2] == 'move':
-		os.popen('i3-msg move container to workspace ' + str(ws))
-	os.popen('i3-msg workspace ' + str(ws))
+if argv[1]=='right':
+	ws+=1
+elif argv[1]=='left':
+	ws-=1
 
+if len(argv)>2 and argv[2]=='move':
+	i3.command('move container to workspace ' + str(ws))
+i3.command('workspace ' + str(ws))

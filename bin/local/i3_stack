@@ -26,13 +26,12 @@ async def set_splitting(i3, _, width: int) -> None:
 	workspace = focused.workspace()
 	tiled_windows = [leaf for leaf in workspace.leaves() if not is_floating(leaf) and not leaf.fullscreen_mode]
 	if len(tiled_windows) == 1:
-		window = tiled_windows[0]
-		await window.command("splith")
-	elif len(tiled_windows) == 2:
-		left, right = tiled_windows
-		await left.command("splitv")
-		await right.command("splitv")
-		await right.command(f"resize set width {width} ppt")
+		await tiled_windows[0].command("splith")
+	else:
+		if len(tiled_windows) == 2:
+			await tiled_windows[1].command(f"resize set width {width} ppt")
+		for window in tiled_windows:
+			await window.command("splitv")
 
 
 async def amain():
