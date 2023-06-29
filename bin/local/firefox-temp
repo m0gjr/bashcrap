@@ -20,4 +20,4 @@ user_pref("network.proxy.type", 1);
 user_pref("browser.tabs.warnOnClose", false);
 EOF
 
-{ firefox --profile $profiledir --no-remote --new-instance &> /dev/null; rm -rf $profiledir; }&
+{ firefox --profile $profiledir --no-remote --new-instance mullvad.net &> /dev/null; rm -rf $profiledir; }&
