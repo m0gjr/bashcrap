@@ -120,3 +120,6 @@ pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 pref("browser.newtabpage.activity-stream.feeds.system.topstories", false);
 pref("security.OCSP.enabled", 0);
+pref("browser.sessionstore.privacy_level", 0);
+pref("browser.tabs.firefox-view", false);
+pref("security.ssl.disable_session_identifiers", true);
