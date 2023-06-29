@@ -11,7 +11,9 @@ if [ -z "$1" ]
 then
 	server="10.64.0.1"
 else
-	server="$1.relays.mullvad.net"
+	server="$(mullvad-confgen "$@" | grep socks_name | cut -d'"' -f4)"
+	echo "server: $server"
+	echo
 fi
 
 cat <<EOF > $profiledir/prefs.js

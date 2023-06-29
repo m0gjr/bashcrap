@@ -33,12 +33,14 @@ print (json.dumps(server, indent=4))
 hostname=server["hostname"]
 servername="mullvad-"+hostname
 
-with open(os.path.join(dir,'template'),'r') as file:
-	template=file.read()
-
-with open(os.path.join(dir,servername+".conf"),'w') as file:
-	file.write(template)
-	file.write("PublicKey = "+server["pubkey"]+"\n")
-	file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
-
-os.chmod(os.path.join(dir,servername+".conf"),0o600);
+try:
+	with open(os.path.join(dir,'mullvad-template'),'r') as file:
+		template=file.read()
+except:
+	pass
+else:
+	with open(os.path.join(dir,servername+".conf"),'w') as file:
+		file.write(template)
+		file.write("PublicKey = "+server["pubkey"]+"\n")
+		file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
+	os.chmod(os.path.join(dir,servername+".conf"),0o600);
