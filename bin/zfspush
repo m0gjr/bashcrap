@@ -1,15 +1,17 @@
 #!/bin/bash -e
 
 pull_full(){
-	size=$(ssh $shost "zfs send -nv $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | sed 's/\.[0-9]*//')
-	ssh $shost "zfs send $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds $1"
+	size=$(ssh $shost "zfs send -nv $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | numfmt --from=iec) &&\
+	ssh $shost "zfs send $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds $1" ||\
+	return 1
 }
 
 pull_inc(){
-	size=$(ssh $shost "zfs send -nvi $sds@$dst $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | sed 's/\.[0-9]*//')
-	ssh $dhost "zfs mount -o remount,ro $dds"
-	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds"
-	ssh $dhost "zfs mount -o remount,rw $dds"
+	size=$(ssh $shost "zfs send -nvi $sds@$dst $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | numfmt --from=iec) &&\
+	ssh $dhost "zfs mount -o remount,ro $dds" &&\
+	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds" &&\
+	ssh $dhost "zfs mount -o remount,rw $dds" ||\
+	return 1
 }
 
 homeds=$(zfs mount | awk '$2 == "/home" {print $1}')
