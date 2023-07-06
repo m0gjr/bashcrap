@@ -95,6 +95,7 @@ bindsym $mod+v exec --no-startup-id $term-float alsamixer
 bindsym $mod+h exec --no-startup-id $term-float top
 bindsym $mod+c exec --no-startup-id $term-float bc
 bindsym $mod+d exec --no-startup-id $term-float watch sensors
+bindsym $mod+a exec --no-startup-id $term-float mpv --no-video --shuffle /home/music/*.mp4
 
 bindsym F7 exec --no-startup-id i3_browservid
 
