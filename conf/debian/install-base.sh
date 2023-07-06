@@ -41,6 +41,8 @@ cp -n /etc/ssh/ssh_host_* /etc/local/ssh/etc/
 rm /etc/ssh/ssh_host_*
 ln -s /etc/local/ssh/etc/ssh_host_* /etc/ssh/
 
+cat conf/gai.conf > /etc/gai.conf
+
 mkdir -p /etc/systemd/system/getty@tty1.service.d
 cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<'EOF'
 [Service]
