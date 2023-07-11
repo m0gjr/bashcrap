@@ -1,0 +1,26 @@
+#!/bin/bash
+
+timeout=60
+tries=5
+warning=7
+
+for i in seq 1 $tries
+do
+
+	expire="$(openssl s_client -connect "$1" < /dev/null 2> /dev/null | openssl x509 -noout -text 2> /dev/null | grep 'Not After' | cut -d':' -f2-)"
+
+	if [ -n "$expire" ]
+	then
+		break
+	elif [ $i == $tries ]
+	then
+		echo "$0 failed to connect to $1" >&2
+		exit 1
+	fi
+	sleep $timeout
+done
+
+if [ $(date -d "$expire - $warning days" '+%s') -lt $(date '+%s') ]
+then
+	echo "$0 warning certificate for $1 expring soon" >&2
+fi
