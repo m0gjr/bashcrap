@@ -8,6 +8,7 @@ export PAGER=${PAGER:-/usr/bin/less}
 
 shopt -s histappend
 shopt -s checkwinsize
+shopt -s nullglob
 
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
 HISTCONTROL=ignoreboth
