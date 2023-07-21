@@ -2,7 +2,7 @@
 
 profiledir=$(mktemp -d)
 
-if [ -z "$1" ]
+if [ "$1" == "local" ]
 then
 	server="10.64.0.1"
 else
@@ -18,6 +18,7 @@ user_pref("network.proxy.socks_port", 1080);
 user_pref("network.proxy.socks_remote_dns", true);
 user_pref("network.proxy.type", 1);
 user_pref("browser.tabs.warnOnClose", false);
+
 EOF
 
 { firefox --profile $profiledir --no-remote --new-instance mullvad.net &> /dev/null; rm -rf $profiledir; }&

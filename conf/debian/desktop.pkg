@@ -2,7 +2,8 @@ acpi upower acpid
 sway foot i3status gnome-themes-extra
 python3 python3-pip python3-i3ipc
 gnumeric firefox-esr-l10n-en-gb
-thunar mpv pipewire mako-notifier libnotify-bin
+thunar mpv pipewire socat
+mako-notifier libnotify-bin
 imv drawing grim
 ffmpeg jmtpfs wireguard
 transmission-cli

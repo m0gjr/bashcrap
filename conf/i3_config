@@ -95,13 +95,13 @@ bindsym $mod+v exec --no-startup-id $term-float alsamixer
 bindsym $mod+h exec --no-startup-id $term-float top
 bindsym $mod+c exec --no-startup-id $term-float bc
 bindsym $mod+d exec --no-startup-id $term-float watch sensors
-bindsym $mod+a exec --no-startup-id $term-float mpv --no-video --shuffle /home/music/*.mp4
 
 bindsym F7 exec --no-startup-id i3_browservid
 
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+w exec --no-startup-id firefox -P normal
 bindsym $mod+e exec --no-startup-id firefox -P proxy
+bindsym $mod+r exec --no-startup-id firefox-temp
 bindsym $mod+g exec --no-startup-id gnumeric
 
 bindsym XF86MonBrightnessUp	exec --no-startup-id sudo brightness up
@@ -111,6 +111,12 @@ bindsym XF86AudioRaiseVolume	exec --no-startup-id "amixer sset Master,0 3+"
 bindsym XF86AudioLowerVolume	exec --no-startup-id "amixer sset Master,0 3-"
 bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle
 bindsym XF86AudioMicMute	exec --no-startup-id amixer sset Capture toggle
+
+bindsym $mod+a			exec --no-startup-id mpv --no-video "$HOME/music/download"/* --input-ipc-server="$HOME/.mpvsocket"
+bindsym XF86AudioStop		exec --no-startup-id echo quit | socat - "$HOME/.mpvsocket"
+bindsym XF86AudioPlay		exec --no-startup-id echo "cycle pause" | socat - "$HOME/.mpvsocket"
+bindsym XF86AudioPrev		exec --no-startup-id echo playlist-prev | socat - "$HOME/.mpvsocket"
+bindsym XF86AudioNext		exec --no-startup-id echo playlist-next | socat - "$HOME/.mpvsocket"
 
 bindsym $mod+Mod1+Up	output "*" transform 0 ;
 bindsym $mod+Mod1+Left	output "*" transform 270;
