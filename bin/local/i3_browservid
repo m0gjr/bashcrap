@@ -4,6 +4,38 @@ from i3ipc import Connection
 import os
 import re
 
+list='''
+vid.puffyan.us
+invidious.tiekoetter.com
+invidious.flokinet.to
+inv.bp.projectsegfau.lt
+yt.artemislena.eu
+inv.pistasjis.net
+invidious.projectsegfau.lt
+invidious.lunar.icu
+invidious.privacydev.net
+inv.tux.pizza
+vid.priv.au
+yt.oelrichsgarcia.de
+inv.zzls.xyz
+invidious.protokolla.fi
+invidious.0011.lt
+invidious.io.lol
+inv.in.projectsegfau.lt
+iv.nboeck.de
+invidious.slipfox.xyz
+invidious.no-logs.com
+yewtu.be
+iv.melmac.space
+inv.makerlab.tech
+inv.citw.lgbt
+onion.tube
+iv.ggtyler.dev
+'''
+
+hosts=["https://"+x+"/" for x in list.split()]
+replace="https://youtube.com/"
+
 i3=Connection()
 
 focused=i3.get_tree().find_focused()
@@ -13,4 +45,7 @@ pattern=r'https:\/\/\S+'
 
 url=re.search(pattern,name).group()
 
-os.popen('x-terminal-emulator --app-id=term-float browservid "'+url+'"')
+for host in hosts:
+	url=url.replace(host,replace)
+
+os.popen('browservid "'+url+'"')

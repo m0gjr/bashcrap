@@ -1,5 +1,7 @@
 #!/bin/bash
 
-echo "$1"
+opts="--fs=no --force-window=immediate --terminal=no"
 
-mpv --ytdl-format="best[height<=720]/bestvideo[height<=720]+bestaudio/best" "$1" || mpv --ytdl-format="bestvideo[height<=720]+bestaudio/best" "$1"
+mpv $opts --ytdl-format="best[height<=720]/bestvideo[height<=720]+bestaudio/best" "$1" || \
+mpv $opts --ytdl-format="bestvideo[height<=720]+bestaudio/best" "$1"
+
