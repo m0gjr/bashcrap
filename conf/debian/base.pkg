@@ -10,3 +10,4 @@ firmware-linux firmware-iwlwifi
 locales debconf-utils debootstrap
 beep sudo lsof
 pciutils usbutils lshw
+systemd-timesyncd
