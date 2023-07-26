@@ -1,6 +1,6 @@
 #!/bin/bash
 
-opts="--fs=no --force-window=immediate --terminal=no"
+opts="--fs=no --force-window=immediate --terminal=no --script-opts-append=ytdl_hook-try_ytdl_first=yes"
 
 mpv $opts --ytdl-format="best[height<=720]/bestvideo[height<=720]+bestaudio/best" "$1" || \
 mpv $opts --ytdl-format="bestvideo[height<=720]+bestaudio/best" "$1"
