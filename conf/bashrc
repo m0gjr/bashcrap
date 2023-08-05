@@ -4,7 +4,7 @@
 PS1="\u@\h:\w# "
 
 export EDITOR=${EDITOR:-/bin/nano}
-export PAGER=${PAGER:-/usr/bin/less --mouse}
+export PAGER=${PAGER:-/usr/bin/less --mouse --wheel-lines=3}
 
 shopt -s histappend
 shopt -s checkwinsize
@@ -43,7 +43,7 @@ alias nano='nano -mc'
 alias traceroute='traceroute -n'
 alias man='man -a'
 alias pv='pv -c'
-alias less='less --mouse'
+alias less='less --mouse --wheel-lines=3'
 
 alias gitl='git log --pretty --oneline --decorate --graph --all'
 alias gitc='git add -A && git commit -am'
