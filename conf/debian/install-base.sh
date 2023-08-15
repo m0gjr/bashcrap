@@ -2,7 +2,7 @@
 
 cd $HOME
 
-rm .bash_history || true && ln -s /home/bash_history .bash_history
+rm .bash_history || true && ln -s /etc/local/bash_history .bash_history
 
 cat /etc/local/hostname > /etc/hostname
 

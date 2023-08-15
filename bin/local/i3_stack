@@ -28,7 +28,7 @@ def set_cursor(i3, event) -> None:
 	global old_mode
 	new_mode=i3.get_tree().find_focused().fullscreen_mode
 	if new_mode != old_mode:
-		i3.command("seat * hide_cursor " + str(new_mode*5000))
+		i3.command("seat * hide_cursor " + str(new_mode*3000))
 		old_mode=new_mode
 
 old_mode=0
@@ -36,6 +36,7 @@ old_mode=0
 i3=Connection(auto_reconnect=True)
 i3.on(Event.WINDOW_NEW, set_splitting)
 i3.on(Event.WINDOW_CLOSE, set_splitting)
+i3.on(Event.WINDOW_FULLSCREEN_MODE, set_splitting)
 i3.on(Event.WINDOW_FOCUS, set_cursor)
 i3.on(Event.WINDOW_FULLSCREEN_MODE, set_cursor)
 i3.main()
