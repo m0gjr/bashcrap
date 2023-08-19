@@ -1,3 +1,0 @@
-#!/bin/bash
-
-xterm -fa Monospace -fs 10 -e "fold -s \"$@\" | less"

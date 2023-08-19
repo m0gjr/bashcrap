@@ -12,14 +12,6 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 apt-get install -y $(cat conf/debian/desktop.pkg)
 apt-get remove -y $(cat conf/debian/desktop.del)
 
-cat conf/handler.sh > /etc/acpi/handler.sh
-chmod +x /etc/acpi/handler.sh
-cat > /etc/acpi/events/anything <<'EOF'
-event=.*
-action=/etc/acpi/handler.sh %e
-EOF
-systemctl enable acpid || true
-
 echo "/- /etc/auto.sshfs allow_other" > /etc/auto.master.d/sshfs.autofs
 ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 

@@ -1,5 +1,0 @@
-export PATH="$HOME/bin:$PATH"
-
-xset b off
-xhost -
-exec openbox-session

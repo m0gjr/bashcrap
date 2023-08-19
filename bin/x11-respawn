@@ -1,7 +1,0 @@
-#!/bin/bash
-
-while true
-do
-	/root/bin/x11-start
-	sleep 2
-done

@@ -1,6 +1,0 @@
-ExitPolicy reject *:*
-SOCKSPort 9050
-ORPort 9001
-Nickname m0gjr
-RelayBandwidthRate 800KBytes
-RelayBandwidthBurst 1000KBytes

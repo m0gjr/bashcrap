@@ -1,7 +1,0 @@
-#!/bin/bash
-
-export PATH=$(echo $PATH | sed "s:$(dirname $0)::g")
-
-player="$(which mpv || which mplayer || which vlc)" || exit
-
-sudo -umedia $player "$@"

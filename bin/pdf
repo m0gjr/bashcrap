@@ -1,7 +1,0 @@
-#!/bin/bash
-
-export PATH=$(echo $PATH | sed "s:$(dirname $0)::g")
-
-viewer="$(which evince)" || exit
-
-sudo -udocuments $viewer -f "$@"
