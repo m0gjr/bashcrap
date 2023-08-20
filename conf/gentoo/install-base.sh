@@ -37,7 +37,7 @@ cat conf/gai.conf > /etc/gai.conf
 
 rc-update add sshd default
 
-passwd -d root
+echo 'c7:2345:respawn:/sbin/agetty -a root 38400 tty7 linux' > /etc/inittab.d/root-term.tab
 
 ln bin/local/* /usr/local/bin/
 
@@ -53,3 +53,4 @@ ln -s /etc/rc.local /etc/local.d/rc.start
 chmod +x /etc/rc.local
 
 echo "$0 completed successfully"
+
