@@ -1,0 +1,7 @@
+acpi upower acpid
+xorg-x11  openbox xhost xinput xsetroot xterm
+spacefm mplayer ffmpegthumbnailer
+viewnior imagemagick
+ffmpeg
+google-chrome gnumeric
+tor torsocks

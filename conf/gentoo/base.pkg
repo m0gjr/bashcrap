@@ -1,0 +1,6 @@
+bash-completion alsa-utils man-db
+rsync less psmisc tmux
+iotop iftop lm-sensors
+nano sys-devel/bc pv dev-vcs/git unzip
+netcat curl wget bind-tools dhcpcd
+iw wpa_supplicant wireless-tools wavemon
