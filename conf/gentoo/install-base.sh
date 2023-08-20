@@ -2,12 +2,14 @@
 
 cd $HOME
 
+rm .bash_history || true && ln -s /etc/local/bash_history .bash_history
+
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
+rm -r .ssh || true
 ln -sT /etc/local/ssh/root .ssh
 
-rm /etc/fstab
-ln -s /etc/local/fstab /etc/fstab
+ln -sf /etc/local/fstab /etc/fstab
 
 mv /etc/hosts /tmp/hosts
 cat <(printf '127.0.0.1\tlocalhost ') /etc/hostname <(grep -v 127.0.0.1 /tmp/hosts) > /etc/hosts
