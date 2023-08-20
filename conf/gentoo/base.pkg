@@ -1,6 +1,20 @@
-bash-completion alsa-utils man-db
-rsync less psmisc tmux
-iotop iftop lm-sensors
-nano sys-devel/bc pv dev-vcs/git unzip
-netcat curl wget bind-tools dhcpcd
-iw wpa_supplicant wireless-tools wavemon
+app-arch/unzip
+app-editors/nano
+app-misc/tmux
+app-shells/bash-completion
+dev-vcs/git
+media-sound/alsa-utils
+net-analyzer/iftop
+net-analyzer/netcat
+net-dns/bind-tools
+net-misc/curl
+net-misc/dhcpcd
+net-wireless/iw
+net-wireless/wavemon
+net-wireless/wireless-tools
+net-wireless/wpa_supplicant
+sys-apps/lm-sensors
+sys-apps/man-db
+sys-apps/pv
+sys-devel/bc
+sys-process/iotop
