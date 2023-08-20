@@ -3,7 +3,7 @@
 
 PS1="\u@\h:\w# "
 
-if [ $(which micro) ]
+if [ $(which micro 2> /dev/null) ]
 then
 	export EDITOR="micro"
 fi

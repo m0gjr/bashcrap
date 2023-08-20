@@ -19,6 +19,6 @@ if [ "$BASH" ]; then
 	fi
 fi
 
-mesg n
+mesg n 2> /dev/null || true
 
 export PATH="$HOME/bin:$PATH"
