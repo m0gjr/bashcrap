@@ -133,5 +133,5 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 bar {
-        status_command i3status
+	status_command i3status
 }

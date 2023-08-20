@@ -4,6 +4,8 @@ cd $HOME
 
 rm .bash_history || true && ln -s /etc/local/bash_history .bash_history
 
+cat /etc/local/hostname > /etc/hostname
+
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
 rm -r .ssh || true
@@ -37,6 +39,8 @@ rc-update add sshd default
 
 passwd -d root
 
+ln bin/local/* /usr/local/bin/
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
@@ -47,3 +51,5 @@ EOF
 
 ln -s /etc/rc.local /etc/local.d/rc.start
 chmod +x /etc/rc.local
+
+echo "$0 completed successfully"

@@ -13,3 +13,5 @@ emerge zfs
 rc-update add zfs-mount default
 
 genkernel --install --symlink initramfs
+
+echo "$0 completed successfully"
