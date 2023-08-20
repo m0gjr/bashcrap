@@ -3,8 +3,11 @@
 
 PS1="\u@\h:\w# "
 
-export EDITOR=${EDITOR:-/bin/nano}
-export PAGER=${PAGER:-/usr/bin/less --mouse --wheel-lines=3}
+if [ $(which micro) ]
+then
+	export EDITOR="micro"
+fi
+export PAGER="less --mouse --wheel-lines 3"
 
 shopt -s histappend
 shopt -s checkwinsize
@@ -39,7 +42,6 @@ alias mounts='mount | grep -v cgroup | column -t'
 alias wget='wget -c'
 alias curl='curl --proto-default https'
 alias youtube-dl='youtube-dl -f "[height<=720]"'
-alias nano='nano -mc'
 alias traceroute='traceroute -n'
 alias man='man -a'
 alias pv='pv -c'

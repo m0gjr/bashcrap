@@ -81,7 +81,6 @@ bindsym Mod1+Tab exec --no-startup-id i3_cycle_windows
 bindsym $mod+Tab exec --no-startup-id "i3_cycle_windows && i3-msg fullscreen enable"
 bindsym Mod1+F4 kill
 bindsym F11 fullscreen toggle
-bindsym Ctrl+q nop
 bindsym $mod+p exec --no-startup-id grim
 
 bindsym XF86Launch1 exec --no-startup-id $term sudo -i
@@ -89,7 +88,7 @@ bindsym $mod+t exec --no-startup-id $term sudo -i
 bindsym $mod+s exec --no-startup-id $term sudo ssh server
 
 bindsym $mod+u exec --no-startup-id $term bash
-bindsym $mod+z exec --no-startup-id $term sudo nano -mc /etc/xdg/i3/config
+bindsym $mod+z exec --no-startup-id $term sudoedit /etc/xdg/i3/config
 
 bindsym $mod+v exec --no-startup-id $term-float alsamixer
 bindsym $mod+h exec --no-startup-id $term-float top
