@@ -4,7 +4,7 @@ cd $HOME
 
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
-#ln -sT /etc/local/ssh/root .ssh
+ln -sT /etc/local/ssh/root .ssh
 
 rm /etc/fstab
 ln -s /etc/local/fstab /etc/fstab
@@ -20,15 +20,18 @@ eselect locale set en_GB.utf
 
 emerge-webrsync
 
-echo 'USE="-bindist"' >> /etc/portage/make.conf
 cp conf/gentoo/base.use /etc/portage/package.use/
 
 [ -z "$install_desktop" ] && emerge --quiet-build --deep --update $(cat conf/gentoo/base.pkg) @world
 
-#sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
-#cp -n /etc/ssh/ssh_host_* /etc/local/ssh/etc/
-#rm /etc/ssh/ssh_host_*
-#ln -s /etc/local/ssh/etc/ssh_host_* /etc/ssh/
+sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
+cp -n /etc/ssh/ssh_host_* /etc/local/ssh/etc/
+rm /etc/ssh/ssh_host_*
+ln -s /etc/local/ssh/etc/ssh_host_* /etc/ssh/
+
+cat conf/gai.conf > /etc/gai.conf
+
+rc-update add sshd default
 
 passwd -d root
 

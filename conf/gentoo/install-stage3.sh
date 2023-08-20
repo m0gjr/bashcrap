@@ -26,6 +26,7 @@ git reset --hard
 echo "$HOSTNAME" > $dir/etc/hostname
 ln -s /dev/null $dir/etc/hostid
 
+echo 'USE="symlink -bindist"' >> $dir/etc/portage/make.conf
 echo '*/* *' > $dir/etc/portage/package.license
 
 bin/mount-chroot
