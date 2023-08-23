@@ -6,6 +6,6 @@ thunar mpv pipewire socat
 mako-notifier libnotify-bin
 imv drawing grim
 ffmpeg jmtpfs wireguard
-fffmpegthumbnailer tumbler tumbler-plugins-extra
+ffmpegthumbnailer tumbler tumbler-plugins-extra
 transmission-cli
 

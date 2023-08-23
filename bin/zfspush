@@ -41,9 +41,14 @@ else
 	if ! pull_inc
 	then
 		echo rolling back $dhost to $dds@$dst
-		echo enter to proceed
-		read
-		ssh $dhost "zfs rollback $dds@$dst"
-		pull_inc
+		echo 'enter "y" to proceed'
+		read confirm
+		if [ $(grep '^y' <<<$confirm) ]
+		then
+			ssh $dhost "zfs rollback $dds@$dst"
+			pull_inc
+		else
+			exit
+		fi
 	fi
 fi
