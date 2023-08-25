@@ -1,0 +1,4 @@
+#!/bin/bash
+
+setkeycodes 3a 29 dd 125 b8 56
+

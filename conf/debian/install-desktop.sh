@@ -56,6 +56,9 @@ fi
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
+/root/bin/keyboard
+/root/bin/mouse
+
 [ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
 /root/bin/wifistart
 

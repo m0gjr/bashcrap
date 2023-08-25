@@ -56,11 +56,12 @@ ln bin/local/* /usr/local/bin/
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
+/root/bin/keyboard
+
 exit 0
 EOF
 
 chmod +x /etc/rc.local
 systemctl enable rc-local || true
-
 
 echo "$0 completed successfully"
