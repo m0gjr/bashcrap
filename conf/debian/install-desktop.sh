@@ -23,6 +23,8 @@ chown user:user /home
 
 mkdir -p /etc/xdg/i3/
 ln conf/i3_config /etc/xdg/i3/config
+mkdir -p /etc/xdg/i3status/
+ln conf/i3status_config /etc/xdg/i3status/config
 
 mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/
