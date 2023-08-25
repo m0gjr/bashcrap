@@ -45,6 +45,14 @@ ExecStart=/usr/sbin/agetty --autologin root --noclear %I $TERM
 EOF
 systemctl daemon-reload
 
+if [ -f /proc/acpi/ibm/fan ]
+then
+	apt-get -y install tp-smapi-dkms thinkfan
+	ln conf/thinkpad_acpi /etc/modprobe.d/
+	ln conf/thinkfan.conf /etc/
+	systemctl enable thinkfan
+fi
+
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
