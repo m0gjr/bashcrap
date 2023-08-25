@@ -2,7 +2,7 @@
 
 pull_full(){
 	size=$(ssh $shost "zfs send -nv $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | numfmt --from=iec) &&\
-	ssh $shost "zfs send $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds $1" ||\
+	ssh $shost "zfs send $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds $1 $force" ||\
 	return 1
 }
 
@@ -36,7 +36,18 @@ dst=$(ssh $dhost zfs list -t snapshot -Ho name $dds | tail -n1 | cut -d'@' -f2)
 
 if [ -z $dst ]
 then
-	pull_full
+	if ! pull_full
+	then
+		echo overwrite $dhost dataset $dds
+		echo 'enter "y" to proceed'
+		read confirm
+		if [ $(grep '^y' <<<$confirm) ]
+		then
+			force='-F' pull_full
+		else
+			exit
+		fi
+	fi
 else
 	if ! pull_inc
 	then
