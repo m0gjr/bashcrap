@@ -23,7 +23,9 @@ do
 	[ $freqnew -gt $freqmax ] && freqnew=$freqmax
 	[ $freqnew -lt $freqmin ] && freqnew=$freqmin
 
-	printf "$freqnew\t$temp\n"
+	printf "$freqnew\t$temp\t"
+
+	memlist
 
 	for cpu in $cpus*
 	do

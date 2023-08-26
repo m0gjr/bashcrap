@@ -28,11 +28,11 @@ battery all {
 }
 
 disk "/" {
-        format = "%avail"
+        format = "D: %avail"
 }
 
 load {
-        format = "%1min"
+        format = "L: %1min"
 }
 
 cpu_temperature 0 {
