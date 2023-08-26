@@ -22,9 +22,9 @@ useradd -u 10000 -G audio,video -s /bin/bash -d /home user || true
 chown user:user /home
 
 mkdir -p /etc/xdg/i3/
-ln conf/i3_config /etc/xdg/i3/config
 mkdir -p /etc/xdg/i3status/
-ln conf/i3status_config /etc/xdg/i3status/config
+ln -f conf/i3_config /etc/xdg/i3/config
+ln -f conf/i3status_config /etc/xdg/i3status/config
 
 mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/
@@ -48,8 +48,8 @@ systemctl daemon-reload
 if [ -f /proc/acpi/ibm/fan ]
 then
 	apt-get -y install tp-smapi-dkms thinkfan
-	ln conf/thinkpad_acpi /etc/modprobe.d/
-	ln conf/thinkfan.conf /etc/
+	ln -f conf/thinkpad_acpi /etc/modprobe.d/
+	ln -f conf/thinkfan.conf /etc/
 	systemctl enable thinkfan
 fi
 
