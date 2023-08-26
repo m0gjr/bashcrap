@@ -25,8 +25,8 @@ ln conf/i3_config /etc/xdg/i3/config
 
 mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/
-ln conf/firefox-policies.json /etc/firefox/policies/policies.json
-ln conf/firefox-settings.js /etc/firefox-esr/settings.js
+ln -f conf/firefox-policies.json /etc/firefox/policies/policies.json
+ln -f conf/firefox-settings.js /etc/firefox-esr/settings.js
 
 ln -s /usr/bin/foot /usr/local/bin/x-terminal-emulator
 

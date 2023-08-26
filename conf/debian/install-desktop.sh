@@ -28,8 +28,8 @@ ln conf/i3status_config /etc/xdg/i3status/config
 
 mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/
-ln conf/firefox-policies.json /etc/firefox/policies/policies.json
-ln conf/firefox-settings.js /etc/firefox-esr/settings.js
+ln -f conf/firefox-policies.json /etc/firefox/policies/policies.json
+ln -f conf/firefox-settings.js /etc/firefox-esr/settings.js
 
 mkdir -p /etc/systemd/system/getty@tty1.service.d
 mkdir -p /etc/systemd/system/getty@tty2.service.d
