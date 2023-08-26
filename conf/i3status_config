@@ -14,14 +14,14 @@ general {
 order += "wireless _first_"
 order += "battery all"
 order += "disk /"
-order += "i3block memlist"
+order += "path_exists memlist"
 order += "load"
 order += "cpu_temperature 0"
 order += "tztime local"
 
-i3block memlist {
-	command = "memlist"
-	interval = 5
+path_exists "memlist" {
+	format_down = "memlist"
+	path = "/nonexist"
 }
 
 wireless _first_ {

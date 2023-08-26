@@ -1,23 +1,24 @@
-#!/bin/bash
+#!/bin/awk -f
+BEGIN {
+	ARGV[1] = "/proc/meminfo"
+	if(getline < "/proc/spl/kstat/zfs/arcstats" < 0) {
+		ARGC=2
+	}
+	else {
+		ARGV[2] = "/proc/spl/kstat/zfs/arcstats"
+		ARGC = 3
+	}
+}
 
-memstat="$(cat /proc/meminfo)"
-memtotal="$(echo "$memstat" | grep '^MemTotal:' | awk '{print $2}')"
-memavailable="$(echo "$memstat" | grep '^MemAvailable:' | awk '{print $2}')"
-swaptotal="$(echo "$memstat" | grep '^SwapTotal:' | awk '{print $2}')"
-swapfree="$(echo "$memstat" | grep '^SwapFree:' | awk '{print $2}')"
+$1 == "MemTotal:" {memtotal = $2}
+$1 == "MemAvailable:" {memavailable = $2}
+$1 == "SwapTotal:" {swaptotal = $2}
+$1 == "SwapFree:" {swapfree = $2}
 
-zfs="$(grep '^size' /proc/spl/kstat/zfs/arcstats 2> /dev/null | awk '{print $3}')"
+$1 == "size" {zfs = $3 / 1024}
 
-if [ -z $zfs ]
-then
-	zfssize=0
-else
-	zfssize=$(($zfs/1024))
-fi
-
-memuse=$(($memtotal-$memavailable-$zfssize))
-mem=$((100*$memuse/$memtotal))
-
-swap=$((100-100*$swapfree/$swaptotal))
-
-printf "M: $mem%% S: $swap%%\n"
+END {
+	mem = 100 * (memtotal - memavailable - zfs) / memtotal
+	swap = 100 * (1 - swapfree / swaptotal)
+	printf "M: %d%% S: %d%%\n", mem, swap
+}

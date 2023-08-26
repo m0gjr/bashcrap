@@ -1,0 +1,14 @@
+#!/bin/bash
+
+config="/etc/xdg/i3status/config"
+
+commands="$(grep '^path_exists ' "$config" | cut -sd \" -f2)"
+
+i3status -c "$config" | while read line
+do
+	while read command
+		do line="$(echo "$line" | sed "s/| $command |/| $($command) |/")"
+	done <<<$commands
+
+	echo "$line"
+done
