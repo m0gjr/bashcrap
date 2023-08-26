@@ -88,7 +88,6 @@ bindsym $mod+t exec --no-startup-id $term sudo -i
 bindsym $mod+s exec --no-startup-id $term sudo ssh server
 
 bindsym $mod+u exec --no-startup-id $term bash
-bindsym $mod+z exec --no-startup-id $term sudoedit /etc/xdg/i3/config
 
 bindsym $mod+v exec --no-startup-id $term-float alsamixer
 bindsym $mod+h exec --no-startup-id $term-float top
@@ -133,5 +132,5 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 bar {
-	status_command i3status
+	status_command py3status
 }

@@ -7,32 +7,38 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = true
-        interval = 5
+	colors = true
+	interval = 5
 }
 
 order += "wireless _first_"
 order += "battery all"
 order += "disk /"
+order += "i3block memlist"
 order += "load"
 order += "cpu_temperature 0"
 order += "tztime local"
 
+i3block memlist {
+	command = "memlist"
+	interval = 5
+}
+
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+	format_up = "W: (%quality at %essid) %ip"
+	format_down = "W: down"
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+	format = "%status %percentage %remaining"
 }
 
 disk "/" {
-        format = "D: %avail"
+	format = "D: %avail"
 }
 
 load {
-        format = "L: %1min"
+	format = "L: %1min"
 }
 
 cpu_temperature 0 {
@@ -41,5 +47,5 @@ cpu_temperature 0 {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+	format = "%Y-%m-%d %H:%M:%S"
 }
