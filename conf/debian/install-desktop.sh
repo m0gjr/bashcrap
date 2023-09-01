@@ -48,7 +48,7 @@ systemctl daemon-reload
 if [ -f /proc/acpi/ibm/fan ]
 then
 	apt-get -y install tp-smapi-dkms thinkfan
-	ln -f conf/thinkpad_acpi /etc/modprobe.d/
+	ln -f conf/thinkpad_acpi.conf /etc/modprobe.d/
 	ln -f conf/thinkfan.conf /etc/
 	systemctl enable thinkfan
 fi
