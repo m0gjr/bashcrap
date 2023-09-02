@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec sway -c /etc/xdg/i3/config
