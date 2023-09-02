@@ -4,8 +4,6 @@ cd $HOME
 
 rm .bash_history || true && ln -s /etc/local/bash_history .bash_history
 
-cat /etc/local/hostname > /etc/hostname
-
 mkdir -p /etc/local/ssh/root
 mkdir -p /etc/local/ssh/etc
 rm -r .ssh || true

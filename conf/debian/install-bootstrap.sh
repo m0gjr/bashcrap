@@ -37,6 +37,7 @@ cd $dir/root
 git reset --hard
 
 ln -sf /dev/null $dir/etc/hostid
+cat /etc/local/hostname > $dir/etc/hostname
 
 bin/mount-chroot
 
