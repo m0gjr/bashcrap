@@ -98,7 +98,7 @@ bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+w exec --no-startup-id firefox -P normal
 bindsym $mod+e exec --no-startup-id firefox -P proxy
 bindsym $mod+r exec --no-startup-id firefox-temp
-bindsym $mod+g exec --no-startup-id gnumeric
+bindsym $mod+g exec --no-startup-id libreoffice --calc
 
 bindsym XF86MonBrightnessUp	exec --no-startup-id sudo brightness up
 bindsym XF86MonBrightnessDown	exec --no-startup-id sudo brightness down
