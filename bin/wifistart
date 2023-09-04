@@ -4,16 +4,6 @@ iface=${iface:-wlan0}
 conffile=${1:-/etc/local/wifi.conf}
 
 confnet(){
-	while getopts '25' opt
-	do
-		case $opt in
-			2) freqs="2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472" ;;
-			5) freqs="5180 5200 5220 5240 5260 5280 5300 5320 5500 5520 5540 5560 5580 5600 5620 5640 5660 5680 5700 5745 5765 5785 5805 5825 " ;;
-		esac
-	done
-
-	shift "$((OPTIND - 1))"
-
 	printf "network={\n"
 
 	printf "\tssid=\"$1\"\n"
@@ -28,12 +18,10 @@ confnet(){
 	printf "}\n\n"
 }
 
-export -f confnet
-
 confgen(){
 	while read line
 	do
-		bash -c "confnet $line"
+		confnet $line
 	done < <(grep -v '^\#\|^$' $conffile)
 }
 

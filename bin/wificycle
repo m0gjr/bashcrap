@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "$freqs_all"
+
+iface=${iface:-wlan0}
+
+rfkill block all
+sleep 1
+rfkill unblock all
+
+freqs_all="$(iwlist $iface frequency | awk '$1 == "Channel" {printf "%.3f\n", $4}')"
+freqs_2="$(echo "$freqs_all" | grep '^2.' | tr -d '.' | tr '\n' ' ')"
+freqs_5="$(echo "$freqs_all" | grep '^5.' | tr -d '.' | tr '\n' ' ')"
+
+if [ -n "$freqs_2" ] && [ -n "$freqs_5" ]
+then
+	case $(( $(date '+%M') % 3 )) in
+		0)
+			freqs="$freqs_2" wifistart;;
+		1)
+			freqs="$freqs_5" wifistart;;
+		*)
+			wifistart;;
+	esac
+else
+	wifistart
+fi
