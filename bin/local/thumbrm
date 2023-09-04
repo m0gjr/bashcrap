@@ -1,0 +1,9 @@
+#!/bin/bash
+
+find $HOME/.cache/thumbnails/ | grep -f \
+<(realpath -s "$@" | sed -e 's|^|file://|' -e 's/ /%20/g' | \
+while read line
+do
+	echo -n "$line"| md5sum | cut -d' ' -f1
+done
+) | xargs rm
