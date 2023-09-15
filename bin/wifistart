@@ -18,10 +18,12 @@ confnet(){
 	printf "}\n\n"
 }
 
+export -f confnet
+
 confgen(){
 	while read line
 	do
-		confnet $line
+		bash -c "confnet $line"
 	done < <(grep -v '^\#\|^$' $conffile)
 }
 
