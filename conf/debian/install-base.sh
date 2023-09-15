@@ -11,11 +11,6 @@ ln -sT /etc/local/ssh/root .ssh
 
 mkdir -p /etc/local/bin
 mkdir -p /etc/local/conf
-cat >> /etc/fstab <<'EOF'
-/root/bin/local /etc/local/bin none bind 0 0
-/root/conf/local /etc/local/conf none bind 0 0
-EOF
-systemctl daemon-reload
 
 mv /etc/hosts /tmp/hosts
 cat <(printf '127.0.0.1\tlocalhost ') /etc/hostname <(grep -v 127.0.0.1 /tmp/hosts) > /etc/hosts
@@ -59,6 +54,9 @@ ln -s /etc/local/bin/* /usr/local/bin/
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
+
+mount --bind /root/conf/local /etc/local/conf
+mount --bind /root/bin/local /etc/local/bin
 
 /root/bin/keyboard
 

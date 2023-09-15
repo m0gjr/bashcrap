@@ -57,13 +57,16 @@ fi
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
 
+mount --bind /root/conf/local /etc/local/conf
+mount --bind /root/bin/local /etc/local/bin
+
 /root/bin/keyboard
 /root/bin/mouse
 
-[ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
-/root/bin/wifistart
-
 /root/bin/zram-on
+
+[ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
+/root/bin/wifistart&
 
 exit 0
 EOF
