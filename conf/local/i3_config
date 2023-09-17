@@ -119,7 +119,7 @@ bindsym $mod+k exit
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-exec_always --no-startup-id killall i3_stack; i3_stack
+exec_always --no-startup-id "killall i3_stack; i3_stack"
 
 bar {
 	status_command i3status_wrap
