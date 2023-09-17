@@ -1,0 +1,10 @@
+input type:keyboard {
+	xkb_layout "gb"
+	xkb_options "ctrl:nocaps"
+}
+
+output * bg #000000 solid_color
+
+for_window [app_id="term-float"] floating enable; move right 430px; move up 220px; resize set width 500px height 300px
+
+exec --no-startup-id mako --default-timeout 5000

@@ -1,0 +1,5 @@
+exec --no-startup-id setxkbmap -option ctrl:nocaps gb
+
+for_window [class="UXTerm"] floating enable move right 430px move up 220px resize set width 500px height 300px
+
+exec --no-startup-id /usr/lib/notification-daemon/notification-daemon

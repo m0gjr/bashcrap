@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ "$(basename "$0")" == "x-terminal-emulator-float" ]
+then
+	if [ -n "$DISPLAY" ]
+	then
+		exec xterm -class UXTerm "$@"
+	else
+		exec foot --font=monospace:size=6 --app-id="term-float" "$@"
+	fi
+else
+	if [ -n "$DISPLAY" ]
+	then
+		exec xterm "$@"
+	else
+		exec foot --font=monospace:size=7 "$@"
+	fi
+fi

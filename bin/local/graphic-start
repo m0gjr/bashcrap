@@ -1,4 +1,14 @@
 #!/bin/bash
 
 export GTK_THEME=Adwaita:dark
-exec sway -c /etc/xdg/i3/config
+
+if [ -f /usr/bin/startx ]
+#if false
+#if true
+then
+	export i3_display=x11
+	exec startx
+else
+	export i3_display=wayland
+	exec sway -c /etc/xdg/i3/config
+fi
