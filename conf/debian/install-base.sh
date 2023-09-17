@@ -50,7 +50,10 @@ ExecStart=/usr/sbin/agetty --autologin root --noclear %I $TERM
 EOF
 systemctl daemon-reload
 
-ln -s /etc/local/bin/* /usr/local/bin/
+for file in $(ls /root/bin/local)
+do
+	ln -s /etc/local/bin/$file /usr/local/bin/$file
+done
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh

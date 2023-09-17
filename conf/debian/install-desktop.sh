@@ -17,7 +17,7 @@ ln -s /root/conf/auto.sshfs /etc/auto.sshfs
 
 echo 'user ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/user
 
-useradd -s /usr/local/bin/graphic-start -u 10000 -G audio,video -s /bin/bash -d /home user || true
+useradd -s /usr/local/bin/graphic-start -u 10000 -G audio,video -d /home user || true
 
 chown user:user /home
 chown user:user /home/.config || true
