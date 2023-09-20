@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
 
-cd /sys/class/backlight/intel_backlight
+cd /sys/class/backlight
+
+cd "$(ls | head -n1)"
 
 bright=$(cat brightness)
 
