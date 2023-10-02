@@ -102,11 +102,11 @@ bindsym XF86AudioLowerVolume	exec --no-startup-id "amixer sset Master,0 3-"
 bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle
 bindsym XF86AudioMicMute	exec --no-startup-id amixer sset Capture toggle
 
-bindsym $mod+a			exec --no-startup-id mpv --no-video "$HOME/music/download"/* --input-ipc-server="$HOME/.mpvsocket"
-bindsym XF86AudioStop		exec --no-startup-id echo quit | socat - "$HOME/.mpvsocket"
-bindsym XF86AudioPlay		exec --no-startup-id echo "cycle pause" | socat - "$HOME/.mpvsocket"
-bindsym XF86AudioPrev		exec --no-startup-id echo playlist-prev | socat - "$HOME/.mpvsocket"
-bindsym XF86AudioNext		exec --no-startup-id echo playlist-next | socat - "$HOME/.mpvsocket"
+bindsym $mod+a			exec --no-startup-id mpv --no-video "$HOME/music/download"/* --input-ipc-server="/run/user/$(id -u)/mpvsocket"
+bindsym XF86AudioStop		exec --no-startup-id echo quit | socat - "/run/user/$(id -u)/mpvsocket"
+bindsym XF86AudioPlay		exec --no-startup-id echo "cycle pause" | socat - "/run/user/$(id -u)/mpvsocket"
+bindsym XF86AudioPrev		exec --no-startup-id echo playlist-prev | socat - "/run/user/$(id -u)/mpvsocket"
+bindsym XF86AudioNext		exec --no-startup-id echo playlist-next | socat - "/run/user/$(id -u)/mpvsocket"
 
 bindsym $mod+Mod1+Up	output "*" transform 0 ;
 bindsym $mod+Mod1+Left	output "*" transform 270;
