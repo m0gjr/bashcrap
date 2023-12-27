@@ -7,4 +7,4 @@ do
 	sleep 10
 done
 
-# certbot certonly --manual --preferred-challenge=dns --agree-tos --manual-auth-hook $0 -d domain.example.com -d *.domain.example.com
+# certbot certonly --manual --preferred-challenge=dns --agree-tos --manual-auth-hook /path/to/$0 --post-hook "service nginx reload" -d domain.example.com -d *.domain.example.com
