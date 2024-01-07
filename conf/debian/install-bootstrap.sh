@@ -4,6 +4,13 @@ export HOME=/root
 
 dir=${installdir:-/mnt}
 
+snapshot(){
+	if type zfs > /dev/null && [ "$(findmnt -no FSTYPE "$dir")" == "zfs" ]
+	then
+		zfs snapshot "$(findmnt -no SOURCE "$dir")@$1"
+	fi
+}
+
 if [ ! -d .git ]
 then
 	echo "not in bashcrap git repository" >&2
@@ -39,11 +46,13 @@ git reset --hard
 ln -sf /dev/null $dir/etc/hostid
 cat /etc/local/hostname > $dir/etc/hostname
 
+snapshot install-bootstrap
+
 bin/mount-chroot
 
-! [ -z ${install_kernel-true} ] && chroot $dir /root/conf/debian/install-kernel.sh
-! [ -z ${install_base-true} ] && chroot $dir /root/conf/debian/install-base.sh
-! [ -z ${install_desktop-true} ] && chroot $dir /root/conf/debian/install-desktop.sh
+! [ -z ${install_kernel-true} ] && chroot $dir /root/conf/debian/install-kernel.sh && snapshot install-kernel
+! [ -z ${install_base-true} ] && chroot $dir /root/conf/debian/install-base.sh && snapshot install-base
+! [ -z ${install_desktop-true} ] && chroot $dir /root/conf/debian/install-desktop.sh && snapshot install-desktop
 
 bin/umount-chroot
 
