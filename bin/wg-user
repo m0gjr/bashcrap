@@ -20,7 +20,7 @@ wg set $iface fwmark 51820
 ip -4 rule add uidrange $uid-$uid table $table
 ip -6 rule add uidrange $uid-$uid table $table
 
-wg setconf $iface "$file"
+wg setconf $iface <(grep -v "^Address" "$file" | grep -v "^DNS")
 ip link set $iface up
 ip -4 route add default dev $iface table $table
 ip -6 route add default dev $iface table $table
