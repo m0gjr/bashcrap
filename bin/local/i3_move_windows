@@ -2,6 +2,8 @@
 
 from sys import argv
 from i3ipc import Connection
+from i3_scripts import set_splitting
+from time import sleep
 
 i3=Connection()
 
@@ -12,7 +14,14 @@ if argv[1]=='right':
 	ws+=1
 elif argv[1]=='left':
 	ws-=1
+else :
+	ws=int(argv[1])
 
 if len(argv)>2 and argv[2]=='move':
 	i3.command('move container to workspace ' + str(ws))
-i3.command('workspace ' + str(ws))
+	set_splitting(i3,'')
+	i3.command('workspace ' + str(ws))
+	set_splitting(i3,'')
+else :
+	i3.command('workspace ' + str(ws))
+
