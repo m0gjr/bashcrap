@@ -1,0 +1,3 @@
+#!/bin/bash
+
+infocmp -x | ssh "$@" 'tic -x -'
