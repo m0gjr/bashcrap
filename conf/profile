@@ -4,11 +4,12 @@ if [ "$(tty)" = "$SSH_TTY" ]
 then
 	if command -v tmux 2> /dev/null
 	then
+		TERM=linux
 		if tmux ls
 		then
-			TERM=linux exec tmux attach
+			exec tmux attach
 		else
-			TERM=linux exec tmux new
+			exec tmux new
 		fi
 	fi
 fi
