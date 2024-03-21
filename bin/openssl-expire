@@ -12,8 +12,10 @@ do
 	if [ -n "$expire" ]
 	then
 		break
-	elif [ $i == $tries ]
+	elif [ $i >= $tries ]
 	then
+		openssl s_client -connect "$1" < /dev/null
+		echo
 		echo "$0 failed to connect to $1" >&2
 		exit 1
 	fi
@@ -23,4 +25,5 @@ done
 if [ $(date -d "$expire - $warning days" '+%s') -lt $(date '+%s') ]
 then
 	echo "$0 warning certificate for $1 expring soon" >&2
+		exit 2
 fi
