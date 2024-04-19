@@ -29,8 +29,8 @@ ln -sf /etc/local/conf/i3status_config /etc/xdg/i3status/config
 
 mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/
-ln -f conf/firefox-policies.json /etc/firefox/policies/policies.json
-ln -f conf/firefox-settings.js /etc/firefox-esr/settings.js
+ln -sf /etc/local/conf/firefox-policies.json /etc/firefox/policies/policies.json
+ln -sf /etc/local/conf/firefox-settings.js /etc/firefox-esr/settings.js
 
 mkdir -p /etc/systemd/system/getty@tty1.service.d
 mkdir -p /etc/systemd/system/getty@tty2.service.d
@@ -49,8 +49,8 @@ systemctl daemon-reload
 if [ -f /proc/acpi/ibm/fan ]
 then
 	apt-get -y install tp-smapi-dkms thinkfan
-	ln -f conf/thinkpad_acpi.conf /etc/modprobe.d/
-	ln -f conf/thinkfan.conf /etc/
+	ln -sf /etc/local/conf/thinkpad_acpi.conf /etc/modprobe.d/
+	ln -sf /etc/local/conf/thinkfan.conf /etc/
 	systemctl enable thinkfan
 fi
 
