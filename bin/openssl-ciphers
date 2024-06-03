@@ -7,9 +7,13 @@ colour (){
 		return
 	fi
 
-	if echo $2 | grep -q DHE- && echo $2 | grep -q 'GCM\|POLY1305' || [ $1 == "tls1_3" ]
+	if echo $2 | grep -q ECDHE- && echo $2 | grep -q 'GCM\|POLY1305' || [ $1 == "tls1_3" ]
 	then
 		printf "\e[32m"
+
+	elif echo $2 | grep -q DHE- && echo $2 | grep -q 'GCM\|POLY1305'
+	then
+		printf "\e[33m"
 	else
 		printf "\e[31m"
 	fi
