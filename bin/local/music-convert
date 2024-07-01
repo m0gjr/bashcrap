@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd "${dir:-/home/music}"
+
+for infile in download/*
+do
+	id="[$(basename "${infile%.*}" | rev | grep '^]' | cut -d']' -f2- | cut -d'[' -f1 | rev)]"
+	name="$(basename "${infile%.*}" | rev | cut -d'[' -f2- | rev)"
+
+	outfile="mp3/$id ${name% }.mp3"
+
+	if ! [ -f "$outfile" ]
+	then
+		ffmpeg -i "$infile" -c:a libmp3lame -filter:a "loudnorm=-16" "$outfile" || echo "$infile" >> error.log
+	fi
+done
