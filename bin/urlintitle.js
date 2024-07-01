@@ -1,7 +1,19 @@
-let title=document.title+" "+document.URL;
-
-for(let i=0; i<5; i++){
-	setTimeout(function() {
-		document.title=title;
-	}, 1000*i);
+function urlintitle() {
+	if(! document.title.includes(document.URL)) {
+		document.title += " " + document.URL;
+	}
 }
+
+urlintitle();
+
+var target = document.querySelector('title');
+var observer = new MutationObserver(function(mutations) {
+	mutations.forEach(function(mutation) {
+		console.log('title changed to "%s"', document.title);
+		urlintitle();
+	});
+});
+var config = {
+	childList: true,
+};
+observer.observe(target, config);

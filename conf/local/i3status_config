@@ -17,6 +17,7 @@ order += "disk /"
 order += "path_exists memlist"
 order += "load"
 order += "cpu_temperature 0"
+order += "volume master"
 order += "tztime local"
 
 path_exists "memlist" {
@@ -45,6 +46,14 @@ load {
 cpu_temperature 0 {
 	format = "T: %degrees °C"
 	path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+volume master {
+	format = "♪: %volume"
+	format_muted = "♪: muted (%volume)"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
 }
 
 tztime local {

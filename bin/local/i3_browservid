@@ -12,11 +12,11 @@ filename="libredirect-settings-*.json"
 try:
 	file=max(list(glob(dir + filename)))
 	data=load(open(file,'r'))
-	hosts=data[data["youtube"]["frontend"]]
+	hosts=data['invidious']+data['piped']
 except:
 	hosts=[]
 
-replace="https://youtube.com/"
+replace="https://www.youtube.com/"
 
 i3=Connection()
 
