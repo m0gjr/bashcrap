@@ -2,7 +2,7 @@
 
 /root/bin/zfsnap
 
-apt-get update && apt-get -y upgrade || echo "APT UPDATE FAILED" >> /var/log/bash_notify
+apt-get update && apt-get --with-new-pkgs -y upgrade || echo "APT UPDATE FAILED" >> /var/log/bash_notify
 
 /root/bin/dkms-check
 update-initramfs -u
