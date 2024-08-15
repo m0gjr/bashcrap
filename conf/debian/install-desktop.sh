@@ -65,7 +65,7 @@ mount --bind /root/bin/local /etc/local/bin
 
 /root/bin/zram-on
 
-[ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn
+[ -f /etc/wireguard/vpn.conf ] && wg-quick up vpn && wg-shuffle
 /root/bin/wifistart&
 
 exit 0

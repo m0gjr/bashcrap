@@ -26,7 +26,7 @@ if len(sys.argv)>1:
 if len(sys.argv)>2:
 	servers=[x for x in servers if x['city_code']==sys.argv[2]]
 
-server=servers[random.randint(0,len(servers)-1)]
+server=servers.pop(random.randint(0,len(servers)-1))
 
 print (json.dumps(server, indent=4))
 
@@ -39,8 +39,19 @@ try:
 except:
 	pass
 else:
-	with open(os.path.join(dir,servername+".conf"),'w') as file:
-		file.write(template)
-		file.write("PublicKey = "+server["pubkey"]+"\n")
-		file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
-	os.chmod(os.path.join(dir,servername+".conf"),0o600);
+	if os.path.exists(os.path.join(dir,"vpn.conf")):
+		with open(os.path.join(dir,"vpn.conf"),'w') as file:
+			file.write(template)
+			file.write("PublicKey = "+server["pubkey"]+"\n")
+			file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
+			for server in servers:
+				file.write('\n[Peer]\n')
+				file.write("PublicKey = "+server["pubkey"]+"\n")
+				file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
+		os.chmod(os.path.join(dir,"vpn.conf"),0o600);
+	else:
+		with open(os.path.join(dir,servername+".conf"),'w') as file:
+			file.write(template)
+			file.write("PublicKey = "+server["pubkey"]+"\n")
+			file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
+		os.chmod(os.path.join(dir,servername+".conf"),0o600);
