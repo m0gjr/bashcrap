@@ -24,13 +24,13 @@ chown user:user /home/.config || true
 
 mkdir -p /etc/xdg/i3/
 mkdir -p /etc/xdg/i3status/
-ln -sf /etc/local/conf/i3_config /etc/xdg/i3/config
-ln -sf /etc/local/conf/i3status_config /etc/xdg/i3status/config
+ln -sf /etc/local-conf/i3_config /etc/xdg/i3/config
+ln -sf /etc/local-conf/i3status_config /etc/xdg/i3status/config
 
 mkdir -p /etc/firefox/policies/
 mkdir -p /etc/firefox-esr/
-ln -sf /etc/local/conf/firefox-policies.json /etc/firefox/policies/policies.json
-ln -sf /etc/local/conf/firefox-settings.js /etc/firefox-esr/settings.js
+ln -sf /etc/local-conf/firefox-policies.json /etc/firefox/policies/policies.json
+ln -sf /etc/local-conf/firefox-settings.js /etc/firefox-esr/settings.js
 
 mkdir -p /etc/systemd/system/getty@tty1.service.d
 mkdir -p /etc/systemd/system/getty@tty2.service.d
@@ -49,16 +49,13 @@ systemctl daemon-reload
 if [ -f /proc/acpi/ibm/fan ]
 then
 	apt-get -y install tp-smapi-dkms thinkfan
-	ln -sf /etc/local/conf/thinkpad_acpi.conf /etc/modprobe.d/
-	ln -sf /etc/local/conf/thinkfan.conf /etc/
+	cat conf/local/thinkpad_acpi.conf > /etc/modprobe.d/thinpad_acpi.conf
+	ln -sf /etc/local-conf/thinkfan.conf /etc/
 	systemctl enable thinkfan
 fi
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
-
-mount --bind /root/conf/local /etc/local/conf
-mount --bind /root/bin/local /etc/local/bin
 
 /root/bin/keyboard
 /root/bin/mouse

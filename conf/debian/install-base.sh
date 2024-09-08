@@ -9,8 +9,8 @@ mkdir -p /etc/local/ssh/etc
 rm -r .ssh || true
 ln -sT /etc/local/ssh/root .ssh
 
-mkdir -p /etc/local/bin
-mkdir -p /etc/local/conf
+mkdir -p /etc/local-bin
+mkdir -p /etc/local-conf
 
 mv /etc/hosts /tmp/hosts
 cat <(printf '127.0.0.1\tlocalhost ') /etc/hostname <(grep -v 127.0.0.1 /tmp/hosts) > /etc/hosts
@@ -52,14 +52,16 @@ systemctl daemon-reload
 
 for file in $(ls /root/bin/local)
 do
-	ln -s /etc/local/bin/$file /usr/local/bin/$file
+	ln -s /etc/local-bin/$file /usr/local/bin/$file
 done
+
+cat > /etc/fstab <<'EOF'
+/root/conf/local /etc/local-conf none bind 0 0
+/root/bin/local /etc/local-bin none bind 0 0
+EOF
 
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh
-
-mount --bind /root/conf/local /etc/local/conf
-mount --bind /root/bin/local /etc/local/bin
 
 /root/bin/keyboard
 
