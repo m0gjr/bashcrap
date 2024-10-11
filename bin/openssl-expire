@@ -4,7 +4,7 @@ timeout=60
 tries=5
 warning=7
 
-for i in seq 1 $tries
+for i in $(seq 1 $tries)
 do
 
 	expire="$(openssl s_client -connect "$1" < /dev/null 2> /dev/null | openssl x509 -noout -text 2> /dev/null | grep 'Not After' | cut -d':' -f2-)"
@@ -12,7 +12,7 @@ do
 	if [ -n "$expire" ]
 	then
 		break
-	elif [ $i >= $tries ]
+	elif [ $i -ge $tries ]
 	then
 		openssl s_client -connect "$1" < /dev/null
 		echo
