@@ -25,3 +25,4 @@ ip link set $iface up
 ip -4 route add default dev $iface table $table
 ip -6 route add default dev $iface table $table
 
+wg-shuffle $iface
