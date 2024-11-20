@@ -25,5 +25,5 @@ if [ -n "$1" ]
 then
 	torrent "$@"
 else
-	torrent -l
+	list="$(torrent -l)"; echo "$list" | awk '$2 == "100%"{print}' | sort -k10; echo "$list" | awk '$2 != "100%"{print}'
 fi
