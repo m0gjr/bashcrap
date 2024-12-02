@@ -2,13 +2,19 @@
 
 from i3ipc import Event, Connection
 from i3_scripts import is_floating, set_splitting
+from os import environ, system
 
 def set_cursor(i3, event) -> None:
 	global old_mode
 	new_mode=i3.get_tree().find_focused().fullscreen_mode
 	if new_mode != old_mode:
-		i3.command("seat * hide_cursor " + str(new_mode*3000))
 		old_mode=new_mode
+		if environ.get('i3_display') == 'wayland':
+			i3.command("seat * hide_cursor " + str(new_mode*3000))
+		elif new_mode == 1:
+			system('unclutter --timeout 3&')
+		else:
+			system('killall unclutter')
 
 old_mode=0
 

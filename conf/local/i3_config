@@ -81,11 +81,6 @@ bindsym XF86AudioPlay		exec --no-startup-id echo "cycle pause" | socat - "/run/u
 bindsym XF86AudioPrev		exec --no-startup-id echo playlist-prev | socat - "/run/user/$(id -u)/mpvsocket"
 bindsym XF86AudioNext		exec --no-startup-id echo playlist-next | socat - "/run/user/$(id -u)/mpvsocket"
 
-bindsym $mod+Mod1+Up	output "*" transform 0 ;
-bindsym $mod+Mod1+Left	output "*" transform 270;
-bindsym $mod+Mod1+Right	output "*" transform 90;
-bindsym $mod+Mod1+Down	output "*" transform 180;
-
 bindsym $mod+x reload
 bindsym $mod+k exit
 
