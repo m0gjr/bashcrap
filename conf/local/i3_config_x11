@@ -1,5 +1,7 @@
 exec --no-startup-id setxkbmap -option ctrl:nocaps gb
 
+tiling_drag modifier titlebar
+
 bindsym $mod+Mod1+Up	exec --no-startup-id xrandr -o 0
 bindsym $mod+Mod1+Left	exec --no-startup-id xrandr -o 1
 bindsym $mod+Mod1+Right	exec --no-startup-id xrandr -o 3
@@ -7,4 +9,4 @@ bindsym $mod+Mod1+Down	exec --no-startup-id xrandr -o 2
 
 for_window [class="UXTerm"] floating enable move right 430px move up 220px resize set width 500px height 300px
 
-exec --no-startup-id /usr/lib/notification-daemon/notification-daemon
+exec --no-startup-id dunst
