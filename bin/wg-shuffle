@@ -2,4 +2,6 @@
 
 [ -z "$1" ] && echo "need interface argument" >&2 && exit 1
 
-wg set $1 peer $(wg show $1 | grep '^peer:' | cut -d' ' -f2 | sort -R | tail -n1) allowed-ips 0.0.0.0/0,::/0
+peer=$(wg show $1 | grep '^peer:' | cut -d' ' -f2 | sort -R | tail -n1)
+wg set $1 peer $peer allowed-ips 0.0.0.0/0,::/0
+wg show $1 endpoints | grep "$peer" | cut -f2
