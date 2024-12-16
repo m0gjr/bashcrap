@@ -22,4 +22,4 @@ done < "$1"
 
 shift
 
-echo aws "$@" --filters "${filters:0:-1}"
+aws "$@" --filters "${filters:0:-1}"
