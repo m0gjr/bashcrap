@@ -46,7 +46,6 @@ bindsym $mod+space floating toggle
 bindsym Mod1+Tab exec --no-startup-id i3_cycle_windows
 bindsym Mod1+F4 kill
 bindsym F11 fullscreen toggle
-bindsym $mod+p exec --no-startup-id grim
 
 bindsym XF86Launch1 exec --no-startup-id $term sudo -i
 bindsym $mod+t exec --no-startup-id $term sudo -i

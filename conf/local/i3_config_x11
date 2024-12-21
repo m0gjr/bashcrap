@@ -7,6 +7,8 @@ bindsym $mod+Mod1+Left	exec --no-startup-id xrandr -o 1
 bindsym $mod+Mod1+Right	exec --no-startup-id xrandr -o 3
 bindsym $mod+Mod1+Down	exec --no-startup-id xrandr -o 2
 
+bindsym $mod+p exec --no-startup-id maim screenshot-$(date -Iseconds)
+
 for_window [class="UXTerm"] floating enable move right 430px move up 220px resize set width 500px height 300px
 
 exec --no-startup-id dunst
