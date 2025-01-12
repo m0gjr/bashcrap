@@ -4,10 +4,7 @@ cd "${dir:-/home/music}"
 
 for infile in download/*
 do
-	id="[$(basename "${infile%.*}" | rev | grep '^]' | cut -d']' -f2- | cut -d'[' -f1 | rev)]"
-	name="$(basename "${infile%.*}" | rev | cut -d'[' -f2- | rev)"
-
-	outfile="mp3/$id ${name% }.mp3"
+	outfile="mp3/$(basename "${infile%.*}").mp3"
 
 	if ! [ -f "$outfile" ]
 	then

@@ -4,6 +4,6 @@ cd "${dir:-/home/music}"
 
 mountpoint "${mount:=/mnt}"
 
-mv "$mount"/music/* "$mount"/temp
+mv "$mount"/music/* "$mount"/temp/
 rsync -rucv --delete mp3/ "$mount"/temp/
-mv "$mount"/temp/* "$mount"/music
+ls "$mount"/temp/* | sort -R | xargs -i -d '\n' mv {} "$mount"/music/
