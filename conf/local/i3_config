@@ -80,7 +80,6 @@ bindsym XF86AudioPlay		exec --no-startup-id echo "cycle pause" | socat - "/run/u
 bindsym XF86AudioPrev		exec --no-startup-id echo playlist-prev | socat - "/run/user/$(id -u)/mpvsocket"
 bindsym XF86AudioNext		exec --no-startup-id echo playlist-next | socat - "/run/user/$(id -u)/mpvsocket"
 
-bindsym $mod+x reload
 bindsym $mod+k exit
 
 for_window [window_role="pop-up"] floating enable

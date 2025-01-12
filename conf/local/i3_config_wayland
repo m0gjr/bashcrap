@@ -8,6 +8,8 @@ bindsym $mod+Mod1+Left	output "*" transform 270;
 bindsym $mod+Mod1+Right	output "*" transform 90;
 bindsym $mod+Mod1+Down	output "*" transform 180;
 
+bindsym $mod+x reload
+
 bindsym $mod+p exec --no-startup-id grim
 
 output * bg #000000 solid_color
