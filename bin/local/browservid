@@ -4,11 +4,10 @@ if [ -t 1 ]
 then
 	opts="--script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
 else
-	opts="--force-window=immediate --terminal=no --script-opts-append=ytdl_hook-try_ytdl_first=yes"
+	opts="--force-window=immediate --terminal=no --script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
 fi
 
 sort="height:720,proto:m3u8"
 format="bv[vcodec!^=vp09]+ba/bv+ba/bv*+ba/b"
-extractor="youtube:player_skip=webpage,configs,js;player_client=ios"
 
-mpv $opts --ytdl-raw-options-append=format-sort="$sort" --ytdl-format="$format" --ytdl-raw-options-append=extractor-args="$extractor" "$1"
+mpv $opts --ytdl-raw-options-append=format-sort="$sort" --ytdl-format="$format" "$1"
