@@ -14,3 +14,7 @@ bindsym $mod+p exec --no-startup-id maim screenshot-$(date -Iseconds).png
 for_window [class="UXTerm"] floating enable move right 430px move up 220px resize set width 500px height 300px
 
 exec --no-startup-id dunst
+
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
