@@ -48,6 +48,8 @@ cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<'EOF'
 ExecStart=
 ExecStart=/usr/sbin/agetty --autologin root --noclear %I $TERM
 EOF
+
+echo DefaultTimeoutStopSec=20s >> /etc/systemd/system.conf
 systemctl daemon-reload
 
 for file in $(ls /root/bin/local)
