@@ -50,6 +50,7 @@ bindsym F11 fullscreen toggle
 bindsym XF86Launch1 exec --no-startup-id $term sudo -i
 bindsym $mod+t exec --no-startup-id $term sudo -i
 bindsym $mod+s exec --no-startup-id $term sudo ssh server
+bindsym $mod+z exec --no-startup-id sudo /root/bin/wg-shuffle vpn
 
 bindsym $mod+u exec --no-startup-id $term bash
 
