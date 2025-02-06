@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -t 1 ]
+if tty | grep -q '^/dev/pts/'
 then
 	opts="--script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
 else
