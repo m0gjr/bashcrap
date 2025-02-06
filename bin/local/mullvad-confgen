@@ -26,6 +26,8 @@ if len(sys.argv)>1:
 if len(sys.argv)>2:
 	servers=[x for x in servers if x['city_code']==sys.argv[2]]
 
+servers=[x for x in servers if x['status_messages']==[]]
+
 server=servers.pop(random.randint(0,len(servers)-1))
 
 print (json.dumps(server, indent=4))
