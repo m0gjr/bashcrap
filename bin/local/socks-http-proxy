@@ -1,0 +1,175 @@
+#!/usr/bin/python3
+
+from os import environ
+import socket
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from socketserver import ThreadingMixIn
+import socks
+import urllib.parse
+
+# Configuration for the SOCKS proxy
+SOCKS_PROXY_HOST = environ.get('socks_host')
+SOCKS_PROXY_PORT = int(environ.get('socks_port'))
+LISTEN_PORT = int(environ.get('listen_port'))
+
+# Threaded HTTP Server
+class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
+	"""Handle requests in separate threads."""
+
+
+# HTTP request handler
+class ProxyHandler(BaseHTTPRequestHandler):
+	def do_CONNECT(self):
+		"""Handle HTTPS tunneling via CONNECT method."""
+		try:
+			# Parse the target host and port
+			target_host, target_port = self.path.split(":")
+			target_port = int(target_port)
+
+			# Establish a connection to the target server via SOCKS
+			sock = socks.socksocket()
+			sock.set_proxy(socks.SOCKS5, SOCKS_PROXY_HOST, SOCKS_PROXY_PORT)
+			sock.connect((target_host, target_port))
+
+			# Inform the client that the tunnel has been established
+			self.send_response(200, "Connection established")
+			self.end_headers()
+
+			# Tunnel data between the client and the target server
+			self.tunnel_data(self.connection, sock)
+
+		except Exception as e:
+			self.send_error(500, f"Internal Server Error: {e}")
+
+	def do_GET(self):
+		self.handle_http_request()
+
+	def do_POST(self):
+		self.handle_http_request()
+
+	def handle_http_request(self):
+		"""Handle regular HTTP requests (GET, POST, etc.)"""
+		parsed_url = urllib.parse.urlparse(self.path)
+		target_host = parsed_url.hostname
+		target_port = parsed_url.port or 80  # Default to port 80 if unspecified
+
+		if not target_host:
+			self.send_error(400, "Bad Request: Missing host in URL")
+			return
+
+		try:
+			# Create a SOCKS connection
+			sock = socks.socksocket()
+			sock.set_proxy(socks.SOCKS5, SOCKS_PROXY_HOST, SOCKS_PROXY_PORT)
+			sock.connect((target_host, target_port))
+
+			# Send the HTTP request to the target server
+			request_headers = f"{self.command} {self.path} HTTP/1.1\r\n"
+			for header, value in self.headers.items():
+				request_headers += f"{header}: {value}\r\n"
+			request_headers += "\r\n"
+			sock.sendall(request_headers.encode())
+
+			if self.command == 'POST':
+				content_length = int(self.headers.get('Content-Length', 0))
+				if content_length:
+					post_data = self.rfile.read(content_length)
+					sock.sendall(post_data)
+
+			# Read and forward the response properly
+			self.forward_response(sock)
+
+		except Exception as e:
+			self.send_error(500, f"Internal Server Error: {e}")
+		finally:
+			sock.close()
+
+	def forward_response(self, sock):
+		"""Reads and forwards the HTTP response from the target server to the client."""
+		# Read response status line
+		response_status = sock.recv(4096)
+		if not response_status:
+			self.send_error(502, "Bad Gateway")
+			return
+
+		# Send status line to client
+		self.wfile.write(response_status)
+
+		# Read headers
+		headers = b""
+		while True:
+			line = sock.recv(4096)
+			headers += line
+			if b"\r\n\r\n" in headers:
+				break
+
+		# Send headers to client
+		self.wfile.write(headers)
+
+		# Determine content length or chunked encoding
+		content_length = None
+		chunked = False
+
+		for header in headers.decode().split("\r\n"):
+			if header.lower().startswith("content-length:"):
+				content_length = int(header.split(":")[1].strip())
+			if header.lower().startswith("transfer-encoding:") and "chunked" in header.lower():
+				chunked = True
+
+		# Read response body
+		if chunked:
+			while True:
+				chunk_size_data = sock.recv(4096)
+				self.wfile.write(chunk_size_data)
+				if chunk_size_data.strip() == b"0":
+					break
+		elif content_length is not None:
+			remaining = content_length
+			while remaining > 0:
+				chunk = sock.recv(min(4096, remaining))
+				if not chunk:
+					break
+				self.wfile.write(chunk)
+				remaining -= len(chunk)
+		else:
+			# Read until the connection is closed
+			while True:
+				chunk = sock.recv(4096)
+				if not chunk:
+					break
+				self.wfile.write(chunk)
+
+	def tunnel_data(self, client_sock, target_sock):
+		"""Bidirectional data forwarding between client and target."""
+		def forward(source, destination):
+			while True:
+				try:
+					data = source.recv(4096)
+					if not data:
+						break
+					destination.sendall(data)
+				except Exception:
+					break
+
+		# Start threads for bidirectional communication
+		client_to_target = threading.Thread(target=forward, args=(client_sock, target_sock))
+		target_to_client = threading.Thread(target=forward, args=(target_sock, client_sock))
+
+		client_to_target.start()
+		target_to_client.start()
+
+		# Wait for threads to complete
+		client_to_target.join()
+		target_to_client.join()
+
+
+# Start the HTTP proxy server
+def run_proxy_server(server_address=('127.0.0.1', LISTEN_PORT)):
+	httpd = ThreadingHTTPServer(server_address, ProxyHandler)
+	print(f"HTTP Proxy Server running on {server_address[0]}:{server_address[1]}")
+	httpd.serve_forever()
+
+
+if __name__ == "__main__":
+	run_proxy_server()
