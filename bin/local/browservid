@@ -15,14 +15,14 @@ fi
 
 if tty | grep -q '^/dev/pts/'
 then
-	opts="--script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
+	o="--script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
 else
-	opts="--force-window=immediate --terminal=no --script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
+	o="--force-window=immediate --terminal=no --script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
 fi
 
-sort="height:720,proto:m3u8"
-format="bv[vcodec!^=vp09]+ba/bv+ba/bv*+ba/b"
+s="height:720,proto:m3u8"
+f="bv[vcodec!^=vp09]+ba/bv+ba/bv*+ba/b"
 
-mpv $opts --ytdl-raw-options-append=format-sort="$sort" --ytdl-format="$format" "$1"
+mpv ${opts:-$o} --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
 
-[ -n $pid ] && kill $pid
+[ -n "$pid" ] && kill $pid
