@@ -2,6 +2,22 @@
 
 [ -z "$1" ] && echo "need interface argument" >&2 && exit 1
 
-peer=$(wg show $1 | grep '^peer:' | cut -d' ' -f2 | sort -R | tail -n1)
+# check if current connection timed out
+if [ "$(basename "$0")" == "wg-timeout" ]
+then
+	if [ $(( $(date +%s) - $(wg show $1 latest-handshakes | cut -f2 | sort -n | tail -n1) )) -lt 300 ]
+	then
+		exit
+	fi
+fi
+
+# fix broken endpoint ips
+wg show $1 endpoints | awk '$2 ~ /^10\./ {print $1}' | while read peer
+do
+	wg set $1 peer $peer endpoint $(grep -A1 $peer "/etc/wireguard/$1.conf" | tail -n1 | cut -d' ' -f3)
+done
+
+# random shuffle peer
+peer=$(wg show $1 peers | sort -R | tail -n1)
 wg set $1 peer $peer allowed-ips 0.0.0.0/0,::/0
 wg show $1 endpoints | grep "$peer" | cut -f2
