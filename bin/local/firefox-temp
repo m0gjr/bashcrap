@@ -1,6 +1,6 @@
 #!/bin/bash
 
-profiledir=$(mktemp -d)
+profiledir=$(mktemp -d /tmp/firefox-tmp.XXXX)
 
 if [ "$1" == "local" ]
 then

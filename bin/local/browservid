@@ -13,11 +13,13 @@ then
 	export http_proxy="http://localhost:$listen_port"
 fi
 
+ytdlops="--script-opts-append=ytdl_hook-try_ytdl_first=yes --script-opts-append=ytdl_hook-ytdl_path=ytdl-term"
+
 if tty | grep -q '^/dev/pts/'
 then
-	o="--script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
+	o="--fs=no $ytdlops"
 else
-	o="--force-window=immediate --terminal=no --script-opts-append=ytdl_hook-try_ytdl_first=yes --fs=no"
+	o="--terminal=no $ytdlops"
 fi
 
 s="height:720,proto:m3u8"

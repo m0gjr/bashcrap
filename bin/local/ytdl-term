@@ -1,0 +1,22 @@
+#!/bin/bash
+
+dir=$(mktemp -d /tmp/ytdl-term.XXXX)
+
+fifo=$dir/fifo
+
+mkfifo $fifo
+
+
+x-terminal-emulator-float cat $fifo&
+
+if yt-dlp --verbose "$@"
+then
+	printf %b '\e]11;#00ff00\a' >&2
+	sleep 0.1
+else
+	printf %b '\e]11;#ff0000\a' >&2
+	sleep 5
+fi 2> $fifo
+
+rm $fifo
+rmdir $dir
