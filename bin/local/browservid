@@ -1,12 +1,27 @@
 #!/bin/bash
 
+get_socks_host(){
+	mullvad-confgen se | grep socks_name | cut -d'"' -f4
+}
+
+hostfile=$XDG_RUNTIME_DIR/browservid-socks
+
 if [ -n "$proxyvid" ]
 then
-	export socks_host=$(mullvad-confgen se | grep socks_name | cut -d '"' -f4)
+	if [ -f "$hostfile" ]
+	then
+		export socks_host="$(head -n1 "$hostfile")"
+	else
+		export socks_host="$(get_socks_host)"
+	fi
+
+	get_socks_host > "$hostfile" &
+
+#	export socks_host=$(mullvad-confgen se | grep socks_name | cut -d '"' -f4)
 	export socks_port=1080
 	export listen_port=$(( 20000 + $RANDOM))
 
-	echo $socks_host
+	echo "$socks_host"
 
 	socks-http-proxy& pid=$!; sleep 0.5
 
