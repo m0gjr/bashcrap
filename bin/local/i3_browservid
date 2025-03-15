@@ -16,7 +16,7 @@ try:
 except:
 	hosts=[]
 
-replace="https://www.youtube.com/"
+replace="https://www.youtube.com"
 
 i3=Connection()
 
