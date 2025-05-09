@@ -35,6 +35,9 @@ wireless _first_ {
 battery all {
 	format = "%status %percentage %remaining"
 	last_full_capacity = true
+	format_percentage = "%.00f%s"
+	threshold_type = "percentage"
+	low_threshold = 25
 }
 
 disk "/" {
