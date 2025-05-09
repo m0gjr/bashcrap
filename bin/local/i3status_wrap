@@ -7,7 +7,7 @@ commands="$(grep '^path_exists ' "$config" | cut -sd \" -f2)"
 i3status -c "$config" | while read line
 do
 	while read command
-		do line="$(echo "$line" | sed "s/| $command |/| $($command) |/")"
+		do line="$(echo "$line" | sed 's/"color":"#FF0000","markup":"none","full_text":"'"$command"'"/"full_text":"'"$($command)"'"/')"
 	done <<<$commands
 
 	echo "$line"

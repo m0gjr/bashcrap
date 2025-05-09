@@ -7,6 +7,8 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
+	output_format = i3bar
+	color_good = '#F0F0F0'
 	colors = true
 	interval = 5
 }
