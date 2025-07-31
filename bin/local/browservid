@@ -1,7 +1,8 @@
 #!/bin/bash
 
 get_socks_host(){
-	mullvad-confgen se | grep socks_name | cut -d'"' -f4
+	code=$(shuf -n1 -e us se)
+	mullvad-confgen $code | grep socks_name | cut -d'"' -f4
 }
 
 hostfile=$XDG_RUNTIME_DIR/browservid-socks
@@ -17,7 +18,6 @@ then
 
 	get_socks_host > "$hostfile" &
 
-#	export socks_host=$(mullvad-confgen se | grep socks_name | cut -d '"' -f4)
 	export socks_port=1080
 	export listen_port=$(( 20000 + $RANDOM))
 
@@ -34,7 +34,7 @@ if tty | grep -q '^/dev/pts/'
 then
 	o="--fs=no $ytdlops"
 else
-	o="--terminal=no $ytdlops"
+	o="--terminal=no --fs=no --force-window=immediate $ytdlops"
 fi
 
 s="height:720,proto:m3u8"

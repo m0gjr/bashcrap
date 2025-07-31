@@ -17,6 +17,7 @@ bindsym $mod+F5 workspace number 5
 bindsym $mod+F6 workspace number 6
 bindsym $mod+F7 workspace number 7
 bindsym $mod+F8 workspace number 8
+bindsym $mod+l exec --no-startup-id sudo chvt 12
 
 bindsym $mod+Shift+F1 exec --no-startup-id i3_move_windows 1 move
 bindsym $mod+Shift+F2 exec --no-startup-id i3_move_windows 2 move
