@@ -23,7 +23,7 @@ then
 
 	echo "$socks_host"
 
-	socks-http-proxy& pid=$!; sleep 0.5
+	socks-http-proxy& pid=$!
 
 	export http_proxy="http://localhost:$listen_port"
 fi

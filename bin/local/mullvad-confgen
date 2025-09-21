@@ -1,40 +1,14 @@
 #!/usr/bin/python3
 
-import json
-import urllib.request
-#import urllib2
-import random
+import mullvad
 import sys
-import os.path
+import os
 
-url="https://api.mullvad.net/www/relays/all/"
+servers=mullvad.get_servers()
+servers=mullvad.filter(sys.argv,servers)
+server=mullvad.pick_server(servers)
+
 dir=""
-
-servers=json.load(urllib.request.urlopen(url))
-#servers=json.load(urllib2.urlopen(url))
-
-servers=[x for x in servers if x['type']=='wireguard']
-if len(sys.argv)>1:
-	if sys.argv[1]=='-ip4':
-		for x in servers: print (x['ipv4_addr_in'])
-		sys.exit()
-	if sys.argv[1]=='-ip6':
-		for x in servers: print (x['ipv6_addr_in'])
-		sys.exit()
-
-	servers=[x for x in servers if x['country_code']==sys.argv[1]]
-if len(sys.argv)>2:
-	servers=[x for x in servers if x['city_code']==sys.argv[2]]
-
-servers=[x for x in servers if x['active']==True]
-servers=[x for x in servers if x['status_messages']==[]]
-
-server=servers.pop(random.randint(0,len(servers)-1))
-
-print (json.dumps(server, indent=4))
-
-hostname=server["hostname"]
-servername="mlvd"+hostname.replace('-wg-','').replace('-','')
 
 try:
 	with open(os.path.join(dir,'mullvad-template'),'r') as file:
@@ -53,6 +27,7 @@ else:
 				file.write("Endpoint = "+server["ipv4_addr_in"]+":51820"+"\n")
 		os.chmod(os.path.join(dir,"vpn.conf"),0o600);
 	else:
+		servername="mlvd"+server["hostname"].replace('-wg-','').replace('-','')
 		with open(os.path.join(dir,servername+".conf"),'w') as file:
 			file.write(template)
 			file.write("PublicKey = "+server["pubkey"]+"\n")
