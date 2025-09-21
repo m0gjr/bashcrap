@@ -1,11 +1,9 @@
 #!/bin/bash
 
 dir=$(mktemp -d /tmp/ytdl-term.XXXX)
-
 fifo=$dir/fifo
-
 mkfifo $fifo
-
+trap "rm -f $fifo; rmdir $dir; exit 0" SIGPIPE
 
 x-terminal-emulator-float awk '/^ERROR:/ {gsub(/^/,"\033[0;30;47m",$0) gsub(/$/,"\033[0m")} 1 ' $fifo&
 

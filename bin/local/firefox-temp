@@ -17,8 +17,10 @@ user_pref("network.proxy.socks", "$server");
 user_pref("network.proxy.socks_port", 1080);
 user_pref("network.proxy.socks_remote_dns", true);
 user_pref("network.proxy.type", 1);
-user_pref("browser.tabs.warnOnClose", false);
 user_pref("network.cookie.cookieBehavior", 0);
+user_pref("browser.tabs.warnOnClose", false);
+user_pref("media.webspeech.synth.dont_notify_on_error", true);
+
 
 EOF
 

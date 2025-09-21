@@ -1,8 +1,9 @@
 #!/bin/bash
 
-pipe=sshping.fifo
-mkfifo $pipe || exit 255
-trap "rm -f $pipe; exit 0" SIGINT SIGTERM
+dir=$(mktemp -d /tmp/sshping.XXXX)
+fifo=$dir/fifo
+mkfifo $fifo
+trap "rm -f $fifo; rmdir $dir; exit 0" SIGINT SIGTERM
 
 sshpinger(){
 	maxtime=0
@@ -42,4 +43,4 @@ sshpinger(){
 		sleep 0.2
 	done
 }
-< $pipe sshpinger | ssh "$@" "cat" > $pipe
+< $fifo sshpinger | ssh "$@" "cat" > $fifo
