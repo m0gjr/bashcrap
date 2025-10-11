@@ -6,7 +6,7 @@ import random
 import os
 
 def get_servers():
-	filepath=os.getenv('XDG_RUNTIME_DIR')+"/mullvad-servers"
+	filepath=os.getenv('XDG_RUNTIME_DIR','/run')+"/mullvad-servers"
 	url="https://api.mullvad.net/www/relays/all/"
 	try:
 		with open(filepath,'r') as file:
