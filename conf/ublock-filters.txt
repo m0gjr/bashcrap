@@ -3,6 +3,7 @@ about.gitlab.com##.sticky-banner.js-sticky-banner.active
 aonprd.com##.clear.hideSkiplink
 aonprd.com###main-menu
 aws.amazon.com###awsccc-cb-content
+||bbci.co.uk/core/bundle-component-sign-in-prompt
 d20pfsrd.com##.widget.widget_srdgoogleads
 ebay.co.uk###binBtn_btn
 ebay.co.uk##.btn.btn-prim.vi-VR-btnWdth-XL
@@ -21,6 +22,8 @@ gsmarena.com###header
 gumtree.com##.box-info
 instagram.com##.tHaIX.Igw0E.IwRSH.pmxbr.YBx95._4EzTm.CIRqI.IY_1_.XfCBB.HcJZg.O1flK.D8xaz._7JkPY.TxciK.N9d2H.ZUqME
 i.ytimg.com/an/*/featured_channel.jpg
+markets.ft.com##html,body:style(overflow: auto !important;)
+markets.ft.com##html,body:style(position: static !important;)
 mobile.reuters.com###breakingNews
 m.youtube.com##body:style(overflow:auto!important)
 m.youtube.com##.upsell-dialog-lightbox
@@ -64,6 +67,7 @@ www.itv.com##.cp_dialog__backdrop.cp_backdrop
 www.itv.com##.cp_dialog--centered.cp_dialog__box
 www.reddit.com###t3_i415sb
 www.rt.com##.header__section_border-bottom_gray.header__section
+www.skills.google##.course-toc-cont
 www.telegraph.co.uk##.martech-general-sticky-footer__content
 www.tomshardware.com##.qc-cmp-cleanslate.iFeyDu.sc-VigVT
 www.tomshardware.com##.region_redirect_popup_asset
