@@ -5,7 +5,7 @@ libreoffice-calc libreoffice-gtk3
 firefox-esr-l10n-en-gb
 thunar mpv pipewire socat
 mako-notifier libnotify-bin
-imv drawing grim
+qimgv grim
 ffmpeg adb wireguard
 ffmpegthumbnailer tumbler tumbler-plugins-extra
 transmission-cli

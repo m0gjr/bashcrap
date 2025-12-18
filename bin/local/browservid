@@ -37,9 +37,14 @@ else
 	o="--terminal=no --fs=no --force-window=immediate $ytdlops"
 fi
 
-#s="height:720,proto:m3u8"
-s="height:720,proto:http"
-f="bv[vcodec!^=vp09]+ba/bv+ba/bv*+ba/b"
+if [ -n "$fallback" ]
+then
+	s="height:720"
+	f="bv+ba/bv*+ba/b"
+else
+	s="height:720,proto:m3u8"
+	f="bv*[vcodec!^=vp09]+ba/bv*+ba/b"
+fi
 
 mpv ${opts:-$o} --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
 
