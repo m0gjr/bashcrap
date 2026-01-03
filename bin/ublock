@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cat conf/ublock-filters.txt - | grep -v '^!\|^#\|^$' > /tmp/ublockfilters
-sort /tmp/ublockfilters | uniq > conf/ublock-filters.txt

@@ -37,7 +37,7 @@ else
 	o="--terminal=no --fs=no --force-window=immediate $ytdlops"
 fi
 
-if [ -n "$fallback" ]
+if [ -z "$fallback" ]
 then
 	s="height:720"
 	f="bv+ba/bv*+ba/b"

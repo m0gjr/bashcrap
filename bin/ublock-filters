@@ -1,0 +1,10 @@
+#!/bin/bash
+
+conf="conf/ublock-filters.txt"
+
+tmp="$(mktemp)"
+
+cat "$conf" >"$tmp"
+nano "$tmp"
+grep -v '^!\|^#\|^$' "$tmp" | sort | uniq > "$conf"
+rm "$tmp"
