@@ -30,6 +30,8 @@ pref("browser.startup.homepage_override.mstone", "ignore");
 pref("browser.tabs.crashReporting.sendReport", false);
 pref("browser.urlbar.groupLabels.enabled", false);
 pref("browser.urlbar.quicksuggest.enabled", false);
+pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
+pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
 pref("browser.urlbar.speculativeConnect.enabled", false);
 pref("browser.urlbar.trimURLs", false);
 pref("datareporting.healthreport.service.enabled", false);
