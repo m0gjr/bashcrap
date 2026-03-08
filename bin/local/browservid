@@ -34,7 +34,7 @@ if tty | grep -q '^/dev/pts/'
 then
 	o="--fs=no $ytdlops"
 else
-	o="--terminal=no --fs=no --force-window=immediate $ytdlops"
+	o="--terminal=no $ytdlops"
 fi
 
 if [ -z "$fallback" ]
