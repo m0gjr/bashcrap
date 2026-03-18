@@ -1,6 +1,13 @@
 /*
 /*/
+
 !/.gitignore
 !/conf/
 !/bin/
+
 *.swp
+*.tmp
+
+__pycache__/
+*.pyc
+*.pyo
