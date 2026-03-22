@@ -10,3 +10,4 @@ ffmpeg adb wireguard
 ffmpegthumbnailer tumbler tumbler-plugins-extra
 transmission-cli
 upower
+bluez
