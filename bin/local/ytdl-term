@@ -5,7 +5,7 @@ fifo=$dir/fifo
 mkfifo $fifo
 trap "rm -f $fifo; rmdir $dir; exit 0" SIGPIPE
 
-x-terminal-emulator-float awk '/^ERROR:/ {gsub(/^/,"\033[0;30;47m",$0) gsub(/$/,"\033[0m")} 1 ' $fifo&
+x-terminal-emulator-float busybox awk '/^ERROR:/ {gsub(/^/,"\033[0;30;47m",$0) gsub(/$/,"\033[0m")} 1 ' $fifo&
 
 if yt-dlp --verbose "$@"
 then
