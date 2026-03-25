@@ -4,7 +4,7 @@ iotop iftop lm-sensors
 nano bc pv git unzip
 netcat-openbsd curl wget dnsutils dhcpcd5 ssh net-tools
 arp-scan nmap tcpdump iptables resolvconf
-iw wpasupplicant wireless-tools wavemon
+iw wpasupplicant wireless-tools wavemon rfkill
 sshfs autofs
 firmware-linux firmware-iwlwifi
 locales debconf-utils debootstrap
