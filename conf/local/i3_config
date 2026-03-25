@@ -76,8 +76,8 @@ bindsym $mod+g exec --no-startup-id libreoffice --calc
 bindsym XF86MonBrightnessUp	exec --no-startup-id sudo brightness up
 bindsym XF86MonBrightnessDown	exec --no-startup-id sudo brightness down
 
-bindsym XF86AudioRaiseVolume	exec --no-startup-id "amixer sset Master 3%+"
-bindsym XF86AudioLowerVolume	exec --no-startup-id "amixer sset Master 3%-"
+bindsym XF86AudioRaiseVolume	exec --no-startup-id "amixer sset Master 5%+"
+bindsym XF86AudioLowerVolume	exec --no-startup-id "amixer sset Master 5%-"
 bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle
 bindsym XF86AudioMicMute	exec --no-startup-id amixer sset Capture toggle
 
