@@ -6,11 +6,21 @@ pull_full(){
 	return 1
 }
 
+pull_file(){
+	if ! [ -f "$file" ]
+	then
+		size=$(ssh $shost "zfs send -nvi $sds@$dst $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | numfmt --from=iec) &&\
+		ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -c -s $size > "$file" ||\
+		return 1
+	fi
+	pv -c "$file" | ssh $dhost "zfs receive $dds" &&\
+	rm "$file" ||\
+	return 2
+}
+
 pull_inc(){
 	size=$(ssh $shost "zfs send -nvi $sds@$dst $sds@$src" | tee /dev/fd/2 | tail -n1 | cut -d' ' -f5 | numfmt --from=iec) &&\
-	ssh $dhost "zfs mount -o remount,ro $dds" &&\
-	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds" &&\
-	ssh $dhost "zfs mount -o remount,rw $dds" ||\
+	ssh $shost "zfs send -i $sds@$dst $sds@$src" | pv -c -s $size | ssh $dhost "zfs receive $dds" \\\
 	return 1
 }
 
@@ -23,6 +33,7 @@ then
 	dhost="${dhost:-localhost}"
 	sds="${sds:-jumbo/home}"
 	dds="${dds:-$homeds}"
+	file="${zfsfile:-/var/tmp/zfspull.tmp}"
 else
 	echo push
 	shost="${shost:-localhost}"
@@ -44,6 +55,21 @@ then
 		if [ $(grep '^y' <<<$confirm) ]
 		then
 			force='-F' pull_full
+		else
+			exit
+		fi
+	fi
+elif [ -n "$file" ]
+then
+	if ! pull_file
+	then
+		echo rolling back $dhost to $dds@$dst
+		echo 'enter "y" to proceed'
+		read confirm
+		if [ $(grep '^y' <<<$confirm) ]
+		then
+			ssh $dhost "zfs rollback $dds@$dst"
+			pull_file
 		else
 			exit
 		fi
