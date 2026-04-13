@@ -17,3 +17,5 @@ output * bg #000000 solid_color
 for_window [app_id="term-float"] floating enable; move position 60ppt -10ppt; resize set width 35ppt height 30ppt
 
 exec --no-startup-id mako --default-timeout 5000
+
+include /etc/local/swayconfig

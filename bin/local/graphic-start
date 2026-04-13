@@ -2,9 +2,10 @@
 
 export GTK_THEME=Adwaita:dark
 
-if [ -f /usr/bin/startx ]
-#if false
-#if true
+if [ -f /etc/local/graphic-start ]
+then
+	exec /etc/local/graphic-start
+elif [ -f /usr/bin/startx ]
 then
 	export i3_display=x11
 	exec startx

@@ -6,13 +6,13 @@ then
 	then
 		exec xterm -class UXTerm -e "$@"
 	else
-		exec foot --font=monospace:size=6 --app-id="term-float" "$@"
+		exec foot --app-id="term-float" "$@"
 	fi
 else
 	if [ -n "$DISPLAY" ]
 	then
 		exec xterm -e "$@"
 	else
-		exec foot --font=monospace:size=7 "$@"
+		exec foot "$@"
 	fi
 fi
