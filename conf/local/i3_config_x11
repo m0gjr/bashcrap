@@ -11,7 +11,7 @@ bindsym $mod+j restart
 
 bindsym $mod+p exec --no-startup-id maim screenshot-$(date -Iseconds).png
 
-for_window [class="UXTerm"] floating enable move right 25ppt move up 25ppt resize set width 35ppt height 30ppt
+for_window [class="UXTerm"] floating enable move right 25ppt move up 25ppt resize set width 33ppt height 33ppt
 
 exec --no-startup-id dunst
 
