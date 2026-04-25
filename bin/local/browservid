@@ -43,24 +43,18 @@ else
 	o="--terminal=no $ytdlops"
 fi
 
+s="height:720"
+
 if [ -z "$fallback" ]
 then
-	s="height:720"
 
 	mpv ${opts:-$o} --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
 else
-	o="$o"
-	s="height:720,proto:m3u8"
-	f="bv+ba"
-
-	urlfile=$ytdl_dir/url
 	audiofile=$ytdl_dir/audio
-
 	mkfifo $audiofile
 
-	ytdl-term "$1" -f "$f" -S "$s" --js-runtimes=node -g > $urlfile
-	yt-dlp -o - "$(tail -n1 $urlfile)" > $audiofile &
-	yt-dlp -o - "$(head -n1 $urlfile)" | mpv ${opts:-$o} --audio-file=$audiofile -
+	ytdl-term --js-runtimes=node "$1" -S "$s" -f "ba" -o $audiofile &
+	ytdl-term --js-runtimes=node "$1" -S "$s" -f "bv*" -o - | mpv ${opts:-$o} --force-window=yes --audio-file=$audiofile -
 	rm "$audiofile"
 fi
 

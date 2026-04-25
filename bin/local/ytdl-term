@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fifo=$ytdl_dir/fifo
+fifo=$ytdl_dir/$(mktemp term.XXX)
 mkfifo $fifo
 trap "rm -f $fifo; exit 0" SIGPIPE
 
