@@ -34,7 +34,7 @@ socks-http-proxy& pid=$!
 
 export http_proxy="http://localhost:$listen_port"
 
-ytdlops="--script-opts-append=ytdl_hook-try_ytdl_first=yes --script-opts-append=ytdl_hook-ytdl_path=ytdl-term"
+ytdlops="--script-opts-append=ytdl_hook-try_ytdl_first=yes"
 
 if tty | grep -q '^/dev/pts/'
 then
@@ -47,15 +47,20 @@ s="height:720"
 
 if [ -z "$fallback" ]
 then
-
-	mpv ${opts:-$o} --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
+	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
 else
-	audiofile=$ytdl_dir/audio
-	mkfifo $audiofile
+	mkfifo $ytdl_dir/video
+	mkfifo $ytdl_dir/audio
 
-	ytdl-term --js-runtimes=node "$1" -S "$s" -f "ba" -o $audiofile &
-	ytdl-term --js-runtimes=node "$1" -S "$s" -f "bv*" -o - | mpv ${opts:-$o} --force-window=yes --audio-file=$audiofile -
-	rm "$audiofile"
+
+	ytdl-term --js-runtimes=node "$1" -S "$s" -f "bv*" -o $ytdl_dir/video --write-sub --sub-format srt &
+	yt-dlp --js-runtimes=node "$1" -S "$s" -f "ba" -o $ytdl_dir/audio &
+
+	mpv ${opts:-$o} --force-window=yes --audio-file=$ytdl_dir/audio $ytdl_dir/video
+#	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-cache --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
+
+	rm $ytdl_dir/video
+	rm $ytdl_dir/audio
 fi
 
 [ -n "$pid" ] && kill $pid
