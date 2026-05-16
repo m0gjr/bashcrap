@@ -47,17 +47,16 @@ s="height:720"
 
 if [ -z "$fallback" ]
 then
-	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
+	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$@"
 else
 	mkfifo $ytdl_dir/video
 	mkfifo $ytdl_dir/audio
 
 
-	ytdl-term --js-runtimes=node "$1" -S "$s" -f "bv*" -o $ytdl_dir/video --write-sub --sub-format srt &
-	yt-dlp --js-runtimes=node "$1" -S "$s" -f "ba" -o $ytdl_dir/audio &
+	ytdl-term --js-runtimes=node -S "$s" -f "bv*" -o $ytdl_dir/video --write-sub --sub-format srt "$@" &
+	yt-dlp --js-runtimes=node -S "$s" -f "ba" -o $ytdl_dir/audio "$@" &
 
 	mpv ${opts:-$o} --force-window=yes --audio-file=$ytdl_dir/audio $ytdl_dir/video
-#	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-cache --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$1"
 
 	rm $ytdl_dir/video
 	rm $ytdl_dir/audio
