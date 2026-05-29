@@ -12,23 +12,32 @@ filename="libredirect-settings-*.json"
 try:
 	file=max(list(glob(dir + filename)))
 	data=load(open(file,'r'))
-	hosts=data['invidious']+data['piped']
-except:
-	hosts=[]
 
-replace="https://www.youtube.com"
+	mapping={
+		"https://www.youtube.com": data['invidious']+data['piped'],
+		"https://www.instagram.com": data['proxigram']
+	}
+
+	lookup={
+		inp: outp
+		for outp, inps in mapping.items()
+		for inp in inps
+	}
+except:
+	lookup={}
 
 i3=Connection()
-
 focused=i3.get_tree().find_focused()
 name=focused.name
 
-pattern=r'https:\/\/\S+'
+url_pattern=r'https:\/\/\S+'
+url=re.search(url_pattern,name).group()
 
-url=re.search(pattern,name).group()
+try:
+	map_pattern=re.compile("|".join(re.escape(k) for k in sorted(lookup, key=len, reverse=True)))
+	mapped=map_pattern.sub(lambda m: lookup[m.group(0)], url)
+except:
+	mapped=url
 
-for host in hosts:
-	url=url.replace(host,replace)
-
-print(url)
-run(['browservid', url])
+print(mapped)
+run(['browservid', mapped])
