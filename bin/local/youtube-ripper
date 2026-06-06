@@ -1,0 +1,34 @@
+#!/bin/bash
+
+python3 -m pip install -U --break-system-packages --pre "yt-dlp[default,curl-cffi]" 2> /dev/null
+.deno/install.sh -y 2> /dev/null
+
+cd "$(dirname "$0")"
+
+params="-f [height<=720] -r 1M --js-runtime=deno:.deno/bin/deno"
+
+for i in {4..0}
+do
+	youtube-dl 2> /dev/null -o /dev/null $params -f ba "https://www.youtube.com/watch?v=$(youtube-dl $params --get-id --flat-playlist -I 1 https://www.youtube.com/c/youtube)" && break
+	sleep 10
+	sudo /root/bin/wg-shuffle vpn
+done
+
+if [ $i -eq 0 ]
+then
+	echo "youtube ripper failed" >&2
+	exit 1
+fi
+
+for channel in $(grep -v '^#' channels | sort -R)
+do
+	youtube-dl $params --download-archive .download-archive/channel/$channel -o '%(channel)s/%(title)s.%(ext)s' "https://www.youtube.com/channel/$channel/videos" || echo "$channel failed" >&2
+	sleep 10
+done
+
+for playlist in $(grep -v '^#' playlists | sort -R)
+do
+	youtube-dl $params --download-archive .download-archive/playlist/$playlist -o '%(playlist_uploader)s/%(playlist)s/%(title)s.%(ext)s' "https://www.youtube.com/playlist?list=$playlist" || echo "$playlist failed" >&2
+	sleep 10
+done
+
