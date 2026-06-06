@@ -35,6 +35,7 @@ socks-http-proxy& pid=$!
 export http_proxy="http://localhost:$listen_port"
 
 ytdlops="--script-opts-append=ytdl_hook-try_ytdl_first=yes"
+jsopts="js-runtimes=deno:.deno/bin/deno"
 
 if tty | grep -q '^/dev/pts/'
 then
@@ -53,8 +54,8 @@ else
 	mkfifo $ytdl_dir/audio
 
 
-	ytdl-term --js-runtimes=node -S "$s" -f "bv*" -o $ytdl_dir/video --write-sub --sub-format srt "$@" &
-	yt-dlp --js-runtimes=node -S "$s" -f "ba" -o $ytdl_dir/audio "$@" &
+	ytdl-term --"$jsopts" -S "$s" -f "bv*" -o $ytdl_dir/video --write-sub --sub-format srt "$@" &
+	yt-dlp --"$jsopts" -S "$s" -f "ba" -o $ytdl_dir/audio "$@" &
 
 	mpv ${opts:-$o} --force-window=yes --audio-file=$ytdl_dir/audio $ytdl_dir/video
 
