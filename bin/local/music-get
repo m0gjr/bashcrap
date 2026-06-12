@@ -4,4 +4,4 @@ cd "${dir:-/home/music}"
 
 vid="$(echo "$1" | rev | cut -d '=' -f1 | rev)"
 
-[ -n "$vid" ] && youtube-dl -r 1M --max-filesize 30M -f bestaudio "https://youtube.com/watch?v=$vid"
+[ -n "$vid" ] && youtube-dl --js-runtimes="deno:$HOME/.deno/bin/deno" -r 1M --max-filesize 30M -f bestaudio "https://youtube.com/watch?v=$vid"
