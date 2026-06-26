@@ -35,7 +35,7 @@ socks-http-proxy& pid=$!
 export http_proxy="http://localhost:$listen_port"
 
 ytdlops="--script-opts-append=ytdl_hook-try_ytdl_first=yes"
-jsopts="js-runtimes=deno:.deno/bin/deno"
+jsopts="js-runtimes=deno:$HOME/.deno/bin/deno"
 
 if tty | grep -q '^/dev/pts/'
 then

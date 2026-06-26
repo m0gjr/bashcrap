@@ -1,11 +1,11 @@
 #!/bin/bash
 
 python3 -m pip install -U --break-system-packages --pre "yt-dlp[default,curl-cffi]" 2> /dev/null
-.deno/install.sh -y 2> /dev/null
+$HOME/.deno/install.sh -y 2> /dev/null
 
 cd "$(dirname "$0")"
 
-params="-f [height<=720] -r 1M --js-runtime=deno:.deno/bin/deno"
+params="-f [height<=720] -r 1M --js-runtime=deno:$HOME/.deno/bin/deno"
 
 for i in {4..0}
 do
