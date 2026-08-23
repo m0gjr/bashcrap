@@ -13,7 +13,7 @@ then
 	sleep 0.1
 else
 	printf %b '\e]11;#ff0000\a\n' >&2
-	sleep 2.5
+	sleep 1
 fi 2> $fifo
 
 rm $fifo

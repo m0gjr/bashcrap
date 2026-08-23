@@ -33,6 +33,7 @@ pref("browser.shell.checkDefaultBrowser", false);
 pref("browser.startup.homepage_override.mstone", "ignore");
 pref("browser.tabs.crashReporting.sendReport", false);
 pref("browser.tabs.firefox-view", false);
+pref("browser.tabs.groups.smart.enabled", false);
 pref("browser.urlbar.groupLabels.enabled", false);
 pref("browser.urlbar.quicksuggest.enabled", false);
 pref("browser.urlbar.speculativeConnect.enabled", false);

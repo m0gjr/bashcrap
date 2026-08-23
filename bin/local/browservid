@@ -11,9 +11,10 @@ export ytdl_dir=$(mktemp -d /tmp/ytdl.XXXX)
 
 if [ -n "$proxyvid" ]
 then
-	country="$(shuf -n1 -e us se)"
+	country="se"
+#	country="$(shuf -n1 -e us se)"
 else
-	country="gb"
+	country="us"
 fi
 
 if [ -f "$hostfile" ]
@@ -34,7 +35,6 @@ socks-http-proxy& pid=$!
 
 export http_proxy="http://localhost:$listen_port"
 
-ytdlops="--script-opts-append=ytdl_hook-try_ytdl_first=yes"
 jsopts="js-runtimes=deno:$HOME/.deno/bin/deno"
 
 if tty | grep -q '^/dev/pts/'
@@ -48,7 +48,7 @@ s="height:720"
 
 if [ -z "$fallback" ]
 then
-	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$@"
+	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append="$jsopts" --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$@"
 else
 	mkfifo $ytdl_dir/video
 	mkfifo $ytdl_dir/audio
