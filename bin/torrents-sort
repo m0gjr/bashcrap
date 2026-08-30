@@ -1,0 +1,11 @@
+#!/bin/bash
+(torrents -t all -i |\
+grep '^  Name:\|^  Date added:\|^NAME' |\
+sed -e 's/^  Name: //' -e 's/^  Date added:       //' -e 's/^NAME/|/' |\
+tr '\n' '\t' | tr '|' '\n'
+echo) |\
+while read line
+do
+	printf "%s\t%s\n" "$(date -I --date="$(echo "$line" |\
+	cut -f2-)")" "$(echo "$line" | cut -f1)"
+done | sort | head -n-1
