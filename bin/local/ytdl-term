@@ -1,5 +1,7 @@
 #!/bin/bash
 
+hostfile="$XDG_RUNTIME_DIR/browservid-socks"
+
 fifo=$(mktemp -u $ytdl_dir/term.XXX)
 
 mkfifo $fifo
@@ -13,6 +15,7 @@ then
 	sleep 0.1
 else
 	printf %b '\e]11;#ff0000\a\n' >&2
+	cat "$hostfile.2" > "$hostfile"
 	sleep 1
 fi 2> $fifo
 

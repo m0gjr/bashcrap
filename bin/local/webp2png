@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for file in *.avif
+do
+	avifdec $file $(basename $file .avif).png && rm $file
+done
+
+for file in *.webp
+do
+	dwebp $file -o $(basename $file .webp).png && rm $file
+done

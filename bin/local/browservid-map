@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+
+from subprocess import run
+import re
+from json import load
+from glob import glob
+from sys import argv
+
+dir="/home/conf/"
+filename="libredirect-settings-*.json"
+
+try:
+	file=max(list(glob(dir + filename)))
+	data=load(open(file,'r'))
+
+	mapping={
+		"https://www.youtube.com": data['invidious']+data['piped'],
+		"https://www.instagram.com": data['proxigram']
+	}
+
+	lookup={
+		inp: outp
+		for outp, inps in mapping.items()
+		for inp in inps
+	}
+except:
+	lookup={}
+
+url=argv[1]
+
+try:
+	map_pattern=re.compile("|".join(re.escape(k) for k in sorted(lookup, key=len, reverse=True)))
+	mapped=map_pattern.sub(lambda m: lookup[m.group(0)], url)
+except:
+	mapped=url
+
+print(mapped)
+run(['browservid', mapped])

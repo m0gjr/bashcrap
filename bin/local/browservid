@@ -4,7 +4,7 @@ get_socks_host(){
 	mullvad-confgen $1 | grep socks_name | cut -d'"' -f4
 }
 
-hostfile=$XDG_RUNTIME_DIR/browservid-socks
+hostfile="$XDG_RUNTIME_DIR/browservid-socks"
 trap "rm -r $ytdl_dir" SIGTERM SIGINT
 
 export ytdl_dir=$(mktemp -d /tmp/ytdl.XXXX)
@@ -13,6 +13,7 @@ if [ -n "$proxyvid" ]
 then
 	country="se"
 #	country="$(shuf -n1 -e us se)"
+	rm "$hostfile"
 else
 	country="us"
 fi
@@ -24,7 +25,8 @@ else
 	export socks_host="$(get_socks_host)"
 fi
 
-get_socks_host "$country" > "$hostfile" &
+#get_socks_host "$country" > "$hostfile" &
+get_socks_host "$country" > "$hostfile.2" &
 
 export socks_port=1080
 export listen_port=$(( 20000 + $RANDOM))
