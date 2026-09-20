@@ -1,17 +1,24 @@
 #!/usr/bin/python3
 
-from subprocess import run
+import json
+import os
+import struct
+import sys
+import tempfile
+import glob
 import re
-from json import load
-from glob import glob
-from sys import argv
+
+URL_FILE = os.path.join(
+	os.environ.get("XDG_RUNTIME_DIR", f"/run/user/{os.getuid()}"),
+	"firefox-current-url",
+)
 
 dir="/home/conf/"
 filename="libredirect-settings-*.json"
 
 try:
-	file=max(list(glob(dir + filename)))
-	data=load(open(file,'r'))
+	file=max(list(glob.glob(dir + filename)))
+	data=json.load(open(file,'r'))
 
 	mapping={
 		"https://www.youtube.com": data['invidious']+data['piped'],
@@ -23,16 +30,79 @@ try:
 		for outp, inps in mapping.items()
 		for inp in inps
 	}
+
+	map_pattern=re.compile("|".join(re.escape(k) for k in sorted(lookup, key=len, reverse=True)))
+
 except:
 	lookup={}
 
-url=argv[1]
 
-try:
-	map_pattern=re.compile("|".join(re.escape(k) for k in sorted(lookup, key=len, reverse=True)))
-	mapped=map_pattern.sub(lambda m: lookup[m.group(0)], url)
-except:
-	mapped=url
+def read_message():
+	raw_length = sys.stdin.buffer.read(4)
 
-print(mapped)
-run(['browservid', mapped])
+	if len(raw_length) != 4:
+		return None
+
+	length = struct.unpack("<I", raw_length)[0]
+	raw_message = sys.stdin.buffer.read(length)
+
+	if len(raw_message) != length:
+		return None
+
+	return json.loads(raw_message.decode("utf-8"))
+
+
+def write_url(url):
+	directory = os.path.dirname(URL_FILE)
+	os.makedirs(directory, exist_ok=True)
+
+	fd, temporary = tempfile.mkstemp(
+		prefix=".firefox-current-url.",
+		dir=directory,
+		text=True,
+	)
+
+	try:
+		with os.fdopen(fd, "w") as f:
+			f.write(url)
+			f.write("\n")
+
+		os.replace(temporary, URL_FILE)
+
+	except Exception:
+		try:
+			os.unlink(temporary)
+		except FileNotFoundError:
+			pass
+		raise
+
+
+def main():
+	while True:
+		message = read_message()
+
+		if message is None:
+			break
+
+		if message.get("url"):
+
+			try:
+				mapped=map_pattern.sub(lambda m: lookup[m.group(0)], message["url"])
+			except:
+				mapped=message["url"]
+
+			print(mapped)
+
+			write_url(mapped)
+
+		response = json.dumps({"ok": True}).encode("utf-8")
+		sys.stdout.buffer.write(struct.pack("<I", len(response)))
+		sys.stdout.buffer.write(response)
+		sys.stdout.buffer.flush()
+
+
+if __name__ == "__main__":
+	main()
+
+
+

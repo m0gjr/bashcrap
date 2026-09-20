@@ -61,10 +61,10 @@ bindsym $mod+h exec --no-startup-id $term-float top
 bindsym $mod+c exec --no-startup-id $term-float bc
 bindsym $mod+d exec --no-startup-id $term-float watch sensors
 
-bindsym F7 exec --no-startup-id i3_browservid
-bindsym Shift+F7 exec --no-startup-id fallback=true i3_browservid
-bindsym Ctrl+F7 exec --no-startup-id proxyvid=true i3_browservid
-bindsym Ctrl+Shift+F7 exec --no-startup-id fallback=true proxyvid=true i3_browservid
+bindsym $mod+q exec --no-startup-id browservid
+bindsym Shift+$mod+q exec --no-startup-id fallback=true browservid
+bindsym Ctrl+$mod+q exec --no-startup-id proxyvid=true browservid
+bindsym Ctrl+Shift+$mod+q exec --no-startup-id fallback=true proxyvid=true browservid
 
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+w exec --no-startup-id firefox -P normal

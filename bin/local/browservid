@@ -9,6 +9,13 @@ trap "rm -r $ytdl_dir" SIGTERM SIGINT
 
 export ytdl_dir=$(mktemp -d /tmp/ytdl.XXXX)
 
+if [ -z "$@" ]
+then
+	url="$(cat "$XDG_RUNTIME_DIR/firefox-current-url")"
+else
+	url="$@"
+fi
+
 if [ -n "$proxyvid" ]
 then
 	country="se"
@@ -50,14 +57,14 @@ s="height:720"
 
 if [ -z "$fallback" ]
 then
-	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append="$jsopts" --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$@"
+	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append="$jsopts" --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$url"
 else
 	mkfifo $ytdl_dir/video
 	mkfifo $ytdl_dir/audio
 
 
-	ytdl-term --"$jsopts" -S "$s" -f "bv*" -o $ytdl_dir/video --write-sub --sub-format srt "$@" &
-	yt-dlp --"$jsopts" -S "$s" -f "ba" -o $ytdl_dir/audio "$@" &
+	ytdl-term --"$jsopts" -S "$s" -f "bv*" -o $ytdl_dir/video --write-sub --sub-format srt "$url" &
+	yt-dlp --"$jsopts" -S "$s" -f "ba" -o $ytdl_dir/audio "$url" &
 
 	mpv ${opts:-$o} --force-window=yes --audio-file=$ytdl_dir/audio $ytdl_dir/video
 

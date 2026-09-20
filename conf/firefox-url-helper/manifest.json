@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "Firefox URL Helper",
+  "version": "1.0",
+
+  "description": "Publishes the active Firefox tab URL to the desktop.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "firefox-url-helper@m0gjr.duckdns.org",
+      "strict_min_version": "100.0"
+    }
+  },
+
+  "permissions": [
+    "tabs",
+    "nativeMessaging"
+  ],
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}
