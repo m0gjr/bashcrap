@@ -1,0 +1,49 @@
+#!/bin/bash
+
+gain=1
+
+settemp=${settemp:-60}
+
+pid=$$
+
+therm='/sys/devices/virtual/thermal/thermal_zone*/temp'
+cgroup="$(sudo mktemp -d /sys/fs/cgroup/thermcg.XXXX)"
+
+freqmin=10000
+freqmax=100000
+freqcur=50000
+
+echo $pid | sudo tee "$cgroup/cgroup.procs"
+
+loop(){
+while true
+do
+	temp=$(cat $therm | sort -n | tail -n1)
+
+	diff=$((${settemp}000 - $temp))
+
+	freqnew=$(($freqcur + $diff * $gain))
+
+	[ $freqnew -gt $freqmax ] && freqnew=$freqmax
+	[ $freqnew -lt $freqmin ] && freqnew=$freqmin
+
+	echo $freqnew $freqmax | sudo tee "$cgroup/cpu.max" > /dev/null
+
+	freqcur=$freqnew
+
+	sleep 1
+done
+}
+
+loop&
+loopid=$!
+
+$@
+
+for proc in $(sudo cat "$cgroup/cgroup.procs")
+do
+	echo $proc | sudo tee "$cgroup/../cgroup.procs" &> /dev/null
+done
+sudo rmdir "$cgroup"
+
+kill $loopid &> /dev/null
