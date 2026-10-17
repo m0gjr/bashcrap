@@ -1,8 +1,9 @@
 #!/bin/bash
 
-/root/bin/zfsnap
+/root/bin/zfsnap "/"
 
 apt-get update && apt-get --with-new-pkgs -y upgrade || echo "APT UPDATE FAILED" >> /var/log/bash_notify
+apt-get -y autoremove
 
 /root/bin/dkms-check
 update-initramfs -u
