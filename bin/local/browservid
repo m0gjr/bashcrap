@@ -55,7 +55,7 @@ fi
 
 s="height:720"
 
-if [ -z "$fallback" ]
+if [ -n "$fallback" ]
 then
 	mpv ${opts:-$o} --script-opts-append=ytdl_hook-ytdl_path=ytdl-term --ytdl-raw-options-append="$jsopts" --ytdl-raw-options-append=format-sort="${sort:-$s}" --ytdl-format="${format:-$f}" "$url"
 else

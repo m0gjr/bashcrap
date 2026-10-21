@@ -3,10 +3,6 @@
 
 PS1="\u@\h:\w# "
 
-if [ $(which micro 2> /dev/null) ]
-then
-	export EDITOR="micro"
-fi
 export PAGER="less --mouse --wheel-lines 3"
 
 shopt -s histappend
