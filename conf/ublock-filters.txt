@@ -1,3 +1,4 @@
+1lumen.com###sticky-nav
 about.gitlab.com###sticky-banner
 about.gitlab.com##.sticky-banner.js-sticky-banner.active
 aonprd.com##.clear.hideSkiplink
